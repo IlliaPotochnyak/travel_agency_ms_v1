@@ -27,6 +27,10 @@ CREATE TABLE IF NOT EXISTS `travel_agency_db1`.`role` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
 ENGINE = InnoDB;
 
+INSERT INTO role (role) values ('admin');
+INSERT INTO role (role) values ('manager');
+INSERT INTO role (role) values ('client');
+
 
 -- -----------------------------------------------------
 -- Table `travel_agency_db1`.`user`
@@ -53,6 +57,10 @@ CREATE TABLE IF NOT EXISTS `travel_agency_db1`.`user` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+INSERT INTO user (first_name, last_name, email, password, phone, active, role_id)
+            VALUES ('admin', 'admin', 'admin@mail.com', 'adminPassword', '+380111111111', 1,
+            (SELECT id FROM role where role = 'admin'));
+
 
 -- -----------------------------------------------------
 -- Table `travel_agency_db1`.`tour_type`
@@ -66,6 +74,9 @@ CREATE TABLE IF NOT EXISTS `travel_agency_db1`.`tour_type` (
   UNIQUE INDEX `tour_type_UNIQUE` (`tour_type` ASC) VISIBLE)
 ENGINE = InnoDB;
 
+INSERT INTO tour_type (tour_type) values ('rest');
+INSERT INTO tour_type (tour_type) values ('excursion');
+INSERT INTO tour_type (tour_type) values ('shopping');
 
 -- -----------------------------------------------------
 -- Table `travel_agency_db1`.`hotel_type`
@@ -75,12 +86,17 @@ DROP TABLE IF EXISTS `travel_agency_db1`.`hotel_type` ;
 CREATE TABLE IF NOT EXISTS `travel_agency_db1`.`hotel_type` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `star_rate` INT NOT NULL,
-  `desc` VARCHAR(100) NOT NULL,
+  `desc` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
   UNIQUE INDEX `star_rate_UNIQUE` (`star_rate` ASC) VISIBLE)
 ENGINE = InnoDB;
 
+INSERT INTO hotel_type (star_rate, `desc`) VALUES (1, '1-Star Hotel: A hotel with basic amenities, perhaps with shared bathrooms or no dining options.');
+INSERT INTO hotel_type (star_rate, `desc`) VALUES (2, '2-Star Hotel: A hotel with basic amenities and slightly elevated decor, breakfast service, and/or public areas like a lobby or gym.');
+INSERT INTO hotel_type (star_rate, `desc`) VALUES (3, '3-Star Hotel: A full-service hotel with a restaurant, front desk, intentional decor, and housekeeping service.');
+INSERT INTO hotel_type (star_rate, `desc`) VALUES (4, '4-Star Hotel: An upscale hotel with on-site dining, premium amenities, and a signature look and feel.');
+INSERT INTO hotel_type (star_rate, `desc`) VALUES (5, '5-Star Hotel: A luxurious hotel with personalized service, high-end dining venues, wellness facilities, and elegant design.');
 
 -- -----------------------------------------------------
 -- Table `travel_agency_db1`.`tour`
