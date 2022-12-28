@@ -1,3 +1,4 @@
+import db.DataSource;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,7 +9,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 @WebServlet("/roles")
 public class RolesTest extends HttpServlet {
@@ -18,16 +18,22 @@ public class RolesTest extends HttpServlet {
         System.out.println("roles Get Method");
         try (Connection con = DataSource.getConnection();
              PreparedStatement pst = con.prepareStatement( SQL_QUERY );
-             ResultSet rs = pst.executeQuery();
-             ){
+             ResultSet rs = pst.executeQuery())
+        {
+//            List <String> roles = new ArrayList<>();
+            StringBuilder roles = new StringBuilder();
+            while (rs.next()) {
+                roles.append(rs.getString("role")).append("<br>");
+            }
+
             resp.getWriter()
                     .append("<html>")
                     .append("<body>")
                     .append("OK!!! go!")
+                    .append("<hr>")
+                    .append(roles)
                     .append("<body>")
                     .append("<html>");
-
-
 
         } catch (Exception e) {
             System.out.println("Connection failed");
