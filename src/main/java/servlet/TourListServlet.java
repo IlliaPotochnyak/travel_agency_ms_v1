@@ -1,0 +1,32 @@
+package servlet;
+
+import db.dao.DAOImpl.MySQLImpl.TourDAOImpl;
+import entities.Tour;
+import exceptions.DatabaseException;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+import java.util.List;
+
+@WebServlet("/TourList")
+public class TourListServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("TourList servlet Get method");
+        List<Tour> listOfTours;
+        TourDAOImpl tourDAO = new TourDAOImpl();
+        try {
+            listOfTours = tourDAO.getAllTours();
+        } catch (DatabaseException e) {
+            throw new RuntimeException(e);
+        }
+        req.setAttribute("tourList", listOfTours);
+//        req.getRequestDispatcher("ListTour.jsp").forward(req, resp);
+        req.getRequestDispatcher("ListTour.jsp").include(req, resp);
+
+    }
+}
