@@ -2,15 +2,17 @@ package entities;
 
 public class User {
     //id, first_name, last_name, email, password, phone, active, role_id
+    int id;
     private String first_name;
     private String last_name;
     private String email;
     private String password;
     private String phone;
     private int active;
-    private String role;
+    private int role;
 
-    public User(String first_name, String last_name, String email, String password, String phone, String role) {
+    public User(int id, String first_name, String last_name, String email, String password, String phone, int role) {
+        this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
@@ -20,7 +22,7 @@ public class User {
         this.role = role;
     }
 
-    public User(String first_name, String last_name, String email, String phone, int active, String role) {
+    public User(String first_name, String last_name, String email, String phone, int active, int role) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
@@ -77,11 +79,11 @@ public class User {
         this.active = active;
     }
 
-    public String getRole() {
+    public int getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(int role) {
         this.role = role;
     }
 }

@@ -5,6 +5,7 @@
 <html>
     <body>
         <h2>Login page</h2>
+        ${errorLogin}
         <hr>
         <form action="LoginValidator" method="post">
                 <div class="container">

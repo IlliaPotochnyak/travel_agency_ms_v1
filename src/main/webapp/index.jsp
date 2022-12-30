@@ -4,10 +4,12 @@
 <html>
     <body>
         <h2>Hello, this is a TravelAgency MS!!!</h2>
+        ${UserFirstName} ${UserLastName}
         <a href="Register.jsp">Register</a>
         <a href="Login.jsp">Login</a>
+        <a href="Logout">Logout</a>
         <hr>
-        ${pageContext}
+
         <hr>
 
         <jsp:include page="HelloServlet?name=ILYA" flush="true" />
