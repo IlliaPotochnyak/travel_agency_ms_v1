@@ -24,7 +24,6 @@ public class UserDAOImpl implements UserDAO {
             pstmnt.setString(1, email);
             ResultSet rs = pstmnt.executeQuery();
 
-
             if (rs.next()) {
                 //String first_name, String last_name, String email, String password, String phone, String role
                 user = new User( rs.getInt("id"),

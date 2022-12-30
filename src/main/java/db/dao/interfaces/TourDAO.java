@@ -11,6 +11,7 @@ public interface TourDAO {
     void addTour(Connection connection, Tour tour) throws SQLException;
 
     List<Tour> getAllTours() throws DatabaseException;
+    List<Tour> getSortedTours(String tourType, String price, String personNumber, String hotelType) throws DatabaseException;
 
     void deleteTourById(Long id) throws DatabaseException;
 

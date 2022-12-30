@@ -18,9 +18,18 @@ public class TourListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("TourList servlet Get method");
         List<Tour> listOfTours;
+        System.out.println(req.getQueryString());
         TourDAOImpl tourDAO = new TourDAOImpl();
         try {
-            listOfTours = tourDAO.getAllTours();
+            if (req.getQueryString() == null) {
+                listOfTours = tourDAO.getAllTours();
+            } else {
+                listOfTours = tourDAO.getSortedTours(req.getParameter("tour_type"),
+                        req.getParameter("price"),
+                        req.getParameter("people_amount"),
+                        req.getParameter("hotel_stars")
+                        );
+            }
         } catch (DatabaseException e) {
             System.out.println("Exception");
             throw new RuntimeException(e);
