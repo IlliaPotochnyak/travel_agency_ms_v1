@@ -16,6 +16,9 @@ import java.util.List;
 public class LogInServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
+
         resp.getWriter().append("<html>")
                 .append("<body>")
                 .append("You entered ")
