@@ -19,7 +19,7 @@ public class TourDAOImpl implements TourDAO {
     @Override
     public List<Tour> getAllTours() throws DatabaseException {
         List<Tour> tourList = new ArrayList<>();
-        String query = "SELECT * FROM tour;";
+        String query = "SELECT * FROM tour ORDER BY hot DESC;";
         try (Connection con = DataSource.getConnection();
              Statement stmnt = con.createStatement();
              ResultSet rs = stmnt.executeQuery(query)){
@@ -46,7 +46,8 @@ public class TourDAOImpl implements TourDAO {
     public List<Tour> getSortedTours(String tourType, String price, String personNumber, String hotelType) throws DatabaseException {
         List<Tour> tourList = new ArrayList<>();
         String query = "SELECT * FROM tour WHERE tour_type_id=? " +
-                "AND price<=? AND persons_number=? AND hotel_type_id>=?;";
+                "AND price<=? AND persons_number=? AND hotel_type_id>=? " +
+                "ORDER BY hot DESC;";
         try (Connection con = DataSource.getConnection();
              PreparedStatement pstmnt = con.prepareStatement(query)){
             pstmnt.setString(1, tourType);
