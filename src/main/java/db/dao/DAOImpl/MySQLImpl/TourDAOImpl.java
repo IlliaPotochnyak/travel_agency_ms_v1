@@ -37,12 +37,13 @@ public class TourDAOImpl implements TourDAO {
                                     );
                 tourList.add(tour);
             }
+//            tourList.forEach(System.out::println);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        return null;
+        return tourList;
     }
 
     @Override

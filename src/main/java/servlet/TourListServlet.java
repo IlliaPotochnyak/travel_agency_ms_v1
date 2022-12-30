@@ -22,11 +22,14 @@ public class TourListServlet extends HttpServlet {
         try {
             listOfTours = tourDAO.getAllTours();
         } catch (DatabaseException e) {
+            System.out.println("Exception");
             throw new RuntimeException(e);
         }
+        System.out.println("Success");
         req.setAttribute("tourList", listOfTours);
-//        req.getRequestDispatcher("ListTour.jsp").forward(req, resp);
-        req.getRequestDispatcher("ListTour.jsp").include(req, resp);
+
+//        req.getRequestDispatcher("WEB-INF/view/ListTour.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/view/ListTour.jsp").include(req, resp);
 
     }
 }

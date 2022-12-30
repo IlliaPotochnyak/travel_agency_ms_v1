@@ -10,6 +10,19 @@ public class Tour {
     private int tour_type_id;
     private int hotel_type_id;
 
+    @Override
+    public String toString() {
+        return "Tour{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", persons_number=" + persons_number +
+                ", price=" + price +
+                ", hot=" + hot +
+                ", tour_type_id=" + tour_type_id +
+                ", hotel_type_id=" + hotel_type_id +
+                '}';
+    }
+
     public Tour(String name, String description, int persons_number, int price, int hot, int tour_type_id, int hotel_type_id) {
         this.name = name;
         this.description = description;

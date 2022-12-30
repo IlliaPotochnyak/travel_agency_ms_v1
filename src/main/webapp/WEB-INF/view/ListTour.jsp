@@ -4,9 +4,14 @@
 
 <html>
     <body>
-        <h2>List of tours!</h2>
+        List of tours!!!
         <hr>
+        <c:forEach var="tour" items="${tourList}">
 
+                    <c:out value="${tour.name}"/>
+                    <hr>
+        </c:forEach>
+        <hr>
 
     </body>
 </html>
