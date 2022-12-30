@@ -16,9 +16,7 @@
 
         <hr>
 
-        <hr>
 
-        <jsp:include page="HelloServlet?name=ILYA" flush="true" />
         <hr>
 
         <jsp:include page="TourList" flush="true"/>
