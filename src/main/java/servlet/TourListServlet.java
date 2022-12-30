@@ -27,7 +27,6 @@ public class TourListServlet extends HttpServlet {
         }
         System.out.println("Success");
         req.setAttribute("tourList", listOfTours);
-
 //        req.getRequestDispatcher("WEB-INF/view/ListTour.jsp").forward(req, resp);
         req.getRequestDispatcher("WEB-INF/view/ListTour.jsp").include(req, resp);
 
