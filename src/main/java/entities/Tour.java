@@ -7,10 +7,10 @@ public class Tour {
     private int persons_number;
     private int price;
     private int hot;
-    private String tour_type_id;
+    private int tour_type_id;
     private int hotel_type_id;
 
-    public Tour(String name, String description, int persons_number, int price, int hot, String tour_type_id, int hotel_type_id) {
+    public Tour(String name, String description, int persons_number, int price, int hot, int tour_type_id, int hotel_type_id) {
         this.name = name;
         this.description = description;
         this.persons_number = persons_number;
@@ -60,11 +60,11 @@ public class Tour {
         this.hot = hot;
     }
 
-    public String getTour_type_id() {
+    public int getTour_type_id() {
         return tour_type_id;
     }
 
-    public void setTour_type_id(String tour_type_id) {
+    public void setTour_type_id(int tour_type_id) {
         this.tour_type_id = tour_type_id;
     }
 
