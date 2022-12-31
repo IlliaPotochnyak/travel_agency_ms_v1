@@ -69,12 +69,12 @@
             <hr>
             <label for="firstName"><b>First Name</b></label>
             <input type="text" placeholder="Enter First Name" name="firstName" id="firstName"
-                    pattern="^[A-Za-z' А-Яа-я]{2,40}" required>
+                    pattern="^[A-Za-z' А-Яа-яіІїЇ]{2,40}" required>
             <br>
             <br>
             <label for="lastName"><b>Last Name</b></label>
             <input type="text" placeholder="Enter Last Name" name="lastName" id="lastName"
-                    pattern="^[A-Za-z' А-Яа-я]{2,40}" required>
+                    pattern="^[A-Za-z' А-Яа-яіІїЇ]{2,40}" required>
             <br>
             <br>
             <label for="email"><b>Email</b></label>
@@ -94,7 +94,8 @@
             <br>
             <br>
             <label for="phone"><b>Phone number</b></label>
-            <input type="tel" placeholder="Phone number" name="phone" id="phone" pattern="^[+][0-9]{2}-[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br>
+            <input type="tel" placeholder="Phone number" name="phone" id="phone"
+                    pattern="^[+][0-9]{2}-[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br>
             <small>Format: +12-123-123-1234</small><br><br>
             <hr>
 

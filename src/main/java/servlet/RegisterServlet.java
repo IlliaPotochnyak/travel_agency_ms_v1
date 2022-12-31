@@ -18,27 +18,32 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        UserDAO userDAO = new UserDAOImpl();
-        User user = null;
-        try {
-            user = userDAO.getUserByEmail(req.getParameter("email"));
-        } catch (DatabaseException e) {
-            System.out.println("Get user fault");
-            throw new RuntimeException(e);
+        if (registerFormCheck(req)){
+            UserDAO userDAO = new UserDAOImpl();
+            User user = null;
+
+
         }
-        if (user != null && user.getPassword().equals(req.getParameter("password"))) {
-            HttpSession session = req.getSession(true);
-            session.setAttribute("UserFirstName", user.getFirst_name());
-            session.setAttribute("UserLastName", user.getLast_name());
-            session.setAttribute("UserRole", user.getRole());
+        req.setAttribute("errorRegister", "Wrong Registration data");
 
-            resp.sendRedirect("index.jsp");
-        } else {
+        req.getRequestDispatcher("Register.jsp").forward(req, resp);
+    }
 
-            req.setAttribute("errorLogin", "Wrong email or password");
+    private boolean registerFormCheck (HttpServletRequest req) {
 
-            req.getRequestDispatcher("Login.jsp").forward(req, resp);
-        }
+        String regexName = "^[A-Za-z' А-Яа-яіІїЇ]{2,40}";
+        String regexPassword = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{6,}$";
+        String regexEmail = "^([a-zA-Z0-9_\\-.]+)@([a-zA-Z0-9_\\-.]+)\\.([a-zA-Z]{2,5})$";
+        String regexPhone = "^[+][0-9]{2}-[0-9]{3}-[0-9]{3}-[0-9]{4}";
+
+        if ( !req.getParameter("firstName").matches(regexName) ) return false;
+        if ( !req.getParameter("lastName").matches(regexName) ) return false;
+        if ( !req.getParameter("password").matches(regexPassword) ) return false;
+        if ( !req.getParameter("email").matches(regexEmail) ) return false;
+        if ( !req.getParameter("phone").matches(regexPhone) ) return false;
+
+
+        return true;
     }
 }
 
