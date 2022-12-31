@@ -1,6 +1,5 @@
 package db.dao.DAOImpl.MySQLImpl;
 
-
 import db.DataSource;
 import db.dao.interfaces.TourDAO;
 import entities.Tour;
