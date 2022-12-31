@@ -17,11 +17,30 @@ import java.io.IOException;
 public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        System.out.println("RegisterServlet Post method");
+        System.out.println(req.getParameter("password"));
         if (registerFormCheck(req)){
+            //String first_name, String last_name, String email, String password, String phone, int active, int role
+            User newUser = new User(req.getParameter("firstName"),
+                    req.getParameter("lastName"),
+                    req.getParameter("email"),
+                    req.getParameter("password"),
+                    req.getParameter("phone"),
+                    1, 3);
             UserDAO userDAO = new UserDAOImpl();
-            User user = null;
+            System.out.println(newUser);
 
+            try {
+                if (userDAO.addUser(newUser)) {
+                    HttpSession session = req.getSession(true);
+                    session.setAttribute("UserFirstName", newUser.getFirst_name());
+                    session.setAttribute("UserLastName", newUser.getLast_name());
+                    session.setAttribute("UserRole", newUser.getRole());
+                    req.getRequestDispatcher("RegisterOK.jsp").forward(req, resp);
+                }
+            } catch (DatabaseException e) {
+                throw new RuntimeException(e);
+            }
 
         }
         req.setAttribute("errorRegister", "Wrong Registration data");

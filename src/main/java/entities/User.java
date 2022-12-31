@@ -31,6 +31,16 @@ public class User {
         this.role = role;
     }
 
+    public User(String first_name, String last_name, String email, String password, String phone, int active, int role) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.active = active;
+        this.role = role;
+    }
+
     public String getFirst_name() {
         return first_name;
     }
@@ -85,5 +95,18 @@ public class User {
 
     public void setRole(int role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", active=" + active +
+                ", role=" + role +
+                '}';
     }
 }

@@ -42,8 +42,29 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void addUser(User user) throws DatabaseException {
+    public boolean addUser(User user) throws DatabaseException {
+        boolean result = false;
+        String query = "INSERT INTO user (first_name, last_name, email, password, phone, active, role_id)" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
+        try (Connection con = DataSource.getConnection();
+             PreparedStatement pstmnt = con.prepareStatement(query)) {
+            pstmnt.setString(1, user.getFirst_name());
+            pstmnt.setString(2, user.getLast_name());
+            pstmnt.setString(3, user.getEmail());
+            pstmnt.setString(4, user.getPassword());
+            pstmnt.setString(5, user.getPhone());
+            pstmnt.setInt(6, user.getActive());
+            pstmnt.setInt(7, user.getRole());
+            pstmnt.executeUpdate();
+
+            result = true;
+        } catch (SQLException e) {
+            result = false;
+            throw new RuntimeException(e);
+
+        }
+        return result;
     }
 
     @Override
