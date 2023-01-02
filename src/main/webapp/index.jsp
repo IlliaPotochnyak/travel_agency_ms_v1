@@ -28,11 +28,6 @@
         </c:if>
         </div>
 
-        <hr>
-
-
-        <hr>
-
         <jsp:include page="TourList" flush="true"/>
 
     </body>

@@ -22,22 +22,30 @@
     </head>
     <body>
         <div class="container">
-            List of tours!!!
+            <h2>List of tours!!!</h2>
         </div>
         <hr>
-        <div class="container">
-            <form action="index.jsp" method="get">
-                <label for="tour-type" class="col-sm-4 control-label">Tour type</label>
-                    <select id="tour-type" name="tour_type">
-                        <option value="1">rest</option>
-                        <option value="2">excursion</option>
-                        <option value="3">shopping</option>
-                    </select>
-                    <label for="price" class="col-sm-4 control-label">Price is not more than</label>
+            <div class="container">
+                <form action="index.jsp" method="get">
+
+                    <div class="col p-2 bg-primary text-white">
+                        <label for="tour-type" class="col-sm-2 control-label">Tour type</label>
+                        <select id="tour-type" name="tour_type">
+                            <option value="1">rest</option>
+                            <option value="2">excursion</option>
+                            <option value="3">shopping</option>
+                        </select>
+                    </div>
+                    <div class="col p-2 bg-primary text-white">
+                        <label for="price" class="col-sm-2 control-label">Price is not more than</label>
                         <input id="price" value="10000000000" type="text" name="price"> dollars per person
-                    <label for="people-amount" class="col-sm-4 control-label">People amount</label>
+                    </div>
+                    <div class="col p-2 bg-primary text-white">
+                        <label for="people-amount" class="col-sm-2 control-label">People amount</label>
                         <input id="people-amount" value="1" type="text" name="people_amount">
-                    <label for="hotel-stars" class="col-sm-4 control-label">Hotel stars</label>
+                    </div>
+                    <div class="col p-2 bg-primary text-white">
+                        <label for="hotel-stars" class="col-sm-2 control-label">Hotel stars</label>
                         <select id="hotel-stars" name="hotel_stars">
                             <option value="5">five</option>
                             <option value="4">four</option>
@@ -45,10 +53,11 @@
                             <option value="2">two</option>
                             <option value="1">one</option>
                         </select>
+                    </div> <br>
+                    <button type="submit" class="btn btn-primary">Sort</button>
 
-                <button type="submit">Sort</button>
-            </form>
-        <div>
+                </form>
+            </div>
         <hr>
         <div class="container">
             <table class="table">
@@ -64,15 +73,18 @@
                     </thead>
                     <c:forEach var="tour" items="${tourList}">
                         <tr>
-
-
-                            <td><c:if test="${tour.hot eq 1}">HOT!!!</c:if></td>
+                            <td>
+                                <c:if test="${tour.hot eq 1}">
+                                    <span class="badge bg-danger">
+                                        HOT!!!
+                                    </span>
+                                </c:if>
+                            </td>
                             <td id="table-name"><c:out value="${tour.name}"/></td>
                             <td id="table-desc"><c:out value="${tour.description}"/></td>
                             <td><c:out value="${tour.price}"/></td>
                             <td><c:out value="${tour.personsNumber}"/></td>
                             <td><c:out value="${tour.tourTypeId}"/></td>
-
                         </tr>
                     </c:forEach>
                 </tbody>
