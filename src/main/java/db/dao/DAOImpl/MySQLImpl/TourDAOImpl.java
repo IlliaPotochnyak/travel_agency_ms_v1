@@ -23,7 +23,8 @@ public class TourDAOImpl implements TourDAO {
              Statement stmnt = con.createStatement();
              ResultSet rs = stmnt.executeQuery(query)){
             while (rs.next()) {
-                Tour tour = new Tour(rs.getString("name"),
+                Tour tour = new Tour(rs.getInt("id"),
+                                    rs.getString("name"),
                                     rs.getString("description"),
                                     rs.getInt("persons_number"),
                                     rs.getInt("price"),
