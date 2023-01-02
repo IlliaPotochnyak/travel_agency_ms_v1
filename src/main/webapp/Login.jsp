@@ -18,17 +18,20 @@
                 ${errorLogin}
             </div>
             <hr>
-            <form action="LoginValidator" method="post">
-                    <div class="container">
-                        <label>Email : </label>
-                        <input type="email" placeholder="Enter Email" name="email" required>
-                        <label>Password : </label>
-                        <input type="password" placeholder="Enter Password" name="password" required>
-                        <button type="submit">Login</button>
-
+            <div class="container mt-5">
+                <form action="LoginValidator" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Email : </label>
+                        <input type="email" class="form-control" placeholder="Enter Email" name="email" required>
                     </div>
-                </form>
+                    <div class="mb-3">
+                        <label class="form-label">Password : </label>
+                        <input type="password" class="form-control" placeholder="Enter Password" name="password" required>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
 
+                </form>
+            </div>
             <hr>
 
         </body>

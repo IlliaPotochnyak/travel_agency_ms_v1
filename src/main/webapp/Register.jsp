@@ -65,58 +65,61 @@
               <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body>
-        <div class="container">
-            <h2>Registration page</h2>
-        </div>
-        <hr>
+
         <div class="container">
             ${errorRegister}
-        <div>
+        </div>
         <hr>
-        <div class="container">
+        <div class="container mt-3">
             <form action="RegisterServlet" method="post">
-              <div class="container">
+
                 <h1>Register</h1>
                 <p>Please fill in this form to create an account.</p>
                 <hr>
-                <label for="firstName"><b>First Name</b></label>
-                <input type="text" placeholder="Enter First Name" name="firstName" id="firstName"
-                        pattern="^[A-Za-z' А-Яа-яіІїЇ]{2,40}" required>
-                <br>
-                <br>
-                <label for="lastName"><b>Last Name</b></label>
-                <input type="text" placeholder="Enter Last Name" name="lastName" id="lastName"
-                        pattern="^[A-Za-z' А-Яа-яіІїЇ]{2,40}" required>
-                <br>
-                <br>
-                <label for="email"><b>Email</b></label>
-                <input type="email" placeholder="Enter Email" name="email" id="email" required>
-                <br>
-                <br>
-                <label for="password"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="password" id="password"
-                        pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$"
-                        title="Must contain at least one number, one special character and one uppercase and lowercase letter, and at least 6 or more characters"
-                        required>
-                <br>
-                <br>
-                <label for="confirm_password"><b>Repeat Password</b></label>
-                <input type="password" placeholder="Repeat Password" name="confirm_password" id="confirm_password"
-                        pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$" required>
-                <br>
-                <br>
-                <label for="phone"><b>Phone number</b></label>
-                <input type="tel" placeholder="Phone number" name="phone" id="phone"
-                        pattern="^[+][0-9]{2}-[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br>
-                <small>Format: +12-123-123-1234</small><br><br>
-                <hr>
+                <div class="mb-2">
+                    <label for="firstName" class="form-label"><b>First Name</b></label>
+                    <input type="text" class="form-control" placeholder="Enter First Name" name="firstName" id="firstName"
+                            pattern="^[A-Za-z' А-Яа-яіІїЇ]{2,40}" required>
+                </div>
 
-                <button type="submit" class="registerbtn" id="submit">Register</button>
-              </div>
+                <div class="mb-2">
+                    <label for="lastName" class="form-label"><b>Last Name</b></label>
+                    <input type="text" class="form-control" placeholder="Enter Last Name" name="lastName" id="lastName"
+                            pattern="^[A-Za-z' А-Яа-яіІїЇ]{2,40}" required>
+                </div>
 
-              <div class="container signin">
+                <div class="mb-2">
+                    <label for="email" class="form-label"><b>Email</b></label>
+                    <input type="email" class="form-control" placeholder="Enter Email" name="email" id="email" required>
+                </div>
+
+                <div class="mb-2">
+                    <label for="password" class="form-label"><b>Password</b></label>
+                    <input type="password" class="form-control" placeholder="Enter Password" name="password" id="password"
+                            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$"
+                            title="Must contain at least one number, one special character and one uppercase and lowercase letter, and at least 6 or more characters"
+                            required>
+                </div>
+
+                <div class="mb-2">
+                    <label for="confirm_password" class="form-label"><b>Repeat Password</b></label>
+                    <input type="password" class="form-control" placeholder="Repeat Password" name="confirm_password" id="confirm_password"
+                            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$" required>
+                </div>
+
+                <div class="mb-2">
+                    <label for="phone" class="form-label"><b>Phone number</b></label>
+                    <input type="tel" class="form-control" placeholder="Phone number" name="phone" id="phone"
+                            pattern="^[+][0-9]{2}-[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br>
+                    <small>Format: +12-123-123-1234</small><br><br>
+                </div>
+
+                <button type="submit"  class="btn btn-primary" id="submit">Register</button>
+                </div>
+
+                <div class="container signin">
                 <p>Already have an account? <a href="Login.jsp">Sign in</a>.</p>
-              </div>
+                </div>
             </form>
         </div>
 
