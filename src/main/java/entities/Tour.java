@@ -4,33 +4,33 @@ public class Tour {
     //id, name, description, persons_number, price, hot, tour_type_id, hotel_type_id
     private String name;
     private String description;
-    private int persons_number;
+    private int personsNumber;
     private int price;
     private int hot;
-    private int tour_type_id;
-    private int hotel_type_id;
+    private int tourTypeId;
+    private int hotelTypeId;
 
     @Override
     public String toString() {
         return "Tour{" +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", persons_number=" + persons_number +
+                ", persons_number=" + personsNumber +
                 ", price=" + price +
                 ", hot=" + hot +
-                ", tour_type_id=" + tour_type_id +
-                ", hotel_type_id=" + hotel_type_id +
+                ", tour_type_id=" + tourTypeId +
+                ", hotel_type_id=" + hotelTypeId +
                 '}';
     }
 
     public Tour(String name, String description, int persons_number, int price, int hot, int tour_type_id, int hotel_type_id) {
         this.name = name;
         this.description = description;
-        this.persons_number = persons_number;
+        this.personsNumber = persons_number;
         this.price = price;
         this.hot = hot;
-        this.tour_type_id = tour_type_id;
-        this.hotel_type_id = hotel_type_id;
+        this.tourTypeId = tour_type_id;
+        this.hotelTypeId = hotel_type_id;
     }
 
     public String getName() {
@@ -49,12 +49,12 @@ public class Tour {
         this.description = description;
     }
 
-    public int getPersons_number() {
-        return persons_number;
+    public int getPersonsNumber() {
+        return personsNumber;
     }
 
-    public void setPersons_number(int persons_number) {
-        this.persons_number = persons_number;
+    public void setPersonsNumber(int personsNumber) {
+        this.personsNumber = personsNumber;
     }
 
     public int getPrice() {
@@ -73,19 +73,19 @@ public class Tour {
         this.hot = hot;
     }
 
-    public int getTour_type_id() {
-        return tour_type_id;
+    public int getTourTypeId() {
+        return tourTypeId;
     }
 
-    public void setTour_type_id(int tour_type_id) {
-        this.tour_type_id = tour_type_id;
+    public void setTourTypeId(int tourTypeId) {
+        this.tourTypeId = tourTypeId;
     }
 
-    public int getHotel_type_id() {
-        return hotel_type_id;
+    public int getHotelTypeId() {
+        return hotelTypeId;
     }
 
-    public void setHotel_type_id(int hotel_type_id) {
-        this.hotel_type_id = hotel_type_id;
+    public void setHotelTypeId(int hotelTypeId) {
+        this.hotelTypeId = hotelTypeId;
     }
 }
