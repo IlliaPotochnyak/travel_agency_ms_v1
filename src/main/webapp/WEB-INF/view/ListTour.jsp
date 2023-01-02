@@ -80,11 +80,13 @@
                                     </span>
                                 </c:if>
                             </td>
-                            <td id="table-name"><c:out value="${tour.name}"/></td>
-                            <td id="table-desc"><c:out value="${tour.description}"/></td>
-                            <td><c:out value="${tour.price}"/></td>
-                            <td><c:out value="${tour.personsNumber}"/></td>
-                            <td><c:out value="${tour.tourTypeId}"/></td>
+
+                                <td id="table-name"><a href="TourPageServlet?tourId=${tour.id}" ><c:out value="${tour.name}"/></td>
+                                <td id="table-desc"><c:out value="${tour.description}"/></a></td>
+                                <td><c:out value="${tour.price}"/></td>
+                                <td><c:out value="${tour.personsNumber}"/></td>
+                                <td><c:out value="${tour.tourTypeId}"/></td>
+
                         </tr>
                     </c:forEach>
                 </tbody>

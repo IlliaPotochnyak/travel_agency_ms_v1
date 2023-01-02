@@ -57,7 +57,8 @@ public class TourDAOImpl implements TourDAO {
             System.out.println(pstmnt);
             ResultSet rs = pstmnt.executeQuery();
             while (rs.next()) {
-                Tour tour = new Tour(rs.getString("name"),
+                Tour tour = new Tour(rs.getInt("id"),
+                        rs.getString("name"),
                         rs.getString("description"),
                         rs.getInt("persons_number"),
                         rs.getInt("price"),
@@ -83,7 +84,26 @@ public class TourDAOImpl implements TourDAO {
 
     @Override
     public Tour getTourById(Long id) throws DatabaseException {
-        return null;
+        Tour tour = null;
+        String query = "SELECT * FROM tour WHERE id=?";
+        try (Connection con = DataSource.getConnection();
+             PreparedStatement pstmnt = con.prepareStatement(query)){
+            pstmnt.setLong(1, id);
+            ResultSet rs = pstmnt.executeQuery();
+            while (rs.next())
+                tour = new Tour(rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        rs.getInt("persons_number"),
+                        rs.getInt("price"),
+                        rs.getInt("hot"),
+                        rs.getInt("tour_type_id"),
+                        rs.getInt("hotel_type_id")
+                );
+            } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        return tour;
     }
 
     @Override
