@@ -27,9 +27,43 @@
                 <a href="Logout">Logout</a>
         </c:if>
         </div>
+        <div class="container">
+            <h3>${tour.name}</h3>
+        </div>
 
-            ${tour.name}
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-sm-2">
+                    <p>
+                        <c:if test="${tour.hot eq 1}">
+                            <span class="badge bg-danger">
+                                HOT!!!
+                            </span>
+                        </c:if>
+                    </p>
+                    <div class="border border-primary">
+                        <p>Tour type - ${tour.tourTypeId}</p>
+                        <p>for ${tour.personsNumber} persons</p>
+                    </div>
+                    <div class="border border-primary">
+                        <p>Hotel type - ${tour.hotelTypeId}</p>
+                    </div>
 
+                </div>
+
+                <div class="col-sm-8">
+                    ${tour.description}
+                </div>
+            </div>
+        </div>
+        <div class="container p-3 my-3 bg-primary text-white" >
+            <div class="text-center">
+                <p class="border border-primary"><h4>Price - ${tour.price}</h4></p>
+                <form>
+                    <button type="submit" class="btn btn-warning">BOOK TOUR</button>
+                </form>
+            </div>
+        </div>
 
     </body>
 </html>
