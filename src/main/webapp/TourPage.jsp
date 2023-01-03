@@ -59,9 +59,16 @@
         <div class="container p-3 my-3 bg-primary text-white" >
             <div class="text-center">
                 <p class="border border-primary"><h4>Price - ${tour.price}</h4></p>
-                <form>
-                    <button type="submit" class="btn btn-warning">BOOK TOUR</button>
-                </form>
+                <c:if test="${not empty UserFirstName}">
+                    <form>
+                        <button type="submit" class="btn btn-warning">BOOK TOUR</button>
+                    </form>
+                </c:if>
+                <c:if test="${empty UserFirstName}">
+                    <form>
+                        To book this tour please <h3><a class="text-danger" href="Login.jsp">Login!</a></h3>
+                    </form>
+                </c:if>
             </div>
         </div>
 

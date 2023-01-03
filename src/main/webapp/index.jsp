@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-    isELIgnored = "false" %>
+    isELIgnored = "false" session = "true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
@@ -22,14 +22,17 @@
             <c:if test="${empty UserFirstName}">
                 <a href="Register.jsp">Register</a>
                 <a href="Login.jsp">Login</a>
-                <a href="Cabinet.jsp">Cabinet</a>
+
             </c:if>
         <c:if test="${not empty UserFirstName}">
+                <a href="Cabinet.jsp">Cabinet</a>
                 <a href="Logout">Logout</a>
         </c:if>
         </div>
 
         <jsp:include page="TourList" flush="true"/>
+
+
 
     </body>
 </html>
