@@ -22,6 +22,7 @@
             <c:if test="${empty UserFirstName}">
                 <a href="Register.jsp">Register</a>
                 <a href="Login.jsp">Login</a>
+                <a href="Cabinet.jsp">Cabinet</a>
             </c:if>
         <c:if test="${not empty UserFirstName}">
                 <a href="Logout">Logout</a>
