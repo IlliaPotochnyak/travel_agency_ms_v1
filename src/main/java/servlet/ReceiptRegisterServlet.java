@@ -39,7 +39,9 @@ public class ReceiptRegisterServlet extends HttpServlet {
                                     discount, amount, 1);
         ReceiptDao receiptDao = new ReceiptDAOImpl();
         try {
-            receiptDao.addReceipt(receipt);
+            if(receiptDao.addReceipt(receipt)) {
+                req.getRequestDispatcher("ReceiptOk.jsp").forward(req, resp);
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
