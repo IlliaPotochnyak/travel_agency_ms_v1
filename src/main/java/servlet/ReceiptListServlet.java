@@ -17,11 +17,22 @@ import java.util.List;
 public class ReceiptListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("ReceiptListServlet doGet method");
+
+        int userId = (int) req.getSession().getAttribute("UserId");
+
         ReceiptDao receiptDao = new ReceiptDAOImpl();
         List<Receipt> receiptList = null;
         try {
-            receiptList = receiptDao.getAllReceipts();
+            if ((int) req.getSession().getAttribute("UserRole") == 1 ||
+                    (int) req.getSession().getAttribute("UserRole") == 2) {
+
+                receiptList = receiptDao.getAllReceipts();
+            } else {
+
+                receiptList = receiptDao.getAllUserReceiptsByUserId(userId);
+            }
+
+
         } catch (DatabaseException e) {
             throw new RuntimeException(e);
         }

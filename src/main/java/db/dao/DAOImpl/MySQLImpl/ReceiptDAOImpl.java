@@ -3,7 +3,6 @@ package db.dao.DAOImpl.MySQLImpl;
 import db.DataSource;
 import db.dao.interfaces.ReceiptDao;
 import entities.Receipt;
-import entities.Tour;
 import exceptions.DatabaseException;
 
 import java.sql.*;
@@ -31,18 +30,42 @@ public class ReceiptDAOImpl implements ReceiptDao {
         } catch (SQLException e) {
             result = false;
             throw new RuntimeException(e);
-
         }
         return result;
     }
 
     @Override
-    public List<Receipt> getAllUserReceiptsByUserId(Long id) throws DatabaseException {
-        return null;
+    public List<Receipt> getAllUserReceiptsByUserId(int id) throws DatabaseException {
+        List<Receipt> receiptList = new ArrayList<>();
+        String query = "SELECT * FROM receipt WHERE user_id=?;";
+
+        try (Connection con = DataSource.getConnection();
+             PreparedStatement pstmnt = con.prepareStatement(query)){
+            pstmnt.setInt(1, id);
+            ResultSet rs = pstmnt.executeQuery();
+            while (rs.next()) {
+                //id, tour_id, user_id, discount, amount, order_status_id, datetime
+                Receipt receipt = new Receipt(rs.getInt("id"),
+                        rs.getInt("tour_id"),
+                        rs.getInt("user_id"),
+                        rs.getInt("discount"),
+                        rs.getInt("amount"),
+                        rs.getInt("order_status_id"),
+                        rs.getString("datetime")
+                );
+                receiptList.add(receipt);
+            }
+            receiptList.forEach(System.out::println);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return receiptList;
     }
 
     @Override
     public List<Receipt> getAllReceipts() throws DatabaseException {
+        System.out.println("getAllReceipts");
         List<Receipt> receiptList = new ArrayList<>();
         String query = "SELECT * FROM receipt;";
         try (Connection con = DataSource.getConnection();
