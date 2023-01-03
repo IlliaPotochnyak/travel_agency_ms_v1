@@ -30,7 +30,10 @@
         </c:if>
         </div>
 
+        <jsp:include page="WEB-INF/view/SortTour.jspf" flush="true"/>
+
         <jsp:include page="TourList" flush="true"/>
+
 
 
 

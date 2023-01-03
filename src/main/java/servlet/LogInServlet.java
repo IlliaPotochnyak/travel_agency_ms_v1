@@ -31,6 +31,7 @@ public class LogInServlet extends HttpServlet {
         }
         if (user != null && user.getPassword().equals(req.getParameter("password"))) {
             HttpSession session = req.getSession(true);
+            session.setAttribute("UserId", user.getId());
             session.setAttribute("UserFirstName", user.getFirst_name());
             session.setAttribute("UserLastName", user.getLast_name());
             session.setAttribute("UserRole", user.getRole());

@@ -2,7 +2,7 @@ package entities;
 
 public class User {
     //id, first_name, last_name, email, password, phone, active, role_id
-    int id;
+    private int id;
     private String first_name;
     private String last_name;
     private String email;
@@ -39,6 +39,10 @@ public class User {
         this.phone = phone;
         this.active = active;
         this.role = role;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getFirst_name() {

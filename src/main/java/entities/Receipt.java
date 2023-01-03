@@ -21,13 +21,13 @@ public class Receipt {
         this.datetime = datetime;
     }
 
-    public Receipt(int tourId, int userId, int discount, int amount, int orderStatusId, String datetime) {
+    public Receipt(int tourId, int userId, int discount, int amount, int orderStatusId) {
         this.tourId = tourId;
         this.userId = userId;
         this.discount = discount;
         this.amount = amount;
         this.orderStatusId = orderStatusId;
-        this.datetime = datetime;
+
     }
 
     public int getId() {

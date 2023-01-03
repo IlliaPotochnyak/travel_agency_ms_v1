@@ -60,7 +60,8 @@
             <div class="text-center">
                 <p class="border border-primary"><h4>Price - ${tour.price}</h4></p>
                 <c:if test="${not empty UserFirstName}">
-                    <form>
+                    <form action="ReceiptRegister">
+                        <input type="hidden" name="tourId" value="${tour.id}">
                         <button type="submit" class="btn btn-warning">BOOK TOUR</button>
                     </form>
                 </c:if>

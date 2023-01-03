@@ -25,44 +25,7 @@
             <h2>List of tours!!!</h2>
         </div>
         <hr>
-            <div class="container">
-                <button data-bs-toggle="collapse" data-bs-target="#demo" class="btn btn-primary">Sort tours</button>
-                <div id="demo" class="collapse">
-                    <form action="index.jsp" method="get">
 
-                        <div class="col p-2 bg-primary text-white">
-                            <label for="tour-type" class="col-sm-2 control-label">Tour type</label>
-                            <select id="tour-type" name="tour_type">
-                                <option value="1">rest</option>
-                                <option value="2">excursion</option>
-                                <option value="3">shopping</option>
-                            </select>
-                        </div>
-                        <div class="col p-2 bg-primary text-white">
-                            <label for="price" class="col-sm-2 control-label">Price is not more than</label>
-                            <input id="price" value="10000000000" type="text" name="price"> dollars per person
-                        </div>
-                        <div class="col p-2 bg-primary text-white">
-                            <label for="people-amount" class="col-sm-2 control-label">People amount</label>
-                            <input id="people-amount" value="2" type="text" name="people_amount">
-                        </div>
-                        <div class="col p-2 bg-primary text-white">
-                            <label for="hotel-stars" class="col-sm-2 control-label">Hotel stars</label>
-                            <select id="hotel-stars" name="hotel_stars">
-                                <option value="5">five</option>
-                                <option value="4">four</option>
-                                <option value="3" selected="selected">three</option>
-                                <option value="2">two</option>
-                                <option value="1">one</option>
-                            </select>
-                        </div> <br>
-                        <button type="submit" class="btn btn-primary">Sort</button>
-                        <a href="index.jsp"><button type="button" class="btn btn-primary">Reset filters</button></a>
-
-                    </form>
-
-                </div>
-            </div>
         <hr>
         <div class="container">
             <table class="table">

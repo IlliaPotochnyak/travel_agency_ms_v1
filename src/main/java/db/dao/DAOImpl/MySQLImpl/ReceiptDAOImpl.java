@@ -13,8 +13,27 @@ import java.util.List;
 public class ReceiptDAOImpl implements ReceiptDao {
 
     @Override
-    public void addReceipt(Connection connection, Receipt receipt) throws SQLException {
+    public boolean addReceipt(Receipt receipt) throws SQLException {
+        String query = "INSERT INTO receipt (tour_id, user_id, discount, amount, order_status_id, datetime)" +
+                "VALUES (?, ?, ?, ?, ?, now())";
+        boolean result;
+        try (Connection con = DataSource.getConnection();
+             PreparedStatement pstmnt = con.prepareStatement(query)) {
+            pstmnt.setInt(1, receipt.getTourId());
+            pstmnt.setInt(2, receipt.getUserId());
+            pstmnt.setInt(3, receipt.getDiscount());
+            pstmnt.setInt(4, receipt.getAmount());
+            pstmnt.setInt(5, receipt.getOrderStatusId());
 
+            pstmnt.executeUpdate();
+
+            result = true;
+        } catch (SQLException e) {
+            result = false;
+            throw new RuntimeException(e);
+
+        }
+        return result;
     }
 
     @Override

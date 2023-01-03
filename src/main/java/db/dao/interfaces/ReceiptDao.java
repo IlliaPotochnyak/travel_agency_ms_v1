@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface ReceiptDao {
-    void addReceipt(Connection connection, Receipt receipt) throws SQLException;
+    boolean addReceipt(Receipt receipt) throws SQLException;
 
     List<Receipt> getAllUserReceiptsByUserId(Long id) throws DatabaseException;
 
