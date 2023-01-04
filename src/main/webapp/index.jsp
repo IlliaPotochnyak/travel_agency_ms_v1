@@ -16,7 +16,7 @@
             <h2>Hello, this is a TravelAgency MS!!!</h2>
         </div>
         <div class="container">
-            ${UserFirstName} ${UserLastName} ${UserId}
+            ${UserFirstName} ${UserLastName}
         </div>
         <div class="container">
             <c:if test="${empty UserFirstName}">
