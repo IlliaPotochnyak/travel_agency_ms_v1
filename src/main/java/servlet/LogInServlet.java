@@ -1,9 +1,7 @@
 package servlet;
 
-import db.dao.DAOImpl.MySQLImpl.TourDAOImpl;
 import db.dao.DAOImpl.MySQLImpl.UserDAOImpl;
 import db.dao.interfaces.UserDAO;
-import entities.Tour;
 import entities.User;
 import exceptions.DatabaseException;
 import jakarta.servlet.ServletException;
@@ -14,7 +12,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet("/LoginValidator")
 public class LogInServlet extends HttpServlet {
@@ -32,8 +29,8 @@ public class LogInServlet extends HttpServlet {
         if (user != null && user.getPassword().equals(req.getParameter("password"))) {
             HttpSession session = req.getSession(true);
             session.setAttribute("UserId", user.getId());
-            session.setAttribute("UserFirstName", user.getFirst_name());
-            session.setAttribute("UserLastName", user.getLast_name());
+            session.setAttribute("UserFirstName", user.getFirstName());
+            session.setAttribute("UserLastName", user.getLastLame());
             session.setAttribute("UserRole", user.getRole());
 
             resp.sendRedirect("index.jsp");

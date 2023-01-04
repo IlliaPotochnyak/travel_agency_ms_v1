@@ -1,20 +1,20 @@
 package entities;
 
 public class User {
-    //id, first_name, last_name, email, password, phone, active, role_id
+    //id, first_name, lastLame, email, password, phone, active, role_id
     private int id;
-    private String first_name;
-    private String last_name;
+    private String firstName;
+    private String lastLame;
     private String email;
     private String password;
     private String phone;
     private int active;
     private int role;
 
-    public User(int id, String first_name, String last_name, String email, String password, String phone, int role) {
+    public User(int id, String firstName, String lastLame, String email, String password, String phone, int role) {
         this.id = id;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.firstName = firstName;
+        this.lastLame = lastLame;
         this.email = email;
         this.password = password;
         this.phone = phone;
@@ -22,18 +22,18 @@ public class User {
         this.role = role;
     }
 
-    public User(String first_name, String last_name, String email, String phone, int active, int role) {
-        this.first_name = first_name;
-        this.last_name = last_name;
+    public User(String firstName, String lastLame, String email, String phone, int active, int role) {
+        this.firstName = firstName;
+        this.lastLame = lastLame;
         this.email = email;
         this.phone = phone;
         this.active = active;
         this.role = role;
     }
 
-    public User(String first_name, String last_name, String email, String password, String phone, int active, int role) {
-        this.first_name = first_name;
-        this.last_name = last_name;
+    public User(String firstName, String lastLame, String email, String password, String phone, int active, int role) {
+        this.firstName = firstName;
+        this.lastLame = lastLame;
         this.email = email;
         this.password = password;
         this.phone = phone;
@@ -45,20 +45,20 @@ public class User {
         return id;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastLame() {
+        return lastLame;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastLame(String lastLame) {
+        this.lastLame = lastLame;
     }
 
     public String getEmail() {
@@ -104,8 +104,8 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
+                "first_name='" + firstName + '\'' +
+                ", lastLame='" + lastLame + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", phone='" + phone + '\'' +

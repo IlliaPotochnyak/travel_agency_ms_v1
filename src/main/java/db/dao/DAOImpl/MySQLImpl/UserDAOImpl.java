@@ -49,8 +49,8 @@ public class UserDAOImpl implements UserDAO {
 
         try (Connection con = DataSource.getConnection();
              PreparedStatement pstmnt = con.prepareStatement(query)) {
-            pstmnt.setString(1, user.getFirst_name());
-            pstmnt.setString(2, user.getLast_name());
+            pstmnt.setString(1, user.getFirstName());
+            pstmnt.setString(2, user.getLastLame());
             pstmnt.setString(3, user.getEmail());
             pstmnt.setString(4, user.getPassword());
             pstmnt.setString(5, user.getPhone());
