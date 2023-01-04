@@ -21,7 +21,7 @@ public class TourPageServlet extends HttpServlet {
         TourDAOImpl tourDAO = new TourDAOImpl();
         Tour tour = null;
         try {
-            tour = tourDAO.getTourById(Long.valueOf(req.getParameter("tourId")));
+            tour = tourDAO.getTourById(Integer.parseInt(req.getParameter("tourId")));
         } catch (DatabaseException e) {
             throw new RuntimeException(e);
         }

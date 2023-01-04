@@ -42,11 +42,11 @@
                         </c:if>
                     </p>
                     <div class="border border-primary">
-                        <p>Tour type - ${tour.tourTypeId}</p>
+                        <p>Tour type - ${tour.tourType}</p>
                         <p>for ${tour.personsNumber} persons</p>
                     </div>
                     <div class="border border-primary">
-                        <p>Hotel type - ${tour.hotelTypeId}</p>
+                        <p>Hotel type - ${tour.hotelType}</p>
                     </div>
 
                 </div>

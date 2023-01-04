@@ -13,15 +13,15 @@ public interface TourDAO {
     List<Tour> getAllTours() throws DatabaseException;
     List<Tour> getSortedTours(String tourType, String price, String personNumber, String hotelType) throws DatabaseException;
 
-    void deleteTourById(Long id) throws DatabaseException;
+    void deleteTourById(int id) throws DatabaseException;
 
-    Tour getTourById(Long id) throws DatabaseException;
+    Tour getTourById(int id) throws DatabaseException;
 
-    void updatePlaceQuantityRowById(Connection connection, long id, int placeQuantity) throws SQLException;
+    void updatePlaceQuantityRowById(Connection connection, int id, int placeQuantity) throws SQLException;
 
     void updateTour(Tour tour) throws DatabaseException;
 
-    void setHotTourById(long id) throws DatabaseException;
+    void setHotTourById(int id) throws DatabaseException;
 
     List<Tour> searchTours(int tourTypeId, float price, int peopleAmount, int stars) throws DatabaseException;
 }

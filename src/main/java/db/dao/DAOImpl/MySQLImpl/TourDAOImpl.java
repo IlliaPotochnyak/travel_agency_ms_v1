@@ -91,31 +91,31 @@ public class TourDAOImpl implements TourDAO {
     }
 
     @Override
-    public void deleteTourById(Long id) throws DatabaseException {
+    public void deleteTourById(int id) throws DatabaseException {
 
     }
 
     @Override
-    public Tour getTourById(Long id) throws DatabaseException {
+    public Tour getTourById(int id) throws DatabaseException {
         Tour tour = null;
         String query = "SELECT tour.id, tour.name, tour.description, tour.persons_number, tour.price, tour.hot, \n" +
                 "tour_type.tour_type, hotel_type.star_rate \n" +
                 "FROM ((tour\n" +
                 "INNER JOIN tour_type ON tour.tour_type_id=tour_type.id)\n" +
-                "INNER JOIN hotel_type ON tour.hotel_type_id=hotel_type.star_rate) WHERE tour.id=?";
+                "INNER JOIN hotel_type ON tour.hotel_type_id=hotel_type.id) WHERE tour.id=?;";
         try (Connection con = DataSource.getConnection();
              PreparedStatement pstmnt = con.prepareStatement(query)){
-            pstmnt.setLong(1, id);
+            pstmnt.setInt(1, id);
             ResultSet rs = pstmnt.executeQuery();
             while (rs.next())
                 tour = new Tour(rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getString("description"),
-                        rs.getInt("persons_number"),
-                        rs.getInt("price"),
-                        rs.getInt("hot"),
-                        rs.getString("tour_type"),
-                        rs.getInt("hotel_type_id")
+                    rs.getString("name"),
+                    rs.getString("description"),
+                    rs.getInt("persons_number"),
+                    rs.getInt("price"),
+                    rs.getInt("hot"),
+                    rs.getString("tour_type"),
+                    rs.getInt("star_rate")
                 );
             } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -124,7 +124,7 @@ public class TourDAOImpl implements TourDAO {
     }
 
     @Override
-    public void updatePlaceQuantityRowById(Connection connection, long id, int placeQuantity) throws SQLException {
+    public void updatePlaceQuantityRowById(Connection connection, int id, int placeQuantity) throws SQLException {
 
     }
 
@@ -134,7 +134,7 @@ public class TourDAOImpl implements TourDAO {
     }
 
     @Override
-    public void setHotTourById(long id) throws DatabaseException {
+    public void setHotTourById(int id) throws DatabaseException {
 
     }
 

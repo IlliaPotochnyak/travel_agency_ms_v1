@@ -30,7 +30,7 @@ public class ReceiptRegisterServlet extends HttpServlet {
         int discount = 0;
 
         try {
-            tour = tourDAO.getTourById(Long.valueOf(req.getParameter("tourId")));
+            tour = tourDAO.getTourById(Integer.parseInt((req.getParameter("tourId"))));
         } catch (DatabaseException e) {
             throw new RuntimeException(e);
         }
