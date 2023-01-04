@@ -14,7 +14,8 @@ public class ReceiptDAOImpl implements ReceiptDao {
     @Override
     public boolean addReceipt(Receipt receipt) throws SQLException {
         String query = "INSERT INTO receipt (tour_id, user_id, discount, amount, order_status_id, datetime)" +
-                "VALUES (?, ?, ?, ?, ?, now())";
+                "VALUES (?, ?, ?, ?," +
+                " (SELECT receipt_status.id FROM receipt_status WHERE receipt_status.receipt_status=?), now())";
         boolean result;
         try (Connection con = DataSource.getConnection();
              PreparedStatement pstmnt = con.prepareStatement(query)) {
