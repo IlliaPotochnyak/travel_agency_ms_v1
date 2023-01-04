@@ -22,7 +22,7 @@ public class ReceiptDAOImpl implements ReceiptDao {
             pstmnt.setInt(2, receipt.getUserId());
             pstmnt.setInt(3, receipt.getDiscount());
             pstmnt.setInt(4, receipt.getAmount());
-            pstmnt.setInt(5, receipt.getOrderStatusId());
+            pstmnt.setString(5, receipt.getOrderStatus());
 
             pstmnt.executeUpdate();
 
@@ -37,7 +37,11 @@ public class ReceiptDAOImpl implements ReceiptDao {
     @Override
     public List<Receipt> getAllUserReceiptsByUserId(int id) throws DatabaseException {
         List<Receipt> receiptList = new ArrayList<>();
-        String query = "SELECT * FROM receipt WHERE user_id=?;";
+        String query = "SELECT receipt.id, receipt.tour_id, tour.name, receipt.user_id, user.first_name, user.last_name, receipt.discount, receipt.amount, receipt_status.receipt_status, receipt.datetime \n" +
+                "FROM receipt INNER JOIN tour ON receipt.tour_id=tour.id\n" +
+                "    INNER JOIN receipt_status ON receipt.order_status_id=receipt_status.id\n" +
+                "    INNER JOIN user ON receipt.user_id=user.id " +
+                "WHERE user.id=?;";
 
         try (Connection con = DataSource.getConnection();
              PreparedStatement pstmnt = con.prepareStatement(query)){
@@ -50,8 +54,11 @@ public class ReceiptDAOImpl implements ReceiptDao {
                         rs.getInt("user_id"),
                         rs.getInt("discount"),
                         rs.getInt("amount"),
-                        rs.getInt("order_status_id"),
-                        rs.getString("datetime")
+                        rs.getString("receipt_status"),
+                        rs.getString("datetime"),
+                        rs.getString("name"),
+                        rs.getString("first_name"),
+                        rs.getString("last_name")
                 );
                 receiptList.add(receipt);
             }
@@ -67,25 +74,39 @@ public class ReceiptDAOImpl implements ReceiptDao {
     public List<Receipt> getAllReceipts() throws DatabaseException {
         System.out.println("getAllReceipts");
         List<Receipt> receiptList = new ArrayList<>();
-        String query = "SELECT * FROM receipt;";
+//        String query = "SELECT * FROM receipt;";
+        String query = "SELECT receipt.id, receipt.tour_id, tour.name, receipt.user_id, user.first_name, user.last_name, receipt.discount, receipt.amount, receipt_status.receipt_status, receipt.datetime \n" +
+                "FROM receipt INNER JOIN tour ON receipt.tour_id=tour.id\n" +
+                "    INNER JOIN receipt_status ON receipt.order_status_id=receipt_status.id\n" +
+                "    INNER JOIN user ON receipt.user_id=user.id;";
         try (Connection con = DataSource.getConnection();
              Statement stmnt = con.createStatement();
              ResultSet rs = stmnt.executeQuery(query)){
+            System.out.println("ResultSet " + rs);
             while (rs.next()) {
-                //id, tour_id, user_id, discount, amount, order_status_id, datetime
+                //id, tour_id, user_id, discount, amount, order_status, datetime
+                System.out.println(rs.getInt("id")
+                        + "-" + rs.getInt("user_id")
+                        + "-" + rs.getInt("discount")
+                );
                 Receipt receipt = new Receipt(rs.getInt("id"),
                         rs.getInt("tour_id"),
                         rs.getInt("user_id"),
                         rs.getInt("discount"),
                         rs.getInt("amount"),
-                        rs.getInt("order_status_id"),
-                        rs.getString("datetime")
+                        rs.getString("receipt_status"),
+                        rs.getString("datetime"),
+                        rs.getString("name"),
+                        rs.getString("first_name"),
+                        rs.getString("last_name")
                 );
+                System.out.println("Receipt - " + receipt);
                 receiptList.add(receipt);
             }
             receiptList.forEach(System.out::println);
 
         } catch (SQLException e) {
+            System.out.println("ReceiptDao error");
             throw new RuntimeException(e);
         }
         return receiptList;

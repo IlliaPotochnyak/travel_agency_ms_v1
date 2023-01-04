@@ -36,7 +36,7 @@ public class ReceiptRegisterServlet extends HttpServlet {
         }
         int amount = tour.getPrice() - (tour.getPrice() * (discount / 100));
         Receipt receipt = new Receipt(tour.getId(), userId,
-                                    discount, amount, 1);
+                                    discount, amount, "registered");
         ReceiptDao receiptDao = new ReceiptDAOImpl();
         try {
             if(receiptDao.addReceipt(receipt)) {

@@ -17,7 +17,7 @@ import java.util.List;
 public class ReceiptListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        System.out.println("ReceiptListServlet doGet");
         int userId = (int) req.getSession().getAttribute("UserId");
 
         ReceiptDao receiptDao = new ReceiptDAOImpl();
