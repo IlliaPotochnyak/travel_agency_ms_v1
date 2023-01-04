@@ -11,9 +11,9 @@
                     <div class="col p-2 bg-primary text-white">
                         <label for="tour-type" class="col-sm-2 control-label">Tour type</label>
                         <select id="tour-type" name="tour_type">
-                            <option value="1">rest</option>
-                            <option value="2">excursion</option>
-                            <option value="3">shopping</option>
+                            <option value="rest">rest</option>
+                            <option value="excursion">excursion</option>
+                            <option value="shopping">shopping</option>
                         </select>
                     </div>
                     <div class="col p-2 bg-primary text-white">

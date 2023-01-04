@@ -38,6 +38,7 @@
                         <td>Price</td>
                         <td>Persons<br>Number</td>
                         <td>Type</td>
+                        <td>Hotel<br>Star<br>Rate</td>
                     </thead>
                     <c:forEach var="tour" items="${tourList}">
                         <tr>
@@ -53,7 +54,8 @@
                                 <td id="table-desc"><c:out value="${tour.description}"/></a></td>
                                 <td><c:out value="${tour.price}"/></td>
                                 <td><c:out value="${tour.personsNumber}"/></td>
-                                <td><c:out value="${tour.tourTypeId}"/></td>
+                                <td><c:out value="${tour.tourType}"/></td>
+                                <td><c:out value="${tour.hotelType}"/></td>
 
                         </tr>
                     </c:forEach>

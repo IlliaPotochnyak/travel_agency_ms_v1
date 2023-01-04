@@ -8,8 +8,8 @@ public class Tour {
     private int personsNumber;
     private int price;
     private int hot;
-    private int tourTypeId;
-    private int hotelTypeId;
+    private String tourType;
+    private int hotelType;
 
     @Override
     public String toString() {
@@ -19,32 +19,32 @@ public class Tour {
                 ", persons_number=" + personsNumber +
                 ", price=" + price +
                 ", hot=" + hot +
-                ", tour_type_id=" + tourTypeId +
-                ", hotel_type_id=" + hotelTypeId +
+                ", tourTypeId=" + tourType +
+                ", hotelType=" + hotelType +
                 '}';
     }
 
     public Tour(int id, String name, String description, int personsNumber,
-                int price, int hot, int tourTypeId, int hotelTypeId) {
+                int price, int hot, String tourType, int hotelType) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.personsNumber = personsNumber;
         this.price = price;
         this.hot = hot;
-        this.tourTypeId = tourTypeId;
-        this.hotelTypeId = hotelTypeId;
+        this.tourType = tourType;
+        this.hotelType = hotelType;
     }
 
     public Tour(String name, String description, int persons_number,
-                int price, int hot, int tour_type_id, int hotel_type_id) {
+                int price, int hot, String tourType, int hotelType) {
         this.name = name;
         this.description = description;
         this.personsNumber = persons_number;
         this.price = price;
         this.hot = hot;
-        this.tourTypeId = tour_type_id;
-        this.hotelTypeId = hotel_type_id;
+        this.tourType = tourType;
+        this.hotelType = hotelType;
     }
 
     public int getId() {
@@ -91,19 +91,19 @@ public class Tour {
         this.hot = hot;
     }
 
-    public int getTourTypeId() {
-        return tourTypeId;
+    public String getTourType() {
+        return tourType;
     }
 
-    public void setTourTypeId(int tourTypeId) {
-        this.tourTypeId = tourTypeId;
+    public void setTourType(String tourType) {
+        this.tourType = tourType;
     }
 
-    public int getHotelTypeId() {
-        return hotelTypeId;
+    public int getHotelType() {
+        return hotelType;
     }
 
-    public void setHotelTypeId(int hotelTypeId) {
-        this.hotelTypeId = hotelTypeId;
+    public void setHotelType(int hotelType) {
+        this.hotelType = hotelType;
     }
 }
