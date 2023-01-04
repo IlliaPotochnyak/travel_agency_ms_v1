@@ -32,10 +32,11 @@ public class RegisterServlet extends HttpServlet {
 
             try {
                 if (userDAO.addUser(newUser)) {
-                    HttpSession session = req.getSession(true);
-                    session.setAttribute("UserFirstName", newUser.getFirstName());
-                    session.setAttribute("UserLastName", newUser.getLastLame());
-                    session.setAttribute("UserRole", newUser.getRole());
+//                    HttpSession session = req.getSession(true);
+//                    session.setAttribute("UserFirstName", newUser.getFirstName());
+//                    session.setAttribute("UserLastName", newUser.getLastLame());
+//                    session.setAttribute("UserRole", newUser.getRole());
+//                    session.setAttribute("UserId", newUser.getId());
                     req.getRequestDispatcher("RegisterOK.jsp").forward(req, resp);
                 }
             } catch (DatabaseException e) {

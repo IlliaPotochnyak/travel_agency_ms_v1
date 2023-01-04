@@ -16,13 +16,16 @@
         </div>
         <div class="container">
             <p>
-                Welcome ${UserFirstName} ${UserLastName}!!!
+                Welcome!!!
+                <br>
+                Please login!
             </p>
         </div>
         <hr>
         <div class="container">
-            <a href="index.jsp">MAIN</a>
+            <jsp:include page="Login.jsp" flush="true"/>
         </div>
+
 
 
     </body>
