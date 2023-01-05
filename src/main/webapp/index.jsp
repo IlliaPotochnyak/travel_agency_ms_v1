@@ -12,23 +12,12 @@
 
     </head>
     <body>
+        <jsp:include page="WEB-INF/view/Header.jsp" flush="true"/>
+
         <div class="container">
             <h2>Hello, this is a TravelAgency MS!!!</h2>
         </div>
-        <div class="container">
-            ${UserFirstName} ${UserLastName}
-        </div>
-        <div class="container">
-            <c:if test="${empty UserFirstName}">
-                <a href="Register.jsp">Register</a>
-                <a href="Login.jsp">Login</a>
 
-            </c:if>
-        <c:if test="${not empty UserFirstName}">
-                <a href="Cabinet.jsp">Cabinet</a>
-                <a href="Logout">Logout</a>
-        </c:if>
-        </div>
 
         <jsp:include page="WEB-INF/view/SortTour.jspf" flush="true"/>
 

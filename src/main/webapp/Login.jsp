@@ -11,6 +11,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     </head>
         <body>
+            <jsp:include page="WEB-INF/view/Header.jsp" flush="true"/>
+
             <div class="container">
                 <h2>Login page</h2>
             </div>

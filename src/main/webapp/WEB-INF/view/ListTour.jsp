@@ -26,7 +26,6 @@
         </div>
         <hr>
 
-        <hr>
         <div class="container">
             <table class="table">
                 <tbody>
