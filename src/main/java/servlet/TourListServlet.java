@@ -18,7 +18,7 @@ public class TourListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("TourList servlet Get method");
         List<Tour> listOfTours;
-        System.out.println("Query - " + req.getQueryString());
+//        System.out.println("Query - " + req.getQueryString());
         TourDAOImpl tourDAO = new TourDAOImpl();
         try {
             if (req.getQueryString() == null) {

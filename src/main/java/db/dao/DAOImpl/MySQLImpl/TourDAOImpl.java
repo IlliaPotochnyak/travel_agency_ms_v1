@@ -11,8 +11,31 @@ import java.util.List;
 
 public class TourDAOImpl implements TourDAO {
     @Override
-    public void addTour(Connection connection, Tour tour) throws SQLException {
+    public boolean addTour(Tour tour) throws SQLException {
+        boolean result = false;
+        System.out.println("addTour method");
+        String query = "INSERT INTO tour (name, description, persons_number, price, hot, tour_type_id, hotel_type_id)" +
+                "VALUES (?, ?, ?, ?, ?, (SELECT tour_type.id FROM tour_type WHERE tour_type.tour_type=?), " +
+                "(SELECT hotel_type.id FROM hotel_type WHERE hotel_type.star_rate=?))";
 
+        try (Connection con = DataSource.getConnection();
+             PreparedStatement pstmnt = con.prepareStatement(query)) {
+            pstmnt.setString(1, tour.getName());
+            pstmnt.setString(2, tour.getDescription());
+            pstmnt.setInt(3, tour.getPersonsNumber());
+            pstmnt.setInt(4, tour.getPrice());
+            pstmnt.setInt(5, tour.getHot());
+            pstmnt.setString(6, tour.getTourType());
+            pstmnt.setInt(7, tour.getHotelType());
+            pstmnt.executeUpdate();
+
+            result = true;
+        } catch (SQLException e) {
+            result = false;
+            throw new RuntimeException(e);
+        }
+
+        return result;
     }
 
     @Override

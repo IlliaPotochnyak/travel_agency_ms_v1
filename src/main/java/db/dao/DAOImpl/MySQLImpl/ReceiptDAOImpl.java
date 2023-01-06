@@ -63,7 +63,7 @@ public class ReceiptDAOImpl implements ReceiptDao {
                 );
                 receiptList.add(receipt);
             }
-            receiptList.forEach(System.out::println);
+//            receiptList.forEach(System.out::println);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

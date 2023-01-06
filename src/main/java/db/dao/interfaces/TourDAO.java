@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface TourDAO {
-    void addTour(Connection connection, Tour tour) throws SQLException;
+    boolean addTour(Tour tour) throws SQLException;
 
     List<Tour> getAllTours() throws DatabaseException;
     List<Tour> getSortedTours(String tourType, String price, String personNumber, String hotelType) throws DatabaseException;

@@ -17,20 +17,19 @@
                 <h2>Add New Tour</h2>
             </div>
             <div class="container">
-                ${errorLogin}
+                ${errorAddTour}
             </div>
             <hr>
             <div class="container bg-secondary  mt-5">
-                <form action="" method="post">
+                <form action="AddTourServlet" method="post">
                     <div class="mb-3">
                         <label class="form-label">Tour Name </label>
                         <input type="text" class="form-control" name="tourName" required maxlength="64">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Description </label>
-                        <textarea name="tourDescription" class="form-control" maxlength="65500" rows="5">
-                            Maximum length - 65500 characters...
-                        </textarea>
+                        <textarea name="tourDescription" class="form-control" maxlength="65500" rows="5"
+                            placeholder="Maximum length - 65500 characters..."></textarea>
                     </div>
                     <div class="mb-3">
                         <label class="form-label ">Persons Number </label>
@@ -61,8 +60,8 @@
                         </select>
                     </div>
                     <div class="mb-3 w-75">
-                        <label for="tour-type" class="col-sm-2 control-label">Make Tour HOT!</label>
-                        <input class="form-check-input" type="checkbox" id="check1" name="tourHot" value="1">
+                        <label for="tour-hot" class="col-sm-2 control-label">Make Tour HOT!</label>
+                        <input class="form-check-input" type="checkbox" id="tour-hot" name="tourHot" value="1">
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary">Add Tour</button>
