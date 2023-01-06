@@ -26,7 +26,7 @@ public class RegisterServlet extends HttpServlet {
                     req.getParameter("email"),
                     req.getParameter("password"),
                     req.getParameter("phone"),
-                    1, 3);
+                    1, "client");
             UserDAO userDAO = new UserDAOImpl();
             System.out.println(newUser);
 

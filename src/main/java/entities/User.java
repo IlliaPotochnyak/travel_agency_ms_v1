@@ -9,9 +9,9 @@ public class User {
     private String password;
     private String phone;
     private int active;
-    private int role;
+    private String role;
 
-    public User(int id, String firstName, String lastLame, String email, String password, String phone, int role) {
+    public User(int id, String firstName, String lastLame, String email, String password, String phone, String role) {
         this.id = id;
         this.firstName = firstName;
         this.lastLame = lastLame;
@@ -22,7 +22,7 @@ public class User {
         this.role = role;
     }
 
-    public User(String firstName, String lastLame, String email, String phone, int active, int role) {
+    public User(String firstName, String lastLame, String email, String phone, int active, String role) {
         this.firstName = firstName;
         this.lastLame = lastLame;
         this.email = email;
@@ -31,7 +31,7 @@ public class User {
         this.role = role;
     }
 
-    public User(String firstName, String lastLame, String email, String password, String phone, int active, int role) {
+    public User(String firstName, String lastLame, String email, String password, String phone, int active, String role) {
         this.firstName = firstName;
         this.lastLame = lastLame;
         this.email = email;
@@ -93,11 +93,11 @@ public class User {
         this.active = active;
     }
 
-    public int getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(String role) {
         this.role = role;
     }
 

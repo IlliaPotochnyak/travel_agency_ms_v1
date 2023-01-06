@@ -23,8 +23,8 @@ public class ReceiptListServlet extends HttpServlet {
         ReceiptDao receiptDao = new ReceiptDAOImpl();
         List<Receipt> receiptList = null;
         try {
-            if ((int) req.getSession().getAttribute("UserRole") == 1 ||
-                    (int) req.getSession().getAttribute("UserRole") == 2) {
+            if (req.getSession().getAttribute("UserRole").equals("admin") ||
+                    req.getSession().getAttribute("UserRole").equals("manager")) {
 
                 receiptList = receiptDao.getAllReceipts();
             } else {

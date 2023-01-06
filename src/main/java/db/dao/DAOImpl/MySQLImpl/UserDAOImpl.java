@@ -17,13 +17,14 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User getUserByEmail(String email) throws DatabaseException {
-        String query = "SELECT * FROM user WHERE email=?";
+        String query = "SELECT user.id, user.first_name, user.last_name, user.email, user.password, user.phone, role.role \n" +
+                "FROM user INNER JOIN role ON user.role_id=role.id WHERE email=?";
         User user = null;
         try (Connection con = DataSource.getConnection();
              PreparedStatement pstmnt = con.prepareStatement(query)){
             pstmnt.setString(1, email);
             ResultSet rs = pstmnt.executeQuery();
-
+            System.out.println(rs);
             if (rs.next()) {
                 //String first_name, String last_name, String email, String password, String phone, String role
                 user = new User( rs.getInt("id"),
@@ -32,7 +33,7 @@ public class UserDAOImpl implements UserDAO {
                         rs.getString("email"),
                         rs.getString("password"),
                         rs.getString("phone"),
-                        rs.getInt("role_id")
+                        rs.getString("role")
                         );
             }
         } catch (SQLException e) {
@@ -45,7 +46,7 @@ public class UserDAOImpl implements UserDAO {
     public boolean addUser(User user) throws DatabaseException {
         boolean result = false;
         String query = "INSERT INTO user (first_name, last_name, email, password, phone, active, role_id)" +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+                "VALUES (?, ?, ?, ?, ?, ?, (SELECT role.id FROM role WHERE role.role=?))";
 
         try (Connection con = DataSource.getConnection();
              PreparedStatement pstmnt = con.prepareStatement(query)) {
@@ -55,7 +56,7 @@ public class UserDAOImpl implements UserDAO {
             pstmnt.setString(4, user.getPassword());
             pstmnt.setString(5, user.getPhone());
             pstmnt.setInt(6, user.getActive());
-            pstmnt.setInt(7, user.getRole());
+            pstmnt.setString(7, user.getRole());
             pstmnt.executeUpdate();
 
             result = true;

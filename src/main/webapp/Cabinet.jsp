@@ -18,14 +18,14 @@
             </div>
 
             <div class="container">
-                <c:if test="${UserRole == 1 or UserRole == 2}">
+                <c:if test="${UserRole == 'admin' or UserRole == 'manager'}">
                     <a href="#tourList">Tour List</a>
                 </c:if>
                 <a href="#receiptList">Receipt List</a>
             </div>
 
             <hr>
-            <c:if test="${UserRole == 1 or UserRole == 2}">
+            <c:if test="${UserRole == 'admin' or UserRole == 'manager'}">
                 <a id="tourList">
                     <jsp:include page="TourList" flush="true"/>
                 </a>
