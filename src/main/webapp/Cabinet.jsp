@@ -18,6 +18,9 @@
             </div>
 
             <div class="container">
+                <c:if test="${UserRole == 'admin'}">
+                    <a href="AddTour.jsp">Add New Tour</a>
+                </c:if>
                 <c:if test="${UserRole == 'admin' or UserRole == 'manager'}">
                     <a href="#tourList">Tour List</a>
                 </c:if>
