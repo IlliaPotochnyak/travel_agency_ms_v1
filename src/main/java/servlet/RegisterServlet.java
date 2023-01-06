@@ -37,6 +37,7 @@ public class RegisterServlet extends HttpServlet {
 //                    session.setAttribute("UserLastName", newUser.getLastLame());
 //                    session.setAttribute("UserRole", newUser.getRole());
 //                    session.setAttribute("UserId", newUser.getId());
+                    System.out.println("Register ok");
                     req.getRequestDispatcher("RegisterOK.jsp").forward(req, resp);
                 }
             } catch (DatabaseException e) {

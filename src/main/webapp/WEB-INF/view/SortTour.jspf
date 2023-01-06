@@ -4,8 +4,8 @@
 
         <hr>
         <div class="container">
-            <button data-bs-toggle="collapse" data-bs-target="#demo" class="btn btn-primary">Sort tours</button>
-            <div id="demo" class="collapse">
+            <button data-bs-toggle="collapse" data-bs-target="#sortTour" class="btn btn-primary">Sort tours</button>
+            <div id="sortTour" class="collapse">
                 <form action="index.jsp" method="get">
 
                     <div class="col p-2 bg-primary text-white">

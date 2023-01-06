@@ -17,11 +17,22 @@
                 <h2>Personal cabinet</h2>
             </div>
 
-            <hr>
-            <div class="container mt-5">
-                <jsp:include page="ReceiptListServlet" flush="true"/>
+            <div class="container">
+                <c:if test="${UserRole == 1 or UserRole == 2}">
+                    <a href="#tourList">Tour List</a>
+                </c:if>
+                <a href="#receiptList">Receipt List</a>
             </div>
 
+            <hr>
+            <c:if test="${UserRole == 1 or UserRole == 2}">
+                <a id="tourList">
+                    <jsp:include page="TourList" flush="true"/>
+                </a>
+            </c:if>
+            <a id="receiptList">
+                <jsp:include page="ReceiptListServlet" flush="true"/>
+            </a>
             <hr>
         </body>
 </html>
