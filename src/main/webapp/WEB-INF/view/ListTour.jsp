@@ -4,6 +4,12 @@
 
 <html>
     <head>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <style>
             #table-desc {
                          max-width: 400px;
@@ -21,10 +27,14 @@
 
     </head>
     <body>
+     <hr>
         <div class="container">
             <h2>List of tours!!!</h2>
+
         </div>
-        <hr>
+
+
+        <jsp:include page="SortTour.jspf" flush="true"/>
 
         <div class="container">
             <table class="table">
@@ -62,6 +72,34 @@
 
             </table>
         <div>
+
+        <%--For displaying Previous link except for the 1st page --%>
+            <c:if test="${currentPage != 1}">
+                <td><a href="TourList?page=${currentPage - 1}&tour_type=${param.tour_type}&price=${param.price}&people_amount=${param.people_amount}&hotel_stars=${param.hotel_stars}">Previous</a></td>
+            </c:if>
+
+            <%--For displaying Page numbers.
+            The when condition does not display a link for the current page--%>
+            <table border="1" cellpadding="5" cellspacing="5">
+                <tr>
+                    <c:forEach begin="1" end="${noOfPages}" var="i">
+                        <c:choose>
+                            <c:when test="${currentPage eq i}">
+                                <td>${i}</td>
+                            </c:when>
+                            <c:otherwise>
+                                <td><a href="TourList?page=${i}&tour_type=${param.tour_type}&price=${param.price}&people_amount=${param.people_amount}&hotel_stars=${param.hotel_stars}">${i}</a></td>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                </tr>
+            </table>
+
+            <%--For displaying Next link --%>
+            <c:if test="${currentPage lt noOfPages}">
+                <td><a href="TourList?page=${currentPage + 1}&tour_type=${param.tour_type}&price=${param.price}&people_amount=${param.people_amount}&hotel_stars=${param.hotel_stars}">Next</a></td>
+            </c:if>
+
         <hr>
 
     </body>

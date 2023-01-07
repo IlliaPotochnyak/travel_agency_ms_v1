@@ -38,16 +38,18 @@ public class RegisterServlet extends HttpServlet {
 //                    session.setAttribute("UserRole", newUser.getRole());
 //                    session.setAttribute("UserId", newUser.getId());
                     System.out.println("Register ok");
-                    req.getRequestDispatcher("RegisterOK.jsp").forward(req, resp);
+//                    req.getRequestDispatcher("RegisterOK.jsp").forward(req, resp);
+                    resp.sendRedirect("RegisterOK.jsp");
                 }
             } catch (DatabaseException e) {
                 throw new RuntimeException(e);
             }
 
-        }
-        req.setAttribute("errorRegister", "Wrong Registration data");
+        } else {
+            req.setAttribute("errorRegister", "Wrong Registration data");
 
-        req.getRequestDispatcher("Register.jsp").forward(req, resp);
+            req.getRequestDispatcher("Register.jsp").forward(req, resp);
+        }
     }
 
     private boolean registerFormCheck (HttpServletRequest req) {

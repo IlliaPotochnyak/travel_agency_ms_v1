@@ -10,8 +10,12 @@ import java.util.List;
 public interface TourDAO {
     boolean addTour(Tour tour) throws SQLException;
 
-    List<Tour> getAllTours() throws DatabaseException;
-    List<Tour> getSortedTours(String tourType, String price, String personNumber, String hotelType) throws DatabaseException;
+
+
+    List<Tour> getAllTours(int offset, int noOfRecords) throws DatabaseException;
+
+    List<Tour> getSortedTours(String tourType, String price, String personNumber, String hotelType,
+                              int offset, int noOfRecords) throws DatabaseException;
 
     void deleteTourById(int id) throws DatabaseException;
 

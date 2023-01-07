@@ -83,13 +83,13 @@ public class ReceiptDAOImpl implements ReceiptDao {
         try (Connection con = DataSource.getConnection();
              Statement stmnt = con.createStatement();
              ResultSet rs = stmnt.executeQuery(query)){
-            System.out.println("ResultSet " + rs);
+//            System.out.println("ResultSet " + rs);
             while (rs.next()) {
                 //id, tour_id, user_id, discount, amount, order_status, datetime
-                System.out.println(rs.getInt("id")
-                        + "-" + rs.getInt("user_id")
-                        + "-" + rs.getInt("discount")
-                );
+//                System.out.println(rs.getInt("id")
+//                        + "-" + rs.getInt("user_id")
+//                        + "-" + rs.getInt("discount")
+//                );
                 Receipt receipt = new Receipt(rs.getInt("id"),
                         rs.getInt("tour_id"),
                         rs.getInt("user_id"),
@@ -101,13 +101,13 @@ public class ReceiptDAOImpl implements ReceiptDao {
                         rs.getString("first_name"),
                         rs.getString("last_name")
                 );
-                System.out.println("Receipt - " + receipt);
+//                System.out.println("Receipt - " + receipt);
                 receiptList.add(receipt);
             }
-            receiptList.forEach(System.out::println);
+//            receiptList.forEach(System.out::println);
 
         } catch (SQLException e) {
-            System.out.println("ReceiptDao error");
+//            System.out.println("ReceiptDao error");
             throw new RuntimeException(e);
         }
         return receiptList;

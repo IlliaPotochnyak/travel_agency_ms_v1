@@ -23,6 +23,9 @@ public class AddTourServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("AddTourServlet Post method");
 
+        System.out.println("AddTourServlet Post method");
+
+
         int tourIsHot;
         if (req.getParameter("tourHot") == null) { tourIsHot = 0; }
         else { tourIsHot = 1; }
@@ -49,24 +52,30 @@ public class AddTourServlet extends HttpServlet {
 //                    session.setAttribute("UserLastName", newUser.getLastLame());
 //                    session.setAttribute("UserRole", newUser.getRole());
 //                    session.setAttribute("UserId", newUser.getId());
+                    System.out.println("Add - ok");
 
-                    req.getRequestDispatcher("AddTourOk.jsp").forward(req, resp);
+//                    req.getRequestDispatcher("AddTourOk.jsp").forward(req, resp);
+                    resp.sendRedirect("AddTourOk.jsp");
+                    System.out.println("After redirect");
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
 
-        }
+        } else {
+
         req.setAttribute("errorAddTour", "Wrong Tour data");
 
         req.getRequestDispatcher("AddTour.jsp").forward(req, resp);
+        }
+        System.out.println("End of servlet");
     }
 
     private boolean addTourFormCheck(HttpServletRequest req) {
 
         String regexName = ".{2,64}";
         String regexDesc = ".{2,65500}";
-        String regexPersonNumber = "^[0-9]{1,4}";
+        String regexPersonNumber = "^[0-9]{1,3}";
         String regexTourPrice = "^[1-9][0-9]{1,8}";
         String regexHotelType = "[1-5]{1}";
         String regexTourHot = "[0-1]{1}";

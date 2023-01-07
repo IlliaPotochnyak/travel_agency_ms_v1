@@ -10,6 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TourDAOImpl implements TourDAO {
+    private int noOfRecords;
+
+    public int getNoOfRecords() {
+        return noOfRecords;
+    }
+
     @Override
     public boolean addTour(Tour tour) throws SQLException {
         boolean result = false;
@@ -39,22 +45,25 @@ public class TourDAOImpl implements TourDAO {
     }
 
     @Override
-    public List<Tour> getAllTours() throws DatabaseException {
-
+    public List<Tour> getAllTours(int offset, int noOfRecords) throws DatabaseException {
+        System.out.println("getAllTours");
         List<Tour> tourList = new ArrayList<>();
-        String query = "SELECT tour.id, tour.name, tour.description, tour.persons_number, tour.price, tour.hot, \n" +
+        String query = "SELECT SQL_CALC_FOUND_ROWS tour.id, tour.name, tour.description, tour.persons_number, tour.price, tour.hot, \n" +
                 "tour_type.tour_type, hotel_type.star_rate \n" +
                 "FROM ((tour\n" +
                 "INNER JOIN tour_type ON tour.tour_type_id=tour_type.id)\n" +
-                "INNER JOIN hotel_type ON tour.hotel_type_id=hotel_type.id) ORDER BY hot DESC;";
+                "INNER JOIN hotel_type ON tour.hotel_type_id=hotel_type.id) ORDER BY hot DESC limit "
+                + offset + ", " + noOfRecords;
 //        String query = "SELECT tour.id, tour.name, tour.description, tour.persons_number, tour.price, tour.hot, \n" +
 //                "                tour_type.tour_type, tour.hotel_type_id\n" +
 //                "                FROM tour\n" +
 //                "                INNER JOIN tour_type ON tour.tour_type_id=tour_type.id ORDER BY hot DESC;";
         try (Connection con = DataSource.getConnection();
-             Statement stmnt = con.createStatement();
-             ResultSet rs = stmnt.executeQuery(query)){
-
+             Statement stmnt = con.createStatement()
+             ){
+//            System.out.println("con - ok");
+            ResultSet rs = stmnt.executeQuery(query);
+//            System.out.println(rs);
             while (rs.next()) {
                 Tour tour = new Tour(rs.getInt("id"),
                                     rs.getString("name"),
@@ -67,6 +76,11 @@ public class TourDAOImpl implements TourDAO {
                                     );
                 tourList.add(tour);
             }
+            rs.close();
+
+            rs = stmnt.executeQuery("SELECT FOUND_ROWS()");
+            if(rs.next())
+                this.noOfRecords = rs.getInt(1);
 //            tourList.forEach(System.out::println);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -75,17 +89,20 @@ public class TourDAOImpl implements TourDAO {
         return tourList;
     }
     @Override
-    public List<Tour> getSortedTours(String tourType, String price, String personNumber, String hotelType) throws DatabaseException {
+    public List<Tour> getSortedTours(String tourType, String price, String personNumber, String hotelType,
+                                     int offset, int noOfRecords) throws DatabaseException {
+        System.out.println("get sorted tours");
         List<Tour> tourList = new ArrayList<>();
 
-        String query = "SELECT tour.id, tour.name, tour.description, tour.persons_number, tour.price, tour.hot, \n" +
+        String query = "SELECT SQL_CALC_FOUND_ROWS tour.id, tour.name, tour.description, tour.persons_number, tour.price, tour.hot, \n" +
                 "tour_type.tour_type, hotel_type.star_rate \n" +
                 "FROM ((tour\n" +
                 "INNER JOIN tour_type ON tour.tour_type_id=tour_type.id)\n" +
                 "INNER JOIN hotel_type ON tour.hotel_type_id=hotel_type.id) WHERE tour_type=? AND price<=? " +
                 "AND persons_number=? " +
                 "AND star_rate>=? " +
-                "ORDER BY hot DESC;";
+                "ORDER BY hot DESC limit "
+                + offset + ", " + noOfRecords;
         try (Connection con = DataSource.getConnection();
              PreparedStatement pstmnt = con.prepareStatement(query)){
 
@@ -106,7 +123,20 @@ public class TourDAOImpl implements TourDAO {
                 );
                 tourList.add(tour);
             }
+            rs.close();
+            try (Statement stmnt = con.createStatement();){
+
+            rs = stmnt.executeQuery("SELECT FOUND_ROWS()");
+            if(rs.next())
+                this.noOfRecords = rs.getInt(1);
+//            tourList.forEach(System.out::println);
+            }catch (SQLException e) {
+
+                throw new RuntimeException(e);
+            }
+
         } catch (SQLException e) {
+
             throw new RuntimeException(e);
         }
 
