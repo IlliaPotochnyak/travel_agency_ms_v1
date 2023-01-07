@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import util.FormCheckUtils;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -30,7 +31,7 @@ public class AddTourServlet extends HttpServlet {
         if (req.getParameter("tourHot") == null) { tourIsHot = 0; }
         else { tourIsHot = 1; }
 
-        if (addTourFormCheck(req)){
+        if (FormCheckUtils.addTourFormCheck(req)){
             //String name, String description, int personsNumber,
             //                int price, int hot, String tourType, int hotelType
 
@@ -71,43 +72,6 @@ public class AddTourServlet extends HttpServlet {
         System.out.println("End of servlet");
     }
 
-    private boolean addTourFormCheck(HttpServletRequest req) {
 
-        String regexName = ".{2,64}";
-        String regexDesc = ".{2,65500}";
-        String regexPersonNumber = "^[0-9]{1,3}";
-        String regexTourPrice = "^[1-9][0-9]{1,8}";
-        String regexHotelType = "[1-5]{1}";
-        String regexTourHot = "[0-1]{1}";
-        String[] tourTypes = {"rest", "excursion", "shopping"};
-        System.out.println(req.getParameter("tourType"));
-
-        if ( !req.getParameter("tourName").matches(regexName) ) {
-            System.out.println("Wrong tour name");
-            return false;
-        }
-        if ( !req.getParameter("tourDescription").matches(regexDesc) ) {
-            System.out.println("Wrong tour Desc");
-            return false;
-        }
-        if ( !req.getParameter("PersonNumber").matches(regexPersonNumber) ) {
-            System.out.println("Wrong person number");
-            return false;
-        }
-        if ( !req.getParameter("tourPrice").matches(regexTourPrice) ) {
-            System.out.println("Wrong tour price");
-            return false;
-        }
-//        if ( !req.getParameter("tourHot").matches(regexTourPrice) ) {
-//            System.out.println("Wrong tour Hot");
-//            return false;
-//        }
-        if ( !Arrays.stream(tourTypes).anyMatch (req.getParameter("tourType")::equals)) {
-            System.out.println("Wrong tour type");
-            return false;
-        }
-
-        return true;
-    }
 }
 

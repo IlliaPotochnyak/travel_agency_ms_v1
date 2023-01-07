@@ -33,4 +33,6 @@ public class TourPageServlet extends HttpServlet {
         req.getRequestDispatcher("TourPage.jsp").forward(req, resp);
 
     }
+
+
 }

@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import util.FormCheckUtils;
 
 import java.io.IOException;
 
@@ -19,7 +20,7 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("RegisterServlet Post method");
         System.out.println(req.getParameter("password"));
-        if (registerFormCheck(req)){
+        if (FormCheckUtils.registerFormCheck(req)){
             //String first_name, String last_name, String email, String password, String phone, int active, int role
             User newUser = new User(req.getParameter("firstName"),
                     req.getParameter("lastName"),
@@ -52,21 +53,6 @@ public class RegisterServlet extends HttpServlet {
         }
     }
 
-    private boolean registerFormCheck (HttpServletRequest req) {
 
-        String regexName = "^[A-Za-z' А-Яа-яіІїЇ]{2,40}";
-        String regexPassword = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{6,}$";
-        String regexEmail = "^([a-zA-Z0-9_\\-.]+)@([a-zA-Z0-9_\\-.]+)\\.([a-zA-Z]{2,5})$";
-        String regexPhone = "^[+][0-9]{2}-[0-9]{3}-[0-9]{3}-[0-9]{4}";
-
-        if ( !req.getParameter("firstName").matches(regexName) ) return false;
-        if ( !req.getParameter("lastName").matches(regexName) ) return false;
-        if ( !req.getParameter("password").matches(regexPassword) ) return false;
-        if ( !req.getParameter("email").matches(regexEmail) ) return false;
-        if ( !req.getParameter("phone").matches(regexPhone) ) return false;
-
-
-        return true;
-    }
 }
 
