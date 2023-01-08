@@ -17,6 +17,13 @@
         <div class="container">
             <h2>Tour Page</h2>
         </div>
+        <div class="container">
+            <c:if test="${UserRole == 'admin'}">
+                <a href="EditTour.jsp?tourId=${tour.id}&tourName=${tour.name}&tourDesc=${tour.description}&tourHot=${tour.hot}&tourType=${tour.tourType}&hotelType=${tour.hotelType}&personsNumber=${tour.personsNumber}&tourPrice=${tour.price}">Edit tour</a>
+            </c:if>
+        </div>
+
+
 
         <div class="container">
             <h3>${tour.name}</h3>

@@ -27,6 +27,8 @@
                 <a href="#receiptList">Receipt List</a>
             </div>
 
+
+
             <hr>
             <c:if test="${UserRole == 'admin' or UserRole == 'manager'}">
                 <a id="tourList">
