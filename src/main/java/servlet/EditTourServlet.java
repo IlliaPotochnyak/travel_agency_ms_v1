@@ -15,6 +15,7 @@ public class EditTourServlet extends HttpServlet {
         System.out.println("EditTourServlet");
         System.out.println(req.getParameter("tourName"));
         System.out.println(req.getParameter("tourDescription"));
+        System.out.println(req.getParameter("tourHot"));
         System.out.println(req.getParameter("tourType"));
         System.out.println(req.getParameter("hotelType"));
         System.out.println(req.getParameter("PersonNumber"));
