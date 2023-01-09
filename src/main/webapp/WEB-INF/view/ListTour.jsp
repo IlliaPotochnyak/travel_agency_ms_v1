@@ -36,7 +36,7 @@
 
         <jsp:include page="SortTour.jspf" flush="true"/>
 
-        ${currentPage}
+
 
         <div class="container">
             <table class="table">
