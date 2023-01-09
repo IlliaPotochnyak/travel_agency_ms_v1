@@ -22,14 +22,41 @@
         </div>
         <div class="container">
             <c:if test="${UserRole == 'admin'}">
-                <a href="EditTour.jsp?tourId=${tour.id}&tourName=${tour.name}&tourDesc=${tour.description}&tourHot=${tour.hot}&tourType=${tour.tourType}&hotelType=${tour.hotelType}&personsNumber=${tour.personsNumber}&tourPrice=${tour.price}">Edit tour</a>
+                <a type="button" class="btn btn-primary" href="EditTour.jsp?tourId=${tour.id}&tourName=${tour.name}&tourDesc=${tour.description}&tourHot=${tour.hot}&tourType=${tour.tourType}&hotelType=${tour.hotelType}&personsNumber=${tour.personsNumber}&tourPrice=${tour.price}">Edit tour</a>
+
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
+                    Delete tour
+                  </button>
+
+                <!-- The Modal -->
+                <div class="modal" id="myModal">
+                  <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                        <h4 class="modal-title">Are you sure?</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                      </div>
+                      <!-- Modal footer -->
+                      <div class="modal-footer">
+                        <form action="DeleteTourServlet" method="post">
+                            <input type="hidden" name="tourId" value="${tour.id}" />
+                            <button type="submit" class="btn btn-danger">Delete tour</button>
+                        </form>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No!</button>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+
             </c:if>
         </div>
 
-        <div class="container">
+        <div class="container mt-3">
             <c:if test="${UserRole == 'admin' or UserRole == 'manager'}">
-
-
                     <form action="EditTourServlet" method="post">
                         <input type="hidden" name="tourId" value="${tour.id}">
                         <input type="hidden" name="tourName" value="${tour.name}">
@@ -49,9 +76,6 @@
                         </c:if>
 
                     </form>
-
-
-
             </c:if>
         </div>
 
