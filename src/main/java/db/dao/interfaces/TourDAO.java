@@ -23,7 +23,7 @@ public interface TourDAO {
 
     void updatePlaceQuantityRowById(Connection connection, int id, int placeQuantity) throws SQLException;
 
-    void updateTour(Tour tour) throws DatabaseException;
+    boolean updateTour(Tour tour) throws DatabaseException;
 
     void setHotTourById(int id) throws DatabaseException;
 

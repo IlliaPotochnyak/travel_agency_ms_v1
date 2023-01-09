@@ -20,7 +20,8 @@ public class FormCheckUtils {
             System.out.println("Wrong tour name");
             return false;
         }
-        if ( !req.getParameter("tourDescription").matches(regexDesc) ) {
+        if ( !req.getParameter("tourDescription").trim().matches(regexDesc) ) {
+            System.out.println(req.getParameter("tourDescription"));
             System.out.println("Wrong tour Desc");
             return false;
         }

@@ -86,7 +86,7 @@
 
 
                 <div class="mb-3">
-                    <button type="submit" class="btn btn-primary">Add Tour</button>
+                    <button type="submit" class="btn btn-primary">Edit Tour</button>
                 </div>
             </form>
         </div>

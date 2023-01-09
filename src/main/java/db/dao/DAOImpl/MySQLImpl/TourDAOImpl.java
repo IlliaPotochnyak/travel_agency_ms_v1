@@ -182,8 +182,37 @@ public class TourDAOImpl implements TourDAO {
     }
 
     @Override
-    public void updateTour(Tour tour) throws DatabaseException {
+    public boolean updateTour(Tour tour) throws DatabaseException {
+        boolean result = false;
+        System.out.println("updateTour method");
+        //id, name, description, persons_number, price, hot, tour_type_id, hotel_type_id
+        String query = "UPDATE tour SET " +
+                "name=?, description=?, persons_number=?, price=?, hot=?, " +
+                "tour_type_id=(SELECT tour_type.id FROM tour_type WHERE tour_type=?)," +
+                "hotel_type_id=(SELECT hotel_type.id FROM hotel_type WHERE star_rate=?) " +
+                "WHERE tour.id=?;";
 
+        try (Connection con = DataSource.getConnection();
+             PreparedStatement pstmnt = con.prepareStatement(query)) {
+            pstmnt.setString(1, tour.getName());
+            pstmnt.setString(2, tour.getDescription().trim());
+            pstmnt.setInt(3, tour.getPersonsNumber());
+            pstmnt.setInt(4, tour.getPrice());
+            pstmnt.setInt(5, tour.getHot());
+            pstmnt.setString(6, tour.getTourType());
+            pstmnt.setInt(7, tour.getHotelType());
+            pstmnt.setInt(8, tour.getId());
+            pstmnt.executeUpdate();
+
+            result = true;
+            System.out.println("update db ok!");
+        } catch (SQLException e) {
+            result = false;
+            throw new RuntimeException(e);
+        }
+
+
+        return result;
     }
 
     @Override
