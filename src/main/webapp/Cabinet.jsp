@@ -27,9 +27,36 @@
                 <a href="#receiptList">Receipt List</a>
             </div>
 
+            <%--User Info block --%>
+            <div class="container">
+                <button data-bs-toggle="collapse" data-bs-target="#userInfo" class="btn btn-primary">User Info</button>
+                <div id="userInfo" class="collapse">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-2 p-3 bg-primary text-white">First Name</div>
+                            <div class="col-sm-6 p-3 bg-dark text-white">${UserFirstName}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2 p-3 bg-primary text-white">Last Name</div>
+                            <div class="col-sm-6 p-3 bg-dark text-white">${UserLastName}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2 p-3 bg-primary text-white">Email</div>
+                            <div class="col-sm-6 p-3 bg-dark text-white">${UserEmail}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2 p-3 bg-primary text-white">Phone</div>
+                            <div class="col-sm-6 p-3 bg-dark text-white">${UserPhone}</div>
+                        </div>
 
+                    </div>
+                </div>
+            </div>
 
             <hr>
+
+
+            <%--List block --%>
             <c:if test="${UserRole == 'admin' or UserRole == 'manager'}">
                 <a id="tourList">
                     <jsp:include page="TourList" flush="true"/>
