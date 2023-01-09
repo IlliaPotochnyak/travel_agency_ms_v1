@@ -17,7 +17,7 @@ public interface TourDAO {
     List<Tour> getSortedTours(String tourType, String price, String personNumber, String hotelType,
                               int offset, int noOfRecords) throws DatabaseException;
 
-    void deleteTourById(int id) throws DatabaseException;
+    boolean deleteTourById(int id) throws DatabaseException;
 
     Tour getTourById(int id) throws DatabaseException;
 

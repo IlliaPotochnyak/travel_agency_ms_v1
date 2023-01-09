@@ -144,8 +144,24 @@ public class TourDAOImpl implements TourDAO {
     }
 
     @Override
-    public void deleteTourById(int id) throws DatabaseException {
+    public boolean deleteTourById(int id) throws DatabaseException {
+        boolean result = false;
 
+        System.out.println("deleteTourById method - tour id = " + id);
+
+        String query = "DELETE FROM tour WHERE id=?;";
+        try (Connection con = DataSource.getConnection();
+             PreparedStatement pstmnt = con.prepareStatement(query)) {
+            pstmnt.setInt(1, id);
+
+            pstmnt.execute();
+
+            result = true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return result;
     }
 
     @Override

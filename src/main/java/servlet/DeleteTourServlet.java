@@ -21,7 +21,18 @@ public class DeleteTourServlet extends HttpServlet {
 //        System.out.println(req.getParameter("tourId") + " - " + req.getParameter("tourName"));
         System.out.println("tourId" + " - " + req.getParameter("tourId"));
 
+        TourDAO tourDAO = new TourDAOImpl();
+        try {
+            tourDAO.deleteTourById(Integer.parseInt(req.getParameter("tourId")));
 
+            resp.sendRedirect("index.jsp");
+        } catch (DatabaseException e) {
+//            req.setAttribute("errorDeleteTour", "Error delete");
+//            resp.sendRedirect("TourPageServlet?tourId=" + req.getParameter("tourId"));
+            throw new RuntimeException(e);
+
+
+        }
 
 //        int tourIsHot;
 //        if (req.getParameter("tourHot") == null) { tourIsHot = 0; }
