@@ -42,16 +42,15 @@
                             <td><c:out value="${receipt.tourName}"/></td>
                             <td><c:out value="${receipt.amount}"/></td>
                             <td>
-                                <c:out value="${receipt.orderStatus}"/>
+
                                 <c:if test="${UserRole == 'admin' or UserRole == 'manager'}">
                                     <form action="ReceiptStatusServlet" method="POST" >
                                         <input type="hidden" name="receiptId" value="${receipt.id}">
-                                        <select id="orderStatus" class="form-select form-select-sm" name="orderStatus">
-                                            <option value="registered" <c:if test="${receipt.orderStatus eq 'registered'}">hidden</c:if>>registered</option>
-                                            <option value="paid" <c:if test="${receipt.orderStatus eq 'paid'}">hidden</c:if>>paid</option>
-                                            <option value="canceled" <c:if test="${receipt.orderStatus eq 'canceled'}">hidden</c:if>>canceled</option>
+                                        <select id="orderStatus" class="form-select form-select-sm" name="orderStatus" onchange="this.form.submit()">
+                                            <option value="registered" <c:if test="${receipt.orderStatus eq 'registered'}">class="fw-bolder" selected</c:if>>registered</option>
+                                            <option value="paid" <c:if test="${receipt.orderStatus eq 'paid'}">class="fw-bolder" selected</c:if>>paid</option>
+                                            <option value="canceled" <c:if test="${receipt.orderStatus eq 'canceled'}">class="fw-bolder" selected</c:if>>canceled</option>
                                         </select>
-                                        <button type="submit" class="btn btn-primary btn-sm">Change</button>
                                     </form>
                                 </c:if>
                             </td>
