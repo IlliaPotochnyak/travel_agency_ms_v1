@@ -4,17 +4,17 @@ public class User {
     //id, first_name, lastLame, email, password, phone, active, role_id
     private int id;
     private String firstName;
-    private String lastLame;
+    private String lastName;
     private String email;
     private String password;
     private String phone;
     private int active;
     private String role;
 
-    public User(int id, String firstName, String lastLame, String email, String password, String phone, String role) {
+    public User(int id, String firstName, String lastName, String email, String password, String phone, String role) {
         this.id = id;
         this.firstName = firstName;
-        this.lastLame = lastLame;
+        this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.phone = phone;
@@ -22,18 +22,19 @@ public class User {
         this.role = role;
     }
 
-    public User(String firstName, String lastLame, String email, String phone, int active, String role) {
+    public User(int id, String firstName, String lastName, String email, String phone, int active, String role) {
+        this.id = id;
         this.firstName = firstName;
-        this.lastLame = lastLame;
+        this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.active = active;
         this.role = role;
     }
 
-    public User(String firstName, String lastLame, String email, String password, String phone, int active, String role) {
+    public User(String firstName, String lastName, String email, String password, String phone, int active, String role) {
         this.firstName = firstName;
-        this.lastLame = lastLame;
+        this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.phone = phone;
@@ -53,12 +54,12 @@ public class User {
         this.firstName = firstName;
     }
 
-    public String getLastLame() {
-        return lastLame;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastLame(String lastLame) {
-        this.lastLame = lastLame;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -105,7 +106,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "first_name='" + firstName + '\'' +
-                ", lastLame='" + lastLame + '\'' +
+                ", lastLame='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", phone='" + phone + '\'' +

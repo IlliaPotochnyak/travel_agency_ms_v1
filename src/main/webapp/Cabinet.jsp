@@ -24,6 +24,9 @@
                 <c:if test="${UserRole == 'admin' or UserRole == 'manager'}">
                     <a href="#receiptList">Receipt List</a>
                 </c:if>
+                <c:if test="${UserRole == 'admin'}">
+                    <a href="#userList">User List</a>
+                </c:if>
 
             </div>
 
@@ -90,6 +93,11 @@
 
 
 
+            </a>
+            <hr>
+
+            <a id="userList">
+                <jsp:include page="UserListServlet" flush="true"/>
             </a>
             <hr>
         </body>

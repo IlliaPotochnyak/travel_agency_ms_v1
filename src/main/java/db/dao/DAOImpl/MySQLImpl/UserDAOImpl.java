@@ -6,13 +6,61 @@ import entities.User;
 import exceptions.DatabaseException;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
 
+    private int noOfRecords;
+
+    public int getNoOfRecords() {
+        return noOfRecords;
+    }
+
     @Override
-    public List<User> getAllUsers() throws DatabaseException {
-        return null;
+    public List<User> getAllUsers(int offset, int noOfRecords) throws DatabaseException {
+        System.out.println("getAllUsers");
+        List<User> userList = new ArrayList<>();
+//        String query = "SELECT * FROM receipt;";
+        String query = "SELECT SQL_CALC_FOUND_ROWS user.id, user.first_name, user.last_name, user.email, " +
+                "user.password, user.phone, user.active, role.role " +
+                "FROM user INNER JOIN role ON user.role_id=role.id " +
+                "ORDER BY user.id limit "
+                + offset + ", " + noOfRecords;
+        try (Connection con = DataSource.getConnection();
+             Statement stmnt = con.createStatement()
+        ){
+            ResultSet rs = stmnt.executeQuery(query);
+//            System.out.println("ResultSet " + rs);
+            while (rs.next()) {
+                //int id, String firstName, String lastLame, String email, String phone, int active, String role
+                System.out.println("user_id = " + rs.getInt("id"));
+//                        + "-" + rs.getInt("user_id")
+//                        + "-" + rs.getInt("discount")
+//                );
+                User user = new User( rs.getInt("id"),
+                        rs.getString("first_name"),
+                        rs.getString("last_name"),
+                        rs.getString("email"),
+                        rs.getString("phone"),
+                        rs.getInt("active"),
+                        rs.getString("role")
+                );
+//                System.out.println("Receipt - " + receipt);
+                userList.add(user);
+            }
+            rs.close();
+
+            rs = stmnt.executeQuery("SELECT FOUND_ROWS()");
+            if(rs.next())
+                this.noOfRecords = rs.getInt(1);
+            userList.forEach(System.out::println);
+
+        } catch (SQLException e) {
+//            System.out.println("ReceiptDao error");
+            throw new RuntimeException(e);
+        }
+        return userList;
     }
 
     @Override
@@ -51,7 +99,7 @@ public class UserDAOImpl implements UserDAO {
         try (Connection con = DataSource.getConnection();
              PreparedStatement pstmnt = con.prepareStatement(query)) {
             pstmnt.setString(1, user.getFirstName());
-            pstmnt.setString(2, user.getLastLame());
+            pstmnt.setString(2, user.getLastName());
             pstmnt.setString(3, user.getEmail());
             pstmnt.setString(4, user.getPassword());
             pstmnt.setString(5, user.getPhone());

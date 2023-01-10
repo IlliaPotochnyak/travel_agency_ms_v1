@@ -30,7 +30,7 @@ public class LogInServlet extends HttpServlet {
             HttpSession session = req.getSession(true);
             session.setAttribute("UserId", user.getId());
             session.setAttribute("UserFirstName", user.getFirstName());
-            session.setAttribute("UserLastName", user.getLastLame());
+            session.setAttribute("UserLastName", user.getLastName());
             session.setAttribute("UserEmail", user.getEmail());
             session.setAttribute("UserPhone", user.getPhone());
             session.setAttribute("UserRole", user.getRole());
