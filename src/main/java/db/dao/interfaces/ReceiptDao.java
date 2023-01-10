@@ -13,7 +13,7 @@ public interface ReceiptDao {
 
     List<Receipt> getAllReceipts() throws DatabaseException;
 
-    void updateReceiptStatus(Long ReceiptId, Long statusId) throws DatabaseException;
+    boolean updateReceiptStatus(int id, String status) throws DatabaseException;
 
     void updateReceiptPrice(Long ReceiptId, float price) throws DatabaseException;
 

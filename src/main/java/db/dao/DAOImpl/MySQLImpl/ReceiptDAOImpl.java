@@ -114,8 +114,26 @@ public class ReceiptDAOImpl implements ReceiptDao {
     }
 
     @Override
-    public void updateReceiptStatus(Long ReceiptId, Long statusId) throws DatabaseException {
+    public boolean updateReceiptStatus(int id, String status) throws DatabaseException {
+        boolean result;
 
+        String query ="UPDATE receipt SET order_status_id=" +
+                "(SELECT receipt_status.id from receipt_status WHERE receipt_status=?) " +
+                "WHERE receipt.id=?;";
+        try (Connection con = DataSource.getConnection();
+             PreparedStatement pstmnt = con.prepareStatement(query)) {
+            pstmnt.setString(1, status);
+            pstmnt.setInt(2, id);
+            System.out.println(pstmnt);
+            pstmnt.executeUpdate();
+
+            result = true;
+        } catch (SQLException e) {
+            result = false;
+            throw new RuntimeException(e);
+        }
+
+        return result;
     }
 
     @Override
