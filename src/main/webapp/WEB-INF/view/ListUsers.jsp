@@ -38,23 +38,18 @@
                             <td><c:out value="${user.email}"/></td>
                             <td><c:out value="${user.phone}"/></td>
                             <td>
-                                <c:choose>
-                                    <c:when test = "${user.active eq 0}">
-                                        <c:out value="blocked"/>
-                                    </c:when>
-                                    <c:when test = "${user.active eq 1}">
-                                        <c:out value="active"/>
-                                    </c:when>
-                                </c:choose>
-
 
                                 <form action="UserActiveServlet" method="POST" >
                                     <input type="hidden" name="userId" value="${user.id}">
-                                    <select id="userActive" class="form-select form-select-sm" name="userActive">
-                                        <option value="1" <c:if test="${user.active eq 1}">hidden</c:if>>active</option>
-                                        <option value="0" <c:if test="${user.active eq 0}">hidden</c:if>>blocked</option>
+                                    <select id="userActive" class="form-select form-select-sm" name="userActive" onchange="this.form.submit()">
+
+                                        <option value="1" <c:if test="${user.active eq 1}"> class="fw-bolder" selected</c:if>>
+                                            <span class="fw-bolder">active</span>
+                                        </option>
+                                        <option value="0" <c:if test="${user.active eq 0}"> class="fw-bolder" selected</c:if>>
+                                            <span class="fw-bolder">blocked</span>
+                                        </option>
                                     </select>
-                                    <button type="submit" class="btn btn-primary btn-sm">Change</button>
                                 </form>
 
                             </td>

@@ -33,7 +33,7 @@ public class UserActiveServlet extends HttpServlet {
             }
         }
 
-        resp.sendRedirect("Cabinet.jsp");
+        resp.sendRedirect("Cabinet.jsp#userList");
 
     }
 }
