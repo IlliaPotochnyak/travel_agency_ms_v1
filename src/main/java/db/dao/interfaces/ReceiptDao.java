@@ -9,7 +9,7 @@ import java.util.List;
 public interface ReceiptDao {
     boolean addReceipt(Receipt receipt) throws SQLException;
 
-    List<Receipt> getAllUserReceiptsByUserId(int id) throws DatabaseException;
+    List<Receipt> getAllUserReceiptsByUserId(int id, int offset, int noOfRecords) throws DatabaseException;
 
     List<Receipt> getAllReceipts(int offset, int noOfRecords) throws DatabaseException;
 

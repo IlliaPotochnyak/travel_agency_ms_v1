@@ -42,13 +42,14 @@ public class ReceiptDAOImpl implements ReceiptDao {
     }
 
     @Override
-    public List<Receipt> getAllUserReceiptsByUserId(int id) throws DatabaseException {
+    public List<Receipt> getAllUserReceiptsByUserId(int id, int offset, int noOfRecords) throws DatabaseException {
         List<Receipt> receiptList = new ArrayList<>();
-        String query = "SELECT receipt.id, receipt.tour_id, tour.name, receipt.user_id, user.first_name, user.last_name, receipt.discount, receipt.amount, receipt_status.receipt_status, receipt.datetime \n" +
+        String query = "SELECT SQL_CALC_FOUND_ROWS receipt.id, receipt.tour_id, tour.name, receipt.user_id, user.first_name, user.last_name, receipt.discount, receipt.amount, receipt_status.receipt_status, receipt.datetime \n" +
                 "FROM receipt INNER JOIN tour ON receipt.tour_id=tour.id\n" +
                 "    INNER JOIN receipt_status ON receipt.order_status_id=receipt_status.id\n" +
                 "    INNER JOIN user ON receipt.user_id=user.id " +
-                "WHERE user.id=?;";
+                "WHERE user.id=? ORDER BY order_status_id limit "
+                + offset + ", " + noOfRecords;
 
         try (Connection con = DataSource.getConnection();
              PreparedStatement pstmnt = con.prepareStatement(query)){
@@ -68,6 +69,17 @@ public class ReceiptDAOImpl implements ReceiptDao {
                         rs.getString("last_name")
                 );
                 receiptList.add(receipt);
+            }
+            rs.close();
+            try (Statement stmnt = con.createStatement();){
+
+                rs = stmnt.executeQuery("SELECT FOUND_ROWS()");
+                if(rs.next())
+                    this.noOfRecords = rs.getInt(1);
+//            tourList.forEach(System.out::println);
+            }catch (SQLException e) {
+
+                throw new RuntimeException(e);
             }
 //            receiptList.forEach(System.out::println);
 

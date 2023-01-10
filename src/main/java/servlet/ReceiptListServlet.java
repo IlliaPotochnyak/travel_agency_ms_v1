@@ -35,7 +35,8 @@ public class ReceiptListServlet extends HttpServlet {
                 receiptList = receiptDao.getAllReceipts((page-1)*recordsPerPage, recordsPerPage);
             } else {
 
-                receiptList = receiptDao.getAllUserReceiptsByUserId(userId);
+                receiptList = receiptDao.getAllUserReceiptsByUserId(userId,
+                        (page-1)*recordsPerPage, recordsPerPage);
             }
 
             int noOfRecords = receiptDao.getNoOfRecords();
