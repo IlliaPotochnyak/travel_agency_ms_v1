@@ -38,7 +38,15 @@
                             <td><c:out value="${user.email}"/></td>
                             <td><c:out value="${user.phone}"/></td>
                             <td>
-                                <c:out value="${user.active}"/>
+                                <c:choose>
+                                    <c:when test = "${user.active eq 0}">
+                                        <c:out value="blocked"/>
+                                    </c:when>
+                                    <c:when test = "${user.active eq 1}">
+                                        <c:out value="active"/>
+                                    </c:when>
+                                </c:choose>
+
 
                                 <form action="UserActiveServlet" method="POST" >
                                     <input type="hidden" name="userId" value="${user.id}">
