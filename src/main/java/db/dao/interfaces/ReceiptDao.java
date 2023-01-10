@@ -11,11 +11,13 @@ public interface ReceiptDao {
 
     List<Receipt> getAllUserReceiptsByUserId(int id) throws DatabaseException;
 
-    List<Receipt> getAllReceipts() throws DatabaseException;
+    List<Receipt> getAllReceipts(int offset, int noOfRecords) throws DatabaseException;
 
     boolean updateReceiptStatus(int id, String status) throws DatabaseException;
 
     void updateReceiptPrice(Long ReceiptId, float price) throws DatabaseException;
 
     List<Receipt> getTotalPriceOfPaidToursForClient() throws DatabaseException;
+
+    int getNoOfRecords();
 }

@@ -44,7 +44,7 @@ public class TourListServlet extends HttpServlet {
             }
             int noOfRecords = tourDAO.getNoOfRecords();
             int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
-            req.setAttribute("employeeList", listOfTours);
+//            req.setAttribute("employeeList", listOfTours);
             req.setAttribute("noOfPages", noOfPages);
             req.setAttribute("currentPage", page);
         } catch (DatabaseException e) {
