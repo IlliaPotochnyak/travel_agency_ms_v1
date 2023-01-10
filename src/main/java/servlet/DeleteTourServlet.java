@@ -17,9 +17,9 @@ import java.io.IOException;
 public class DeleteTourServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("DeleteTourServlet");
-//        System.out.println(req.getParameter("tourId") + " - " + req.getParameter("tourName"));
-        System.out.println("tourId" + " - " + req.getParameter("tourId"));
+//        System.out.println("DeleteTourServlet");
+////        System.out.println(req.getParameter("tourId") + " - " + req.getParameter("tourName"));
+//        System.out.println("tourId" + " - " + req.getParameter("tourId"));
 
         TourDAO tourDAO = new TourDAOImpl();
         try {

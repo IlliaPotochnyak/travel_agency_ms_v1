@@ -22,9 +22,9 @@
                     <a href="AddTour.jsp">Add New Tour</a>
                 </c:if>
                 <c:if test="${UserRole == 'admin' or UserRole == 'manager'}">
-                    <a href="#tourList">Tour List</a>
+                    <a href="#receiptList">Receipt List</a>
                 </c:if>
-                <a href="#receiptList">Receipt List</a>
+
             </div>
 
             <%--User Info block --%>
@@ -57,11 +57,7 @@
 
 
             <%--List block --%>
-            <c:if test="${UserRole == 'admin' or UserRole == 'manager'}">
-                <a id="tourList">
-                    <jsp:include page="TourList" flush="true"/>
-                </a>
-            </c:if>
+
             <a id="receiptList">
                 <jsp:include page="ReceiptListServlet" flush="true"/>
             </a>
