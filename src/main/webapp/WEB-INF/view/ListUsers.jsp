@@ -40,7 +40,7 @@
                             <td>
                                 <c:out value="${user.active}"/>
 
-                                <form action="#" method="POST" >
+                                <form action="UserActiveServlet" method="POST" >
                                     <input type="hidden" name="userId" value="${user.id}">
                                     <select id="userActive" class="form-select form-select-sm" name="userActive">
                                         <option value="1" <c:if test="${user.active eq 1}">hidden</c:if>>active</option>

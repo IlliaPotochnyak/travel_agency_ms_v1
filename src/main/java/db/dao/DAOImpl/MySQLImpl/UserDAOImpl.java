@@ -117,7 +117,25 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void blockOrUnblockUserByIdAndParam(int id, boolean isBlock) throws DatabaseException {
+    public boolean blockOrUnblockUserByIdAndParam(int id, int isBlock) throws DatabaseException {
+        System.out.println("blockOrUnblockUserByIdAndParam");
 
+        boolean result = false;
+        String query = "UPDATE user SET active=? WHERE id=?;";
+
+        try (Connection con = DataSource.getConnection();
+             PreparedStatement pstmnt = con.prepareStatement(query)) {
+            pstmnt.setInt(1, isBlock);
+            pstmnt.setInt(2, id);
+
+            pstmnt.executeUpdate();
+
+            result = true;
+        } catch (SQLException e) {
+            result = false;
+            throw new RuntimeException(e);
+
+        }
+        return result;
     }
 }

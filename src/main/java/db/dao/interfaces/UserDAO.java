@@ -9,6 +9,6 @@ public interface UserDAO {
     List<User> getAllUsers(int offset, int noOfRecords) throws DatabaseException;
     User getUserByEmail(String email) throws DatabaseException;
     boolean addUser(User user) throws DatabaseException;
-    void blockOrUnblockUserByIdAndParam(int id, boolean isBlock) throws DatabaseException;
+    boolean blockOrUnblockUserByIdAndParam(int id, int isBlock) throws DatabaseException;
     int getNoOfRecords();
 }
