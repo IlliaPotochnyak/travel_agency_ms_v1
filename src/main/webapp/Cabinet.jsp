@@ -65,31 +65,31 @@
                 <jsp:include page="ReceiptListServlet" flush="true"/>
 
                 <%--For displaying Previous link except for the 1st page --%>
-                            <c:if test="${currentPage != 1}">
-                                <td><a href="Cabinet.jsp?page=${currentPage - 1}">Previous</a></td>
-                            </c:if>
+                    <c:if test="${currentPage != 1}">
+                        <td><a href="Cabinet.jsp?page=${currentPage - 1}#receiptList">Previous</a></td>
+                    </c:if>
 
-                            <%--For displaying Page numbers.
-                            The when condition does not display a link for the current page--%>
-                            <table border="1" cellpadding="5" cellspacing="5">
-                                <tr>
-                                    <c:forEach begin="1" end="${noOfPages}" var="i">
-                                        <c:choose>
-                                            <c:when test="${currentPage eq i}">
-                                                <td>${i}</td>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <td><a href="Cabinet.jsp?page=${i}">${i}</a></td>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </c:forEach>
-                                </tr>
-                            </table>
+                    <%--For displaying Page numbers.
+                    The when condition does not display a link for the current page--%>
+                    <table border="1" cellpadding="5" cellspacing="5">
+                        <tr>
+                            <c:forEach begin="1" end="${noOfPages}" var="i">
+                                <c:choose>
+                                    <c:when test="${currentPage eq i}">
+                                        <td>${i}</td>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <td><a href="Cabinet.jsp?page=${i}#receiptList">${i}</a></td>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+                        </tr>
+                    </table>
 
-                            <%--For displaying Next link --%>
-                            <c:if test="${currentPage lt noOfPages}">
-                                <td><a href="Cabinet.jsp?page=${currentPage + 1}">Next</a></td>
-                            </c:if>
+                    <%--For displaying Next link --%>
+                    <c:if test="${currentPage lt noOfPages}">
+                        <td><a href="Cabinet.jsp?page=${currentPage + 1}#receiptList">Next</a></td>
+                    </c:if>
 
 
 
@@ -98,6 +98,35 @@
 
             <a id="userList">
                 <jsp:include page="UserListServlet" flush="true"/>
+
+                <%--For displaying Previous link except for the 1st page --%>
+                <c:if test="${currentPageUsers != 1}">
+                    <td><a href="Cabinet.jsp?pageUsers=${currentPageUsers - 1}#userList">Previous</a></td>
+                </c:if>
+
+                <%--For displaying Page numbers.
+                The when condition does not display a link for the current page--%>
+                <table border="1" cellpadding="5" cellspacing="5">
+                    <tr>
+                        <c:forEach begin="1" end="${noOfPagesUsers}" var="i">
+                            <c:choose>
+                                <c:when test="${currentPageUsers eq i}">
+                                    <td>${i}</td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td><a href="Cabinet.jsp?pageUsers=${i}#userList">${i}</a></td>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                    </tr>
+                </table>
+
+                <%--For displaying Next link --%>
+                <c:if test="${currentPageUsers lt noOfPagesUsers}">
+                    <td><a href="Cabinet.jsp?pageUsers=${currentPageUsers + 1}#userList">Next</a></td>
+                </c:if>
+
+
             </a>
             <hr>
         </body>

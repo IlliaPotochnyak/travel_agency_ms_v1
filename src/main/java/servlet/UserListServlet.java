@@ -24,8 +24,8 @@ public class UserListServlet extends HttpServlet {
 
         int page = 1;
         int recordsPerPage = 5;
-        if(req.getParameter("page") != null)
-            page = Integer.parseInt(req.getParameter("page"));
+        if(req.getParameter("pageUsers") != null)
+            page = Integer.parseInt(req.getParameter("pageUsers"));
 
         int userId = (int) req.getSession().getAttribute("UserId");
 
@@ -39,8 +39,8 @@ public class UserListServlet extends HttpServlet {
 
             int noOfRecords = userDAO.getNoOfRecords();
             int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
-            req.setAttribute("noOfPages", noOfPages);
-            req.setAttribute("currentPage", page);
+            req.setAttribute("noOfPagesUsers", noOfPages);
+            req.setAttribute("currentPageUsers", page);
 
 
         } catch (DatabaseException e) {
