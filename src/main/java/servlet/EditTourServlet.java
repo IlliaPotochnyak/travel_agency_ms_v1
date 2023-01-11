@@ -40,6 +40,7 @@ public class EditTourServlet extends HttpServlet {
                     req.getParameter("tourDescription"),
                     Integer.parseInt(req.getParameter("PersonNumber")),
                     Integer.parseInt(req.getParameter("tourPrice")),
+                    Integer.parseInt(req.getParameter("maxDiscount")),
                     tourIsHot,
                     req.getParameter("tourType"),
                     Integer.parseInt(req.getParameter("hotelType"))

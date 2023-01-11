@@ -20,8 +20,8 @@ public class TourDAOImpl implements TourDAO {
     public boolean addTour(Tour tour) throws SQLException {
         boolean result = false;
         System.out.println("addTour method");
-        String query = "INSERT INTO tour (name, description, persons_number, price, hot, tour_type_id, hotel_type_id)" +
-                "VALUES (?, ?, ?, ?, ?, (SELECT tour_type.id FROM tour_type WHERE tour_type.tour_type=?), " +
+        String query = "INSERT INTO tour (name, description, persons_number, price, max_discount, hot, tour_type_id, hotel_type_id)" +
+                "VALUES (?, ?, ?, ?, ?, ?, (SELECT tour_type.id FROM tour_type WHERE tour_type.tour_type=?), " +
                 "(SELECT hotel_type.id FROM hotel_type WHERE hotel_type.star_rate=?))";
 
         try (Connection con = DataSource.getConnection();
@@ -30,9 +30,10 @@ public class TourDAOImpl implements TourDAO {
             pstmnt.setString(2, tour.getDescription());
             pstmnt.setInt(3, tour.getPersonsNumber());
             pstmnt.setInt(4, tour.getPrice());
-            pstmnt.setInt(5, tour.getHot());
-            pstmnt.setString(6, tour.getTourType());
-            pstmnt.setInt(7, tour.getHotelType());
+            pstmnt.setInt(5, tour.getMaxDiscount());
+            pstmnt.setInt(6, tour.getHot());
+            pstmnt.setString(7, tour.getTourType());
+            pstmnt.setInt(8, tour.getHotelType());
             pstmnt.executeUpdate();
 
             result = true;
@@ -48,7 +49,7 @@ public class TourDAOImpl implements TourDAO {
     public List<Tour> getAllTours(int offset, int noOfRecords) throws DatabaseException {
         System.out.println("getAllTours");
         List<Tour> tourList = new ArrayList<>();
-        String query = "SELECT SQL_CALC_FOUND_ROWS tour.id, tour.name, tour.description, tour.persons_number, tour.price, tour.hot, \n" +
+        String query = "SELECT SQL_CALC_FOUND_ROWS tour.id, tour.name, tour.description, tour.persons_number, tour.price, tour.max_discount, tour.hot, \n" +
                 "tour_type.tour_type, hotel_type.star_rate \n" +
                 "FROM ((tour\n" +
                 "INNER JOIN tour_type ON tour.tour_type_id=tour_type.id)\n" +
@@ -70,6 +71,7 @@ public class TourDAOImpl implements TourDAO {
                                     rs.getString("description"),
                                     rs.getInt("persons_number"),
                                     rs.getInt("price"),
+                                    rs.getInt("max_discount"),
                                     rs.getInt("hot"),
                                     rs.getString("tour_type"),
                                     rs.getInt("star_rate")
@@ -94,7 +96,7 @@ public class TourDAOImpl implements TourDAO {
         System.out.println("get sorted tours");
         List<Tour> tourList = new ArrayList<>();
 
-        String query = "SELECT SQL_CALC_FOUND_ROWS tour.id, tour.name, tour.description, tour.persons_number, tour.price, tour.hot, \n" +
+        String query = "SELECT SQL_CALC_FOUND_ROWS tour.id, tour.name, tour.description, tour.persons_number, tour.price, tour.max_discount, tour.hot, \n" +
                 "tour_type.tour_type, hotel_type.star_rate \n" +
                 "FROM ((tour\n" +
                 "INNER JOIN tour_type ON tour.tour_type_id=tour_type.id)\n" +
@@ -117,6 +119,7 @@ public class TourDAOImpl implements TourDAO {
                         rs.getString("description"),
                         rs.getInt("persons_number"),
                         rs.getInt("price"),
+                        rs.getInt("max_discount"),
                         rs.getInt("hot"),
                         rs.getString("tour_type"),
                         rs.getInt("star_rate")
@@ -167,7 +170,7 @@ public class TourDAOImpl implements TourDAO {
     @Override
     public Tour getTourById(int id) throws DatabaseException {
         Tour tour = null;
-        String query = "SELECT tour.id, tour.name, tour.description, tour.persons_number, tour.price, tour.hot, \n" +
+        String query = "SELECT tour.id, tour.name, tour.description, tour.persons_number, tour.price, tour.max_discount, tour.hot, \n" +
                 "tour_type.tour_type, hotel_type.star_rate \n" +
                 "FROM ((tour\n" +
                 "INNER JOIN tour_type ON tour.tour_type_id=tour_type.id)\n" +
@@ -182,6 +185,7 @@ public class TourDAOImpl implements TourDAO {
                     rs.getString("description"),
                     rs.getInt("persons_number"),
                     rs.getInt("price"),
+                    rs.getInt("max_discount"),
                     rs.getInt("hot"),
                     rs.getString("tour_type"),
                     rs.getInt("star_rate")
@@ -203,7 +207,7 @@ public class TourDAOImpl implements TourDAO {
         System.out.println("updateTour method");
         //id, name, description, persons_number, price, hot, tour_type_id, hotel_type_id
         String query = "UPDATE tour SET " +
-                "name=?, description=?, persons_number=?, price=?, hot=?, " +
+                "name=?, description=?, persons_number=?, price=?, tour.max_discount=?, hot=?, " +
                 "tour_type_id=(SELECT tour_type.id FROM tour_type WHERE tour_type=?)," +
                 "hotel_type_id=(SELECT hotel_type.id FROM hotel_type WHERE star_rate=?) " +
                 "WHERE tour.id=?;";
@@ -214,10 +218,11 @@ public class TourDAOImpl implements TourDAO {
             pstmnt.setString(2, tour.getDescription().trim());
             pstmnt.setInt(3, tour.getPersonsNumber());
             pstmnt.setInt(4, tour.getPrice());
-            pstmnt.setInt(5, tour.getHot());
-            pstmnt.setString(6, tour.getTourType());
-            pstmnt.setInt(7, tour.getHotelType());
-            pstmnt.setInt(8, tour.getId());
+            pstmnt.setInt(5, tour.getMaxDiscount());
+            pstmnt.setInt(6, tour.getHot());
+            pstmnt.setString(7, tour.getTourType());
+            pstmnt.setInt(8, tour.getHotelType());
+            pstmnt.setInt(9, tour.getId());
             pstmnt.executeUpdate();
 
             result = true;

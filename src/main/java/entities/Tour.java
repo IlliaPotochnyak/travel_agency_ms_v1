@@ -7,6 +7,7 @@ public class Tour {
     private String description;
     private int personsNumber;
     private int price;
+    private int maxDiscount;
     private int hot;
     private String tourType;
     private int hotelType;
@@ -14,34 +15,38 @@ public class Tour {
     @Override
     public String toString() {
         return "Tour{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", persons_number=" + personsNumber +
+                ", personsNumber=" + personsNumber +
                 ", price=" + price +
+                ", maxDiscount=" + maxDiscount +
                 ", hot=" + hot +
-                ", tourTypeId=" + tourType +
+                ", tourType='" + tourType + '\'' +
                 ", hotelType=" + hotelType +
                 '}';
     }
 
     public Tour(int id, String name, String description, int personsNumber,
-                int price, int hot, String tourType, int hotelType) {
+                int price, int maxDiscount, int hot, String tourType, int hotelType) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.personsNumber = personsNumber;
         this.price = price;
+        this.maxDiscount = maxDiscount;
         this.hot = hot;
         this.tourType = tourType;
         this.hotelType = hotelType;
     }
 
     public Tour(String name, String description, int persons_number,
-                int price, int hot, String tourType, int hotelType) {
+                int price, int maxDiscount, int hot, String tourType, int hotelType) {
         this.name = name;
         this.description = description;
         this.personsNumber = persons_number;
         this.price = price;
+        this.maxDiscount = maxDiscount;
         this.hot = hot;
         this.tourType = tourType;
         this.hotelType = hotelType;
@@ -81,6 +86,13 @@ public class Tour {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+    public int getMaxDiscount() {
+        return maxDiscount;
+    }
+
+    public void setMaxDiscount(int maxDiscount) {
+        this.maxDiscount = maxDiscount;
     }
 
     public int getHot() {

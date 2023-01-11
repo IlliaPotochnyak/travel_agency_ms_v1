@@ -22,7 +22,7 @@
         </div>
         <div class="container">
             <c:if test="${UserRole == 'admin'}">
-                <a type="button" class="btn btn-primary" href="EditTour.jsp?tourId=${tour.id}&tourName=${tour.name}&tourDesc=${tour.description}&tourHot=${tour.hot}&tourType=${tour.tourType}&hotelType=${tour.hotelType}&personsNumber=${tour.personsNumber}&tourPrice=${tour.price}">Edit tour</a>
+                <a type="button" class="btn btn-primary" href="EditTour.jsp?tourId=${tour.id}&tourName=${tour.name}&tourDesc=${tour.description}&tourHot=${tour.hot}&tourType=${tour.tourType}&hotelType=${tour.hotelType}&personsNumber=${tour.personsNumber}&tourPrice=${tour.price}&maxDiscount=${tour.maxDiscount}">Edit tour</a>
 
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
                     Delete tour
@@ -100,7 +100,11 @@
                     <div class="border border-primary">
                         <p>Hotel type - ${tour.hotelType}</p>
                     </div>
-
+                    <c:if test="${UserRole == 'admin' or UserRole == 'manager'}">
+                        <div class="border border-primary">
+                            <p>Max Discount - ${tour.maxDiscount}</p>
+                        </div>
+                    </c:if>
                 </div>
 
                 <div class="col-sm-8">

@@ -34,11 +34,13 @@ public class AddTourServlet extends HttpServlet {
         if (FormCheckUtils.addTourFormCheck(req)){
             //String name, String description, int personsNumber,
             //                int price, int hot, String tourType, int hotelType
+            System.out.println("maxDisc = " + req.getParameter("maxDiscount"));
 
             Tour newTour = new Tour(req.getParameter("tourName"),
                     req.getParameter("tourDescription"),
                     Integer.parseInt(req.getParameter("PersonNumber")),
                     Integer.parseInt(req.getParameter("tourPrice")),
+                    Integer.parseInt(req.getParameter("maxDiscount")),
                     tourIsHot,
                     req.getParameter("tourType"),
                     Integer.parseInt(req.getParameter("hotelType"))
