@@ -4,9 +4,11 @@
 
 <html>
     <head>
-        <style>
+        <!-- Latest compiled and minified CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        </style>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
     </head>
     <body>
@@ -45,7 +47,26 @@
                             <td><c:out value="${receipt.tourId}"/></td>
                             <td><c:out value="${receipt.tourName}"/></td>
                             <c:if test="${UserRole == 'admin' or UserRole == 'manager'}">
-                                <td><c:out value="${receipt.discount}"/></td>
+                                <td>
+                                    <c:out value="${receipt.discount}"/>
+
+
+                                    <div class="dropdown">
+                                      <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-bs-toggle="dropdown">
+                                        Change
+                                      </button>
+                                      <ul class="dropdown-menu">
+                                        <li><form class="dropdown-item form-control form-control-sm"action="SetDiscountServlet" method="POST" >
+                                                <input type="hidden" name="receiptId" value="${receipt.id}">
+                                                <input  type="number" class="form-control w-50 bg-light p-3" name="discount" required maxlength="2"
+                                                    min="0" max="99">
+                                                <button  type="submit" class="btn btn-primary btn-sm">Set Discount</button>
+                                            </form></li>
+
+                                      </ul>
+                                    </div>
+
+                                </td>
                                 <td><c:out value="${receipt.price}"/></td>
                             </c:if>
                             <td><c:out value="${receipt.amount}"/></td>

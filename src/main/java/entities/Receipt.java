@@ -115,8 +115,6 @@ public class Receipt {
         this.userLastName = userLastName;
     }
     public int getPrice () {
-//        return this.amount / (1 - (this.discount / 100));
-//        if (this.discount == 0) return this.amount;
         return this.amount / (100 - this.discount) * 100;
     }
 

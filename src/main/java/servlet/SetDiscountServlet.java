@@ -18,6 +18,8 @@ public class SetDiscountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("SetDiscountServlet doGet");
+        System.out.println("receiptId = " + req.getParameter("receiptId"));
+        System.out.println("discount = " + req.getParameter("discount"));
 
 
 
