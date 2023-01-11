@@ -53,6 +53,9 @@
                                         </select>
                                     </form>
                                 </c:if>
+                                <c:if test="${UserRole == 'client'}">
+                                    <c:out value="${receipt.orderStatus}"/>
+                                </c:if>
                             </td>
                             <td><c:out value="${receipt.datetime}"/></td>
 
