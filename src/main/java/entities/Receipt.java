@@ -13,6 +13,8 @@ public class Receipt {
     private String userFirstName;
     private String userLastName;
 
+
+
     public Receipt(int id, int tourId, int userId, int discount, int amount, String orderStatus,
                    String datetime, String tourName, String userFirstName, String userLastName) {
         this.id = id;
@@ -25,6 +27,7 @@ public class Receipt {
         this.tourName = tourName;
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
+
     }
 
     public Receipt(int tourId, int userId, int discount, int amount, String orderStatus) {
@@ -110,6 +113,11 @@ public class Receipt {
 
     public void setUserLastName(String userLastName) {
         this.userLastName = userLastName;
+    }
+    public int getPrice () {
+//        return this.amount / (1 - (this.discount / 100));
+//        if (this.discount == 0) return this.amount;
+        return this.amount / (100 - this.discount) * 100;
     }
 
     @Override

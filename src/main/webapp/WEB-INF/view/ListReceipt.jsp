@@ -28,6 +28,10 @@
                         <td>User Last Name</td>
                         <td>Tour</td>
                         <td>Tour Name</td>
+                        <c:if test="${UserRole == 'admin' or UserRole == 'manager'}">
+                            <td>Discount</td>
+                            <td>Price</td>
+                        </c:if>
                         <td>Amount</td>
                         <td>Receipt Status</td>
                         <td>Datetime</td>
@@ -40,6 +44,10 @@
                             <td><c:out value="${receipt.userLastName}"/></td>
                             <td><c:out value="${receipt.tourId}"/></td>
                             <td><c:out value="${receipt.tourName}"/></td>
+                            <c:if test="${UserRole == 'admin' or UserRole == 'manager'}">
+                                <td><c:out value="${receipt.discount}"/></td>
+                                <td><c:out value="${receipt.price}"/></td>
+                            </c:if>
                             <td><c:out value="${receipt.amount}"/></td>
                             <td>
 
