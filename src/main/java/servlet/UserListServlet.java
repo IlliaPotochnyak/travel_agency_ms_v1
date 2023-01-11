@@ -20,7 +20,7 @@ import java.util.List;
 public class UserListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("UserListServlet doGet");
+//        System.out.println("UserListServlet doGet");
 
         int page = 1;
         int recordsPerPage = 5;

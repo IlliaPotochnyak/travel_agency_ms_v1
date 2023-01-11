@@ -20,10 +20,10 @@ import java.sql.SQLException;
 public class ReceiptStatusServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("ReceiptStatusServlet Post method");
-
-        System.out.println("receiptId" + " - " + req.getParameter("receiptId"));
-        System.out.println("orderStatus" + " - " + req.getParameter("orderStatus"));
+//        System.out.println("ReceiptStatusServlet Post method");
+//
+//        System.out.println("receiptId" + " - " + req.getParameter("receiptId"));
+//        System.out.println("orderStatus" + " - " + req.getParameter("orderStatus"));
 
         ReceiptDao receiptDao = new ReceiptDAOImpl();
 

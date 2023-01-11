@@ -15,7 +15,7 @@ public interface ReceiptDao {
 
     boolean updateReceiptStatus(int id, String status) throws DatabaseException;
 
-    void updateReceiptPrice(Long ReceiptId, float price) throws DatabaseException;
+    boolean updateReceiptDiscount(int receiptId, int discount, int amount) throws DatabaseException;
 
     List<Receipt> getTotalPriceOfPaidToursForClient() throws DatabaseException;
 

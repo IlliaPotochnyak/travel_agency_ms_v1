@@ -91,7 +91,7 @@ public class ReceiptDAOImpl implements ReceiptDao {
 
     @Override
     public List<Receipt> getAllReceipts(int offset, int noOfRecords) throws DatabaseException {
-        System.out.println("getAllReceipts");
+//        System.out.println("getAllReceipts");
         List<Receipt> receiptList = new ArrayList<>();
 //        String query = "SELECT * FROM receipt;";
         String query = "SELECT SQL_CALC_FOUND_ROWS receipt.id, receipt.tour_id, tour.name, receipt.user_id, user.first_name, user.last_name, receipt.discount, receipt.amount, receipt_status.receipt_status, receipt.datetime \n" +
@@ -149,7 +149,7 @@ public class ReceiptDAOImpl implements ReceiptDao {
              PreparedStatement pstmnt = con.prepareStatement(query)) {
             pstmnt.setString(1, status);
             pstmnt.setInt(2, id);
-            System.out.println(pstmnt);
+//            System.out.println(pstmnt);
             pstmnt.executeUpdate();
 
             result = true;
@@ -162,8 +162,26 @@ public class ReceiptDAOImpl implements ReceiptDao {
     }
 
     @Override
-    public void updateReceiptPrice(Long ReceiptId, float price) throws DatabaseException {
+    public boolean updateReceiptDiscount(int receiptId, int discount, int amount) throws DatabaseException {
+        boolean result;
+//        System.out.println("updateReceiptDiscount");
 
+        String query ="UPDATE receipt SET discount=?, amount=? WHERE receipt.id=?;";
+        try (Connection con = DataSource.getConnection();
+             PreparedStatement pstmnt = con.prepareStatement(query)) {
+            pstmnt.setInt(1, discount);
+            pstmnt.setInt(2, amount);
+            pstmnt.setInt(3, receiptId);
+//            System.out.println(pstmnt);
+            pstmnt.executeUpdate();
+
+            result = true;
+        } catch (SQLException e) {
+            result = false;
+            throw new RuntimeException(e);
+        }
+
+        return result;
     }
 
     @Override

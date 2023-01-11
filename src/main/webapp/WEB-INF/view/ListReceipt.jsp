@@ -58,8 +58,9 @@
                                       <ul class="dropdown-menu">
                                         <li><form class="dropdown-item form-control form-control-sm"action="SetDiscountServlet" method="POST" >
                                                 <input type="hidden" name="receiptId" value="${receipt.id}">
+                                                <input type="hidden" name="tourId" value="${receipt.tourId}">
                                                 <input  type="number" class="form-control w-50 bg-light p-3" name="discount" required maxlength="2"
-                                                    min="0" max="99">
+                                                    min="0" max="99" value=0>
                                                 <button  type="submit" class="btn btn-primary btn-sm">Set Discount</button>
                                             </form></li>
 

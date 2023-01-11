@@ -19,7 +19,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public List<User> getAllUsers(int offset, int noOfRecords) throws DatabaseException {
-        System.out.println("getAllUsers");
+//        System.out.println("getAllUsers");
         List<User> userList = new ArrayList<>();
 //        String query = "SELECT * FROM receipt;";
         String query = "SELECT SQL_CALC_FOUND_ROWS user.id, user.first_name, user.last_name, user.email, " +
@@ -34,7 +34,7 @@ public class UserDAOImpl implements UserDAO {
 //            System.out.println("ResultSet " + rs);
             while (rs.next()) {
                 //int id, String firstName, String lastLame, String email, String phone, int active, String role
-                System.out.println("user_id = " + rs.getInt("id"));
+//                System.out.println("user_id = " + rs.getInt("id"));
 //                        + "-" + rs.getInt("user_id")
 //                        + "-" + rs.getInt("discount")
 //                );
@@ -72,7 +72,7 @@ public class UserDAOImpl implements UserDAO {
              PreparedStatement pstmnt = con.prepareStatement(query)){
             pstmnt.setString(1, email);
             ResultSet rs = pstmnt.executeQuery();
-            System.out.println(rs);
+//            System.out.println(rs);
             if (rs.next()) {
                 //String first_name, String last_name, String email, String password, String phone, String role
                 user = new User( rs.getInt("id"),
@@ -118,7 +118,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean blockOrUnblockUserByIdAndParam(int id, int isBlock) throws DatabaseException {
-        System.out.println("blockOrUnblockUserByIdAndParam");
+//        System.out.println("blockOrUnblockUserByIdAndParam");
 
         boolean result = false;
         String query = "UPDATE user SET active=? WHERE id=?;";
