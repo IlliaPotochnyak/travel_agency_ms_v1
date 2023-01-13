@@ -9,6 +9,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static constant.MySQLConstant.*;
+
 public class TourDAOImpl implements TourDAO {
     private int noOfRecords;
 
@@ -20,9 +22,10 @@ public class TourDAOImpl implements TourDAO {
     public boolean addTour(Tour tour) throws SQLException {
         boolean result = false;
         System.out.println("addTour method");
-        String query = "INSERT INTO tour (name, description, persons_number, price, max_discount, hot, tour_type_id, hotel_type_id)" +
-                "VALUES (?, ?, ?, ?, ?, ?, (SELECT tour_type.id FROM tour_type WHERE tour_type.tour_type=?), " +
-                "(SELECT hotel_type.id FROM hotel_type WHERE hotel_type.star_rate=?))";
+//        String query = "INSERT INTO tour (name, description, persons_number, price, max_discount, hot, tour_type_id, hotel_type_id)" +
+//                "VALUES (?, ?, ?, ?, ?, ?, (SELECT tour_type.id FROM tour_type WHERE tour_type.tour_type=?), " +
+//                "(SELECT hotel_type.id FROM hotel_type WHERE hotel_type.star_rate=?))";
+        String query = ADD_TOUR;
 
         try (Connection con = DataSource.getConnection();
              PreparedStatement pstmnt = con.prepareStatement(query)) {
@@ -49,16 +52,14 @@ public class TourDAOImpl implements TourDAO {
     public List<Tour> getAllTours(int offset, int noOfRecords) throws DatabaseException {
         System.out.println("getAllTours");
         List<Tour> tourList = new ArrayList<>();
-        String query = "SELECT SQL_CALC_FOUND_ROWS tour.id, tour.name, tour.description, tour.persons_number, tour.price, tour.max_discount, tour.hot, \n" +
-                "tour_type.tour_type, hotel_type.star_rate \n" +
-                "FROM ((tour\n" +
-                "INNER JOIN tour_type ON tour.tour_type_id=tour_type.id)\n" +
-                "INNER JOIN hotel_type ON tour.hotel_type_id=hotel_type.id) ORDER BY hot DESC limit "
-                + offset + ", " + noOfRecords;
-//        String query = "SELECT tour.id, tour.name, tour.description, tour.persons_number, tour.price, tour.hot, \n" +
-//                "                tour_type.tour_type, tour.hotel_type_id\n" +
-//                "                FROM tour\n" +
-//                "                INNER JOIN tour_type ON tour.tour_type_id=tour_type.id ORDER BY hot DESC;";
+//        String query = "SELECT SQL_CALC_FOUND_ROWS tour.id, tour.name, tour.description, tour.persons_number, tour.price, tour.max_discount, tour.hot, \n" +
+//                "tour_type.tour_type, hotel_type.star_rate \n" +
+//                "FROM ((tour\n" +
+//                "INNER JOIN tour_type ON tour.tour_type_id=tour_type.id)\n" +
+//                "INNER JOIN hotel_type ON tour.hotel_type_id=hotel_type.id) ORDER BY hot DESC limit "
+//                + offset + ", " + noOfRecords;
+        String query = GET_ALL_TOURS + offset + ", " + noOfRecords;
+
         try (Connection con = DataSource.getConnection();
              Statement stmnt = con.createStatement()
              ){
@@ -93,18 +94,19 @@ public class TourDAOImpl implements TourDAO {
     @Override
     public List<Tour> getSortedTours(String tourType, String price, String personNumber, String hotelType,
                                      int offset, int noOfRecords) throws DatabaseException {
-        System.out.println("get sorted tours");
+//        System.out.println("get sorted tours");
         List<Tour> tourList = new ArrayList<>();
 
-        String query = "SELECT SQL_CALC_FOUND_ROWS tour.id, tour.name, tour.description, tour.persons_number, tour.price, tour.max_discount, tour.hot, \n" +
-                "tour_type.tour_type, hotel_type.star_rate \n" +
-                "FROM ((tour\n" +
-                "INNER JOIN tour_type ON tour.tour_type_id=tour_type.id)\n" +
-                "INNER JOIN hotel_type ON tour.hotel_type_id=hotel_type.id) WHERE tour_type=? AND price<=? " +
-                "AND persons_number=? " +
-                "AND star_rate>=? " +
-                "ORDER BY hot DESC limit "
-                + offset + ", " + noOfRecords;
+//        String query = "SELECT SQL_CALC_FOUND_ROWS tour.id, tour.name, tour.description, tour.persons_number, tour.price, tour.max_discount, tour.hot, \n" +
+//                "tour_type.tour_type, hotel_type.star_rate \n" +
+//                "FROM ((tour\n" +
+//                "INNER JOIN tour_type ON tour.tour_type_id=tour_type.id)\n" +
+//                "INNER JOIN hotel_type ON tour.hotel_type_id=hotel_type.id) WHERE tour_type=? AND price<=? " +
+//                "AND persons_number=? " +
+//                "AND star_rate>=? " +
+//                "ORDER BY hot DESC limit "
+//                + offset + ", " + noOfRecords;
+        String query = GET_SORTED_TOURS + offset + ", " + noOfRecords;
         try (Connection con = DataSource.getConnection();
              PreparedStatement pstmnt = con.prepareStatement(query)){
 
@@ -149,10 +151,9 @@ public class TourDAOImpl implements TourDAO {
     @Override
     public boolean deleteTourById(int id) throws DatabaseException {
         boolean result = false;
-
-        System.out.println("deleteTourById method - tour id = " + id);
-
-        String query = "DELETE FROM tour WHERE id=?;";
+//        System.out.println("deleteTourById method - tour id = " + id);
+//        String query = "DELETE FROM tour WHERE id=?;";
+        String query = DELETE_TOUR_BY_ID;
         try (Connection con = DataSource.getConnection();
              PreparedStatement pstmnt = con.prepareStatement(query)) {
             pstmnt.setInt(1, id);
@@ -170,11 +171,12 @@ public class TourDAOImpl implements TourDAO {
     @Override
     public Tour getTourById(int id) throws DatabaseException {
         Tour tour = null;
-        String query = "SELECT tour.id, tour.name, tour.description, tour.persons_number, tour.price, tour.max_discount, tour.hot, \n" +
-                "tour_type.tour_type, hotel_type.star_rate \n" +
-                "FROM ((tour\n" +
-                "INNER JOIN tour_type ON tour.tour_type_id=tour_type.id)\n" +
-                "INNER JOIN hotel_type ON tour.hotel_type_id=hotel_type.id) WHERE tour.id=?;";
+//        String query = "SELECT tour.id, tour.name, tour.description, tour.persons_number, tour.price, tour.max_discount, tour.hot, \n" +
+//                "tour_type.tour_type, hotel_type.star_rate \n" +
+//                "FROM ((tour\n" +
+//                "INNER JOIN tour_type ON tour.tour_type_id=tour_type.id)\n" +
+//                "INNER JOIN hotel_type ON tour.hotel_type_id=hotel_type.id) WHERE tour.id=?;";
+        String query = GET_TOUR_BY_ID;
         try (Connection con = DataSource.getConnection();
              PreparedStatement pstmnt = con.prepareStatement(query)){
             pstmnt.setInt(1, id);
@@ -206,11 +208,12 @@ public class TourDAOImpl implements TourDAO {
         boolean result = false;
         System.out.println("updateTour method");
         //id, name, description, persons_number, price, hot, tour_type_id, hotel_type_id
-        String query = "UPDATE tour SET " +
-                "name=?, description=?, persons_number=?, price=?, tour.max_discount=?, hot=?, " +
-                "tour_type_id=(SELECT tour_type.id FROM tour_type WHERE tour_type=?)," +
-                "hotel_type_id=(SELECT hotel_type.id FROM hotel_type WHERE star_rate=?) " +
-                "WHERE tour.id=?;";
+//        String query = "UPDATE tour SET " +
+//                "name=?, description=?, persons_number=?, price=?, tour.max_discount=?, hot=?, " +
+//                "tour_type_id=(SELECT tour_type.id FROM tour_type WHERE tour_type=?)," +
+//                "hotel_type_id=(SELECT hotel_type.id FROM hotel_type WHERE star_rate=?) " +
+//                "WHERE tour.id=?;";
+        String query = UPDATE_TOUR;
 
         try (Connection con = DataSource.getConnection();
              PreparedStatement pstmnt = con.prepareStatement(query)) {

@@ -62,6 +62,7 @@
                         <input type="hidden" name="tourName" value="${tour.name}">
                         <input type="hidden" name="tourDescription" value="${tour.description}">
                         <input type="hidden" name="PersonNumber" value="${tour.personsNumber}">
+                        <input type="hidden" name="maxDiscount" value="${tour.maxDiscount}">
                         <input type="hidden" name="tourPrice" value="${tour.price}">
                         <input type="hidden" name="tourType" value="${tour.tourType}">
                         <input type="hidden" name="hotelType" value="${tour.hotelType}">

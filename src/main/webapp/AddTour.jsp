@@ -50,7 +50,7 @@
                             <div class="mb-3">
                                 <label class="form-label ">Max Discount </label>
                                 <input type="number" class="form-control w-25" name="maxDiscount" required maxlength="0"
-                                    min="0" max="99" >
+                                    min="0" max="99" value=0>
                             </div>
                         </div>
                     </div>
