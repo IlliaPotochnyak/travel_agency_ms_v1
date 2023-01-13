@@ -169,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `travel_agency_db1`.`receipt` (
   CONSTRAINT `fk_receipt_tour1`
     FOREIGN KEY (`tour_id`)
     REFERENCES `travel_agency_db1`.`tour` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE NO CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_receipt_user1`
     FOREIGN KEY (`user_id`)
