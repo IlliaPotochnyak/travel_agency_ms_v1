@@ -57,4 +57,19 @@ public class MySQLConstant {
             "tour_type_id=(SELECT tour_type.id FROM tour_type WHERE tour_type=?)," +
             "hotel_type_id=(SELECT hotel_type.id FROM hotel_type WHERE star_rate=?) " +
             "WHERE tour.id=?;";
+
+    /**
+     * User queries
+     */
+
+    public static final String GET_ALL_USERS = "SELECT SQL_CALC_FOUND_ROWS user.id, user.first_name, user.last_name, user.email, " +
+            "user.password, user.phone, user.active, role.role " +
+            "FROM user INNER JOIN role ON user.role_id=role.id " +
+            "ORDER BY user.id limit ";
+    public static final String GET_USER_BY_EMAIL = "SELECT user.id, user.first_name, user.last_name, user.email, user.password, user.phone, role.role \n" +
+            "FROM user INNER JOIN role ON user.role_id=role.id WHERE email=?";
+    public static final String ADD_USER = "INSERT INTO user (first_name, last_name, email, password, phone, active, role_id)" +
+            "VALUES (?, ?, ?, ?, ?, ?, (SELECT role.id FROM role WHERE role.role=?))";
+    public static final String SET_USER_ACTIVE_FIELD = "UPDATE user SET active=? WHERE id=?;";
+
 }

@@ -9,6 +9,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static constant.MySQLConstant.*;
+
 public class UserDAOImpl implements UserDAO {
 
     private int noOfRecords;
@@ -22,11 +24,12 @@ public class UserDAOImpl implements UserDAO {
 //        System.out.println("getAllUsers");
         List<User> userList = new ArrayList<>();
 //        String query = "SELECT * FROM receipt;";
-        String query = "SELECT SQL_CALC_FOUND_ROWS user.id, user.first_name, user.last_name, user.email, " +
-                "user.password, user.phone, user.active, role.role " +
-                "FROM user INNER JOIN role ON user.role_id=role.id " +
-                "ORDER BY user.id limit "
-                + offset + ", " + noOfRecords;
+//        String query = "SELECT SQL_CALC_FOUND_ROWS user.id, user.first_name, user.last_name, user.email, " +
+//                "user.password, user.phone, user.active, role.role " +
+//                "FROM user INNER JOIN role ON user.role_id=role.id " +
+//                "ORDER BY user.id limit "
+//                + offset + ", " + noOfRecords;
+        String query = GET_ALL_USERS + offset + ", " + noOfRecords;
         try (Connection con = DataSource.getConnection();
              Statement stmnt = con.createStatement()
         ){
@@ -65,8 +68,9 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User getUserByEmail(String email) throws DatabaseException {
-        String query = "SELECT user.id, user.first_name, user.last_name, user.email, user.password, user.phone, role.role \n" +
-                "FROM user INNER JOIN role ON user.role_id=role.id WHERE email=?";
+//        String query = "SELECT user.id, user.first_name, user.last_name, user.email, user.password, user.phone, role.role \n" +
+//                "FROM user INNER JOIN role ON user.role_id=role.id WHERE email=?";
+        String query = GET_USER_BY_EMAIL;
         User user = null;
         try (Connection con = DataSource.getConnection();
              PreparedStatement pstmnt = con.prepareStatement(query)){
@@ -93,8 +97,9 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean addUser(User user) throws DatabaseException {
         boolean result = false;
-        String query = "INSERT INTO user (first_name, last_name, email, password, phone, active, role_id)" +
-                "VALUES (?, ?, ?, ?, ?, ?, (SELECT role.id FROM role WHERE role.role=?))";
+//        String query = "INSERT INTO user (first_name, last_name, email, password, phone, active, role_id)" +
+//                "VALUES (?, ?, ?, ?, ?, ?, (SELECT role.id FROM role WHERE role.role=?))";
+        String query = ADD_USER;
 
         try (Connection con = DataSource.getConnection();
              PreparedStatement pstmnt = con.prepareStatement(query)) {
@@ -121,7 +126,8 @@ public class UserDAOImpl implements UserDAO {
 //        System.out.println("blockOrUnblockUserByIdAndParam");
 
         boolean result = false;
-        String query = "UPDATE user SET active=? WHERE id=?;";
+//        String query = "UPDATE user SET active=? WHERE id=?;";
+        String query = SET_USER_ACTIVE_FIELD;
 
         try (Connection con = DataSource.getConnection();
              PreparedStatement pstmnt = con.prepareStatement(query)) {
