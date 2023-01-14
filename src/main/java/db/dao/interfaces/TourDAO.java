@@ -1,5 +1,6 @@
 package db.dao.interfaces;
 
+import DTO.TourDTO;
 import entities.Tour;
 import exceptions.DatabaseException;
 
@@ -17,6 +18,10 @@ public interface TourDAO {
     List<Tour> getSortedTours(String tourType, String price, String personNumber, String hotelType,
                               int offset, int noOfRecords) throws DatabaseException;
 
+    //    public List<Tour> getSortedTours(String tourType, String price, String personNumber, String hotelType,
+//                                     int offset, int noOfRecords) throws DatabaseException {
+    List<Tour> getSortedTours(TourDTO tourDTO, int offset, int noOfRecords) throws DatabaseException;
+
     boolean deleteTourById(int id) throws DatabaseException;
 
     Tour getTourById(int id) throws DatabaseException;
@@ -28,4 +33,6 @@ public interface TourDAO {
     void setHotTourById(int id) throws DatabaseException;
 
     List<Tour> searchTours(int tourTypeId, float price, int peopleAmount, int stars) throws DatabaseException;
+
+    int getNoOfRecords();
 }

@@ -1,6 +1,6 @@
 package DTO;
 
-public class TourDTO extends AbstractDTO {
+public class TourDTO implements IDTO {
     //id, name, description, persons_number, price, hot, tour_type_id, hotel_type_id
     private int id;
     private String name;

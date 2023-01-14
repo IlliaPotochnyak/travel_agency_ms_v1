@@ -18,7 +18,7 @@
                     </div>
                     <div class="col p-2 bg-primary text-white">
                         <label for="price" class="col-sm-2 control-label">Price is not more than</label>
-                        <input id="price" value="10000000000" type="text" name="price"> dollars per person
+                        <input id="price" value="1000000000" type="text" name="price"> dollars
                     </div>
                     <div class="col p-2 bg-primary text-white">
                         <label for="people-amount" class="col-sm-2 control-label">People amount</label>

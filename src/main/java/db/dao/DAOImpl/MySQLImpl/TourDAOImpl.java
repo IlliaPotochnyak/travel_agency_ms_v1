@@ -1,5 +1,6 @@
 package db.dao.DAOImpl.MySQLImpl;
 
+import DTO.TourDTO;
 import db.DataSource;
 import db.dao.interfaces.TourDAO;
 import entities.Tour;
@@ -91,10 +92,10 @@ public class TourDAOImpl implements TourDAO {
 
         return tourList;
     }
+
     @Override
-    public List<Tour> getSortedTours(String tourType, String price, String personNumber, String hotelType,
-                                     int offset, int noOfRecords) throws DatabaseException {
-//        System.out.println("get sorted tours");
+    public List<Tour> getSortedTours(String tourType, String price, String personNumber, String hotelType, int offset, int noOfRecords) throws DatabaseException {
+        //        System.out.println("get sorted tours");
         List<Tour> tourList = new ArrayList<>();
 
 //        String query = "SELECT SQL_CALC_FOUND_ROWS tour.id, tour.name, tour.description, tour.persons_number, tour.price, tour.max_discount, tour.hot, \n" +
@@ -114,6 +115,74 @@ public class TourDAOImpl implements TourDAO {
             pstmnt.setString(2, price);
             pstmnt.setString(3, personNumber);
             pstmnt.setString(4, hotelType);
+//            pstmnt.setString(1, tourDTO.getTourType());
+//            pstmnt.setInt(2, tourDTO.getPrice());
+//            pstmnt.setInt(3, tourDTO.getPersonsNumber());
+//            pstmnt.setInt(4, tourDTO.getHotelType());
+
+            ResultSet rs = pstmnt.executeQuery();
+            while (rs.next()) {
+                Tour tour = new Tour(rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        rs.getInt("persons_number"),
+                        rs.getInt("price"),
+                        rs.getInt("max_discount"),
+                        rs.getInt("hot"),
+                        rs.getString("tour_type"),
+                        rs.getInt("star_rate")
+                );
+                tourList.add(tour);
+            }
+            rs.close();
+            try (Statement stmnt = con.createStatement();){
+
+                rs = stmnt.executeQuery("SELECT FOUND_ROWS()");
+                if(rs.next())
+                    this.noOfRecords = rs.getInt(1);
+//            tourList.forEach(System.out::println);
+            }catch (SQLException e) {
+
+                throw new RuntimeException(e);
+            }
+
+        } catch (SQLException e) {
+
+            throw new RuntimeException(e);
+        }
+
+        return tourList;
+    }
+
+    @Override
+//    public List<Tour> getSortedTours(String tourType, String price, String personNumber, String hotelType,
+//                                     int offset, int noOfRecords) throws DatabaseException {
+    public List<Tour> getSortedTours(TourDTO tourDTO, int offset, int noOfRecords) throws DatabaseException {
+//        System.out.println("get sorted tours");
+        List<Tour> tourList = new ArrayList<>();
+
+//        String query = "SELECT SQL_CALC_FOUND_ROWS tour.id, tour.name, tour.description, tour.persons_number, tour.price, tour.max_discount, tour.hot, \n" +
+//                "tour_type.tour_type, hotel_type.star_rate \n" +
+//                "FROM ((tour\n" +
+//                "INNER JOIN tour_type ON tour.tour_type_id=tour_type.id)\n" +
+//                "INNER JOIN hotel_type ON tour.hotel_type_id=hotel_type.id) WHERE tour_type=? AND price<=? " +
+//                "AND persons_number=? " +
+//                "AND star_rate>=? " +
+//                "ORDER BY hot DESC limit "
+//                + offset + ", " + noOfRecords;
+        String query = GET_SORTED_TOURS + offset + ", " + noOfRecords;
+        try (Connection con = DataSource.getConnection();
+             PreparedStatement pstmnt = con.prepareStatement(query)){
+
+//            pstmnt.setString(1, tourType);
+//            pstmnt.setString(2, price);
+//            pstmnt.setString(3, personNumber);
+//            pstmnt.setString(4, hotelType);
+            pstmnt.setString(1, tourDTO.getTourType());
+            pstmnt.setInt(2, tourDTO.getPrice());
+            pstmnt.setInt(3, tourDTO.getPersonsNumber());
+            pstmnt.setInt(4, tourDTO.getHotelType());
+
             ResultSet rs = pstmnt.executeQuery();
             while (rs.next()) {
                 Tour tour = new Tour(rs.getInt("id"),
