@@ -39,6 +39,7 @@ public class LogInServlet extends HttpServlet {
             session.setAttribute("UserEmail", userDTO.getEmail());
             session.setAttribute("UserPhone", userDTO.getPhone());
             session.setAttribute("UserRole", userDTO.getRole());
+            session.setAttribute("UserActive", userDTO.getActive());
 
             resp.sendRedirect("index.jsp");
         } else {

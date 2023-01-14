@@ -96,7 +96,7 @@ public class UserService implements IUserService{
         System.out.println("loginUser method");
 
         User user = getByEmail(email);
-        UserDTO userDTO= new UserDTO();
+        UserDTO userDTO = new UserDTO();
 
         if (user != null) {
             if (user.getPassword().equals(password)) {
@@ -106,6 +106,7 @@ public class UserService implements IUserService{
                 userDTO.setEmail(user.getEmail());
                 userDTO.setPhone(user.getPhone());
                 userDTO.setRole(user.getRole());
+                userDTO.setActive(user.getActive());
 
                 return userDTO;
             }
