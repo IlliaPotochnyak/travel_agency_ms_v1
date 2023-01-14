@@ -2,15 +2,12 @@ package servlet;
 
 import DTO.TourDTO;
 import com.mysql.cj.util.StringUtils;
-import db.dao.DAOImpl.MySQLImpl.TourDAOImpl;
-import entities.Tour;
-import exceptions.DatabaseException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.TourService;
+import service.TourITourService;
 
 import java.io.IOException;
 import java.util.List;
@@ -27,7 +24,7 @@ public class TourListServlet extends HttpServlet {
             page = Integer.parseInt(req.getParameter("page"));
         System.out.println("Query - " + req.getQueryString());
 //        TourDAOImpl tourDAO = new TourDAOImpl();
-        TourService tourService = new TourService();
+        TourITourService tourService = new TourITourService();
         if (StringUtils.isNullOrEmpty(req.getParameter("tour_type"))  &&
                 StringUtils.isNullOrEmpty(req.getParameter("price")) &&
                 StringUtils.isNullOrEmpty(req.getParameter("people_amount")) &&

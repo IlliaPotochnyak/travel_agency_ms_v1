@@ -1,17 +1,11 @@
 package servlet;
 
-import DTO.TourDTO;
-import db.dao.DAOImpl.MySQLImpl.TourDAOImpl;
-import db.dao.interfaces.TourDAO;
-import entities.Tour;
-import exceptions.DatabaseException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.TourService;
-import util.FormCheckUtils;
+import service.TourITourService;
 
 import java.io.IOException;
 
@@ -24,7 +18,7 @@ public class DeleteTourServlet extends HttpServlet {
 //        System.out.println("tourId" + " - " + req.getParameter("tourId"));
 
 //        TourDAO tourDAO = new TourDAOImpl();
-        TourService tourService = new TourService();
+        TourITourService tourService = new TourITourService();
         tourService.delete(Integer.parseInt(req.getParameter("tourId")));
 
         resp.sendRedirect("index.jsp");

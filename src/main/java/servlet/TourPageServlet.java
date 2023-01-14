@@ -1,18 +1,14 @@
 package servlet;
 
 import DTO.TourDTO;
-import db.dao.DAOImpl.MySQLImpl.TourDAOImpl;
-import entities.Tour;
-import exceptions.DatabaseException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.TourService;
+import service.TourITourService;
 
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet("/TourPageServlet")
 public class TourPageServlet extends HttpServlet {
@@ -23,7 +19,7 @@ public class TourPageServlet extends HttpServlet {
 //        TourDAOImpl tourDAO = new TourDAOImpl();
 //        Tour tour = null;
         TourDTO tourDTO;
-        TourService service = new TourService();
+        TourITourService service = new TourITourService();
 
         tourDTO = service.getById(Integer.parseInt(req.getParameter("tourId")));
         System.out.println(tourDTO);

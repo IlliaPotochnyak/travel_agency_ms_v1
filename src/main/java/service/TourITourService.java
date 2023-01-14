@@ -1,6 +1,5 @@
 package service;
 
-import DTO.AbstractDTO;
 import DTO.TourDTO;
 import db.dao.DAOImpl.MySQLImpl.TourDAOImpl;
 import db.dao.interfaces.TourDAO;
@@ -11,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TourService implements Service{
+public class TourITourService implements ITourService {
     private int noOfRecords;
 
     public int getNoOfRecords() {
@@ -71,7 +70,7 @@ public class TourService implements Service{
 
     @Override
     public List<TourDTO> getAll(int offset, int noOfRecords) {
-        System.out.println("TourService getAll method");
+        System.out.println("TourITourService getAll method");
         List<TourDTO> tourDTOList = new ArrayList<>();
 
         TourDAOImpl tourDAO = new TourDAOImpl();
@@ -94,7 +93,7 @@ public class TourService implements Service{
 
     public List<TourDTO> getSorted(String tourType, String price, String personNumber, String hotelType,
                                    int offset, int noOfRecords) {
-        System.out.println("TourService getSorted method");
+        System.out.println("TourITourService getSorted method");
         List<TourDTO> tourDTOList = new ArrayList<>();
         TourDTO paramTourDTO = new TourDTO();
         paramTourDTO.setTourType(tourType);

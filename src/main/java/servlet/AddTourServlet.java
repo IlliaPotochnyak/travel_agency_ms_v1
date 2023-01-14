@@ -1,24 +1,15 @@
 package servlet;
 
 import DTO.TourDTO;
-import db.dao.DAOImpl.MySQLImpl.TourDAOImpl;
-import db.dao.DAOImpl.MySQLImpl.UserDAOImpl;
-import db.dao.interfaces.TourDAO;
-import db.dao.interfaces.UserDAO;
-import entities.Tour;
-import entities.User;
-import exceptions.DatabaseException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.TourService;
+import service.TourITourService;
 import util.FormCheckUtils;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.Arrays;
 
 @WebServlet("/AddTourServlet")
 public class AddTourServlet extends HttpServlet {
@@ -43,7 +34,7 @@ public class AddTourServlet extends HttpServlet {
             newTour.setHotelType(Integer.parseInt(req.getParameter("hotelType")));
 
 //            TourDAO tourDAO = new TourDAOImpl();
-            TourService tourService = new TourService();
+            TourITourService tourService = new TourITourService();
 
             if(tourService.add(newTour)) {
 //            System.out.println(newTour);
