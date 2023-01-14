@@ -114,7 +114,13 @@ public class UserService implements IUserService{
     }
 
     public boolean blockOrUnblockUser (int id, int isBlock){
-        return false;
+        UserDAO userDAO = new UserDAOImpl();
+        try {
+            return userDAO.blockOrUnblockUserByIdAndParam(id, isBlock);
+        } catch (DatabaseException e) {
+            throw new RuntimeException(e);
+        }
+//        return false;
     }
 
     private UserDTO getUserDTOFromUser(User user) {
