@@ -132,7 +132,12 @@ public class TourService implements Service{
 
     @Override
     public boolean delete(int id) {
-        return false;
+        TourDAO tourDAO = new TourDAOImpl();
+        try {
+            return tourDAO.deleteTourById(id);
+        } catch (DatabaseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private TourDTO getTourDTOFromTour(Tour tour) {
