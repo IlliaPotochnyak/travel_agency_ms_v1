@@ -5,7 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.TourITourService;
+import service.TourService;
 
 import java.io.IOException;
 
@@ -18,7 +18,7 @@ public class DeleteTourServlet extends HttpServlet {
 //        System.out.println("tourId" + " - " + req.getParameter("tourId"));
 
 //        TourDAO tourDAO = new TourDAOImpl();
-        TourITourService tourService = new TourITourService();
+        TourService tourService = new TourService();
         tourService.delete(Integer.parseInt(req.getParameter("tourId")));
 
         resp.sendRedirect("index.jsp");

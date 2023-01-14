@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TourITourService implements ITourService {
+public class TourService implements ITourService {
     private int noOfRecords;
 
     public int getNoOfRecords() {
@@ -70,7 +70,7 @@ public class TourITourService implements ITourService {
 
     @Override
     public List<TourDTO> getAll(int offset, int noOfRecords) {
-        System.out.println("TourITourService getAll method");
+        System.out.println("TourService getAll method");
         List<TourDTO> tourDTOList = new ArrayList<>();
 
         TourDAOImpl tourDAO = new TourDAOImpl();
@@ -93,7 +93,7 @@ public class TourITourService implements ITourService {
 
     public List<TourDTO> getSorted(String tourType, String price, String personNumber, String hotelType,
                                    int offset, int noOfRecords) {
-        System.out.println("TourITourService getSorted method");
+        System.out.println("TourService getSorted method");
         List<TourDTO> tourDTOList = new ArrayList<>();
         TourDTO paramTourDTO = new TourDTO();
         paramTourDTO.setTourType(tourType);

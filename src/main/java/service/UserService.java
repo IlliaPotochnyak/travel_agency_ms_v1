@@ -1,13 +1,16 @@
 package service;
 
+import DTO.TourDTO;
 import DTO.UserDTO;
 import com.mysql.cj.util.StringUtils;
+import db.dao.DAOImpl.MySQLImpl.TourDAOImpl;
 import db.dao.DAOImpl.MySQLImpl.UserDAOImpl;
 import db.dao.interfaces.UserDAO;
 import entities.Tour;
 import entities.User;
 import exceptions.DatabaseException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserService implements IUserService{
@@ -58,7 +61,25 @@ public class UserService implements IUserService{
 
     @Override
     public List<UserDTO> getAll(int offset, int noOfRecords) {
-        return null;
+        List<UserDTO> userDTOList = new ArrayList<>();
+
+        UserDAOImpl userDAO = new UserDAOImpl();
+
+        try {
+            List<User> userList = userDAO.getAllUsers(offset, noOfRecords);
+            userList.forEach(
+                    user -> {
+                        UserDTO userDTO = getUserDTOFromUser(user);
+                        userDTOList.add(userDTO);
+                    }
+            );
+
+            this.noOfRecords = userDAO.getNoOfRecords();
+        } catch (DatabaseException e) {
+            throw new RuntimeException(e);
+        }
+        return userDTOList;
+
     }
 
     @Override
@@ -89,12 +110,24 @@ public class UserService implements IUserService{
                 return userDTO;
             }
         }
-
-
         return null;
     }
 
     public boolean blockOrUnblockUser (int id, int isBlock){
         return false;
+    }
+
+    private UserDTO getUserDTOFromUser(User user) {
+        UserDTO userDTO = new UserDTO();
+
+        userDTO.setId(user.getId());
+        userDTO.setFirstName(user.getFirstName());
+        userDTO.setLastName(user.getLastName());
+        userDTO.setEmail(user.getEmail());
+        userDTO.setPhone(user.getPhone());
+        userDTO.setActive(user.getActive());
+        userDTO.setRole(user.getRole());
+
+        return userDTO;
     }
 }

@@ -7,7 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.TourITourService;
+import service.TourService;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,7 +24,7 @@ public class TourListServlet extends HttpServlet {
             page = Integer.parseInt(req.getParameter("page"));
         System.out.println("Query - " + req.getQueryString());
 //        TourDAOImpl tourDAO = new TourDAOImpl();
-        TourITourService tourService = new TourITourService();
+        TourService tourService = new TourService();
         if (StringUtils.isNullOrEmpty(req.getParameter("tour_type"))  &&
                 StringUtils.isNullOrEmpty(req.getParameter("price")) &&
                 StringUtils.isNullOrEmpty(req.getParameter("people_amount")) &&

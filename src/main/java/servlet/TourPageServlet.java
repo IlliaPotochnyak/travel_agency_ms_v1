@@ -6,7 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.TourITourService;
+import service.TourService;
 
 import java.io.IOException;
 
@@ -19,7 +19,7 @@ public class TourPageServlet extends HttpServlet {
 //        TourDAOImpl tourDAO = new TourDAOImpl();
 //        Tour tour = null;
         TourDTO tourDTO;
-        TourITourService service = new TourITourService();
+        TourService service = new TourService();
 
         tourDTO = service.getById(Integer.parseInt(req.getParameter("tourId")));
         System.out.println(tourDTO);

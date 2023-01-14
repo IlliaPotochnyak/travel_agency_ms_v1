@@ -6,7 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.TourITourService;
+import service.TourService;
 import util.FormCheckUtils;
 
 import java.io.IOException;
@@ -34,7 +34,7 @@ public class AddTourServlet extends HttpServlet {
             newTour.setHotelType(Integer.parseInt(req.getParameter("hotelType")));
 
 //            TourDAO tourDAO = new TourDAOImpl();
-            TourITourService tourService = new TourITourService();
+            TourService tourService = new TourService();
 
             if(tourService.add(newTour)) {
 //            System.out.println(newTour);

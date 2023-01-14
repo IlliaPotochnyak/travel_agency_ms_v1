@@ -1,5 +1,6 @@
 package servlet;
 
+import DTO.UserDTO;
 import db.dao.DAOImpl.MySQLImpl.ReceiptDAOImpl;
 import db.dao.DAOImpl.MySQLImpl.UserDAOImpl;
 import db.dao.interfaces.ReceiptDao;
@@ -12,6 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import service.UserService;
 
 import java.io.IOException;
 import java.util.List;
@@ -27,25 +29,21 @@ public class UserListServlet extends HttpServlet {
         if(req.getParameter("pageUsers") != null)
             page = Integer.parseInt(req.getParameter("pageUsers"));
 
-        int userId = (int) req.getSession().getAttribute("UserId");
+//        int userId = (int) req.getSession().getAttribute("UserId");
 
-        UserDAO userDAO = new UserDAOImpl();
-        List<User> userList = null;
-        try {
-            if (req.getSession().getAttribute("UserRole").equals("admin")) {
+//        UserDAO userDAO = new UserDAOImpl();
+        UserService userService = new UserService();
+        List<UserDTO> userList = null;
+        if (req.getSession().getAttribute("UserRole").equals("admin")) {
 
-                userList = userDAO.getAllUsers((page-1)*recordsPerPage, recordsPerPage);
-            }
-
-            int noOfRecords = userDAO.getNoOfRecords();
-            int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
-            req.setAttribute("noOfPagesUsers", noOfPages);
-            req.setAttribute("currentPageUsers", page);
-
-
-        } catch (DatabaseException e) {
-            throw new RuntimeException(e);
+            userList = userService.getAll((page-1)*recordsPerPage, recordsPerPage);
         }
+
+        int noOfRecords = userService.getNoOfRecords();
+        int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+        req.setAttribute("noOfPagesUsers", noOfPages);
+        req.setAttribute("currentPageUsers", page);
+
 
         req.setAttribute("userList", userList);
 //        req.getRequestDispatcher("Cabinet.jsp").forward(req, resp);
