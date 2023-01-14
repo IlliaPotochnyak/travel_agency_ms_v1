@@ -5,6 +5,7 @@ import DTO.TourDTO;
 import db.dao.DAOImpl.MySQLImpl.TourDAOImpl;
 import db.dao.interfaces.TourDAO;
 import entities.Tour;
+import exceptions.DatabaseException;
 
 import java.sql.SQLException;
 
@@ -32,8 +33,30 @@ public class TourService implements Service{
     }
 
     @Override
-    public Object getById(int id) {
-        return null;
+    public TourDTO getById(int id) {
+
+        TourDAO tourDAO = new TourDAOImpl();
+        TourDTO tourDTO = new TourDTO();
+
+        try {
+            Tour tour = tourDAO.getTourById(id);
+
+            tourDTO.setId(tour.getId());
+            tourDTO.setName(tour.getName());
+            tourDTO.setDescription(tour.getDescription());
+            tourDTO.setPersonsNumber(tour.getPersonsNumber());
+            tourDTO.setPrice(tour.getPrice());
+            tourDTO.setMaxDiscount(tour.getMaxDiscount());
+            tourDTO.setHot(tour.getHot());
+            tourDTO.setTourType(tour.getTourType());
+            tourDTO.setHotelType(tour.getHotelType());
+
+        } catch (DatabaseException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return tourDTO;
     }
 
     @Override
