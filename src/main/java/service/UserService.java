@@ -46,8 +46,14 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public Object getById(int id) {
-        return null;
+    public User getByEmail(String email) {
+        System.out.println("getByEmail");
+         UserDAO userDAO = new UserDAOImpl();
+        try {
+            return userDAO.getUserByEmail(email);
+        } catch (DatabaseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -63,6 +69,29 @@ public class UserService implements IUserService{
     @Override
     public boolean delete(int id) {
         return false;
+    }
+
+    public UserDTO loginUser(String email, String password) {
+        System.out.println("loginUser method");
+
+        User user = getByEmail(email);
+        UserDTO userDTO= new UserDTO();
+
+        if (user != null) {
+            if (user.getPassword().equals(password)) {
+                userDTO.setId(user.getId());
+                userDTO.setFirstName(user.getFirstName());
+                userDTO.setLastName(user.getLastName());
+                userDTO.setEmail(user.getEmail());
+                userDTO.setPhone(user.getPhone());
+                userDTO.setRole(user.getRole());
+
+                return userDTO;
+            }
+        }
+
+
+        return null;
     }
 
     public boolean blockOrUnblockUser (int id, int isBlock){
