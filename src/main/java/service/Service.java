@@ -1,7 +1,10 @@
 package service;
 
+import DTO.AbstractDTO;
+import DTO.TourDTO;
+
 public interface Service {
-    boolean add(Object o);
+    boolean add(TourDTO o);
     Object getById(int id);
     Object getAll();
     boolean Update();

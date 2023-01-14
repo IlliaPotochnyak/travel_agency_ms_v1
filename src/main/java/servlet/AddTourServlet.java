@@ -1,5 +1,6 @@
 package servlet;
 
+import DTO.TourDTO;
 import db.dao.DAOImpl.MySQLImpl.TourDAOImpl;
 import db.dao.DAOImpl.MySQLImpl.UserDAOImpl;
 import db.dao.interfaces.TourDAO;
@@ -12,6 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import service.TourService;
 import util.FormCheckUtils;
 
 import java.io.IOException;
@@ -24,54 +26,40 @@ public class AddTourServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("AddTourServlet Post method");
 
-        System.out.println("AddTourServlet Post method");
-
-
         int tourIsHot;
         if (req.getParameter("tourHot") == null) { tourIsHot = 0; }
         else { tourIsHot = 1; }
 
         if (FormCheckUtils.addTourFormCheck(req)){
-            //String name, String description, int personsNumber,
-            //                int price, int hot, String tourType, int hotelType
-//            System.out.println("maxDisc = " + req.getParameter("maxDiscount"));
 
-            Tour newTour = new Tour(req.getParameter("tourName"),
-                    req.getParameter("tourDescription"),
-                    Integer.parseInt(req.getParameter("PersonNumber")),
-                    Integer.parseInt(req.getParameter("tourPrice")),
-                    Integer.parseInt(req.getParameter("maxDiscount")),
-                    tourIsHot,
-                    req.getParameter("tourType"),
-                    Integer.parseInt(req.getParameter("hotelType"))
-                    );
-            TourDAO tourDAO = new TourDAOImpl();
+            TourDTO newTour = new TourDTO();
+            newTour.setName(req.getParameter("tourName"));
+            newTour.setDescription(req.getParameter("tourDescription"));
+            newTour.setPersonsNumber(Integer.parseInt(req.getParameter("PersonNumber")));
+            newTour.setPrice(Integer.parseInt(req.getParameter("tourPrice")));
+            newTour.setMaxDiscount(Integer.parseInt(req.getParameter("maxDiscount")));
+            newTour.setHot(tourIsHot);
+            newTour.setTourType(req.getParameter("tourType"));
+            newTour.setHotelType(Integer.parseInt(req.getParameter("hotelType")));
+
+//            TourDAO tourDAO = new TourDAOImpl();
+            TourService tourService = new TourService();
+
+            if(tourService.add(newTour)) {
 //            System.out.println(newTour);
-
-            try {
-                if (tourDAO.addTour(newTour)) {
-//                    HttpSession session = req.getSession(true);
-//                    session.setAttribute("UserFirstName", newUser.getFirstName());
-//                    session.setAttribute("UserLastName", newUser.getLastLame());
-//                    session.setAttribute("UserRole", newUser.getRole());
-//                    session.setAttribute("UserId", newUser.getId());
-                    System.out.println("Add - ok");
-
+//                System.out.println("Add - ok");
 //                    req.getRequestDispatcher("AddTourOk.jsp").forward(req, resp);
-                    resp.sendRedirect("AddTourOk.jsp");
-                    System.out.println("After redirect");
-                }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+                resp.sendRedirect("AddTourOk.jsp");
+//                System.out.println("After redirect");
+            } else {
+                req.setAttribute("errorAddTour", "Wrong Tour data");
+
+                req.getRequestDispatcher("AddTour.jsp").forward(req, resp);
             }
 
-        } else {
 
-        req.setAttribute("errorAddTour", "Wrong Tour data");
-
-        req.getRequestDispatcher("AddTour.jsp").forward(req, resp);
         }
-        System.out.println("End of servlet");
+//        System.out.println("End of servlet");
     }
 
 

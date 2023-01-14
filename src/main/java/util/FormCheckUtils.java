@@ -11,6 +11,7 @@ public class FormCheckUtils {
         String regexDesc = ".{2,65500}";
         String regexPersonNumber = "^[0-9]{1,3}";
         String regexTourPrice = "^[1-9][0-9]{1,8}";
+        String regexTourDiscount = "[0-9]{1,2}";
         String regexHotelType = "[1-5]{1}";
         String regexTourHot = "[0-1]{1}";
         String[] tourTypes = {"rest", "excursion", "shopping"};
@@ -33,12 +34,20 @@ public class FormCheckUtils {
             System.out.println("Wrong tour price");
             return false;
         }
+        if ( !req.getParameter("maxDiscount").matches(regexTourDiscount) ) {
+            System.out.println("Wrong tour discount");
+            return false;
+        }
 //        if ( !req.getParameter("tourHot").matches(regexTourPrice) ) {
 //            System.out.println("Wrong tour Hot");
 //            return false;
 //        }
         if ( !Arrays.stream(tourTypes).anyMatch (req.getParameter("tourType")::equals)) {
             System.out.println("Wrong tour type");
+            return false;
+        }
+        if ( !req.getParameter("hotelType").matches(regexHotelType)) {
+            System.out.println("Wrong hotel type");
             return false;
         }
 
