@@ -120,8 +120,14 @@ public class TourService implements Service{
     }
 
     @Override
-    public boolean Update() {
-        return false;
+    public boolean update(TourDTO tourDTO) {
+        TourDAO tourDAO = new TourDAOImpl();
+
+        try {
+            return tourDAO.updateTour(tourDTO);
+        } catch (DatabaseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

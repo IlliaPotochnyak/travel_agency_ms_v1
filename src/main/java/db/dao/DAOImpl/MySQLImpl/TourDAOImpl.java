@@ -273,7 +273,7 @@ public class TourDAOImpl implements TourDAO {
     }
 
     @Override
-    public boolean updateTour(Tour tour) throws DatabaseException {
+    public boolean updateTour(TourDTO tour) throws DatabaseException {
         boolean result = false;
         System.out.println("updateTour method");
         //id, name, description, persons_number, price, hot, tour_type_id, hotel_type_id

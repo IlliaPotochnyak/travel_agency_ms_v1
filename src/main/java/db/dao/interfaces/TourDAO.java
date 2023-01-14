@@ -18,8 +18,7 @@ public interface TourDAO {
     List<Tour> getSortedTours(String tourType, String price, String personNumber, String hotelType,
                               int offset, int noOfRecords) throws DatabaseException;
 
-    //    public List<Tour> getSortedTours(String tourType, String price, String personNumber, String hotelType,
-//                                     int offset, int noOfRecords) throws DatabaseException {
+
     List<Tour> getSortedTours(TourDTO tourDTO, int offset, int noOfRecords) throws DatabaseException;
 
     boolean deleteTourById(int id) throws DatabaseException;
@@ -28,7 +27,7 @@ public interface TourDAO {
 
     void updatePlaceQuantityRowById(Connection connection, int id, int placeQuantity) throws SQLException;
 
-    boolean updateTour(Tour tour) throws DatabaseException;
+    boolean updateTour(TourDTO tour) throws DatabaseException;
 
     void setHotTourById(int id) throws DatabaseException;
 
