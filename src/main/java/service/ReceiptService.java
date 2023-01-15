@@ -72,7 +72,12 @@ public class ReceiptService implements IReceiptService{
 
     @Override
     public boolean updateReceiptStatus(ReceiptDTO receiptDTO) {
-        return false;
+        ReceiptDao receiptDao = new ReceiptDAOImpl();
+        try {
+            return receiptDao.updateReceiptStatus(receiptDTO.getId(), receiptDTO.getOrderStatus());
+        } catch (DatabaseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

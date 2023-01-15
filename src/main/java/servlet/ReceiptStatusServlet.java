@@ -1,5 +1,6 @@
 package servlet;
 
+import DTO.ReceiptDTO;
 import db.dao.DAOImpl.MySQLImpl.ReceiptDAOImpl;
 import db.dao.DAOImpl.MySQLImpl.TourDAOImpl;
 import db.dao.interfaces.ReceiptDao;
@@ -11,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import service.ReceiptService;
 import util.FormCheckUtils;
 
 import java.io.IOException;
@@ -24,17 +26,17 @@ public class ReceiptStatusServlet extends HttpServlet {
 //
 //        System.out.println("receiptId" + " - " + req.getParameter("receiptId"));
 //        System.out.println("orderStatus" + " - " + req.getParameter("orderStatus"));
+//        ReceiptDao receiptDao = new ReceiptDAOImpl();
+        ReceiptDTO receiptDTO = new ReceiptDTO();
+        receiptDTO.setId(Integer.parseInt(req.getParameter("receiptId")));
+        receiptDTO.setOrderStatus(req.getParameter("orderStatus"));
+        ReceiptService receiptService = new ReceiptService();
 
-        ReceiptDao receiptDao = new ReceiptDAOImpl();
+        //            receiptDao.updateReceiptStatus(Integer.parseInt(req.getParameter("receiptId")),
+//                    req.getParameter("orderStatus"));
+        receiptService.updateReceiptStatus(receiptDTO);
 
-        try {
-            receiptDao.updateReceiptStatus(Integer.parseInt(req.getParameter("receiptId")),
-                    req.getParameter("orderStatus"));
-
-            resp.sendRedirect("Cabinet.jsp");
-        } catch (DatabaseException e) {
-            throw new RuntimeException(e);
-        }
+        resp.sendRedirect("Cabinet.jsp");
 
 
     }
