@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface IReceiptService {
     boolean add(ReceiptDTO receiptDTO);
-    List<UserDTO> getAllByUserId(int id);
-    List<UserDTO> getAll(int offset, int noOfRecords);
+    List<ReceiptDTO> getAllByUserId(int id, int offset, int noOfRecords);
+    List<ReceiptDTO> getAll(int offset, int noOfRecords);
     boolean updateReceiptStatus(ReceiptDTO receiptDTO);
     boolean updateReceiptDiscount(ReceiptDTO receiptDTO);
     boolean delete(int id);

@@ -91,8 +91,6 @@
                         <td><a href="Cabinet.jsp?page=${currentPage + 1}#receiptList">Next</a></td>
                     </c:if>
 
-
-
             </a>
             <hr>
 

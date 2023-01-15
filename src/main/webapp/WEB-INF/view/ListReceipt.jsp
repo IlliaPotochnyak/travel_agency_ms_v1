@@ -49,8 +49,6 @@
                             <c:if test="${UserRole == 'admin' or UserRole == 'manager'}">
                                 <td>
                                     <c:out value="${receipt.discount}"/>
-
-
                                     <div class="dropdown">
                                       <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-bs-toggle="dropdown">
                                         Change
@@ -62,8 +60,8 @@
                                                 <input  type="number" class="form-control w-50 bg-light p-3" name="discount" required maxlength="2"
                                                     min="0" max="99" value=0>
                                                 <button  type="submit" class="btn btn-primary btn-sm">Set Discount</button>
-                                            </form></li>
-
+                                            </form>
+                                        </li>
                                       </ul>
                                     </div>
 

@@ -114,9 +114,9 @@ public class Receipt {
     public void setUserLastName(String userLastName) {
         this.userLastName = userLastName;
     }
-    public int getPrice () {
-        return this.amount / (100 - this.discount) * 100;
-    }
+//    public int getPrice () {
+//        return this.amount / (100 - this.discount) * 100;
+//    }
 
     @Override
     public String toString() {

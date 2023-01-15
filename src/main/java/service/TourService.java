@@ -152,7 +152,6 @@ public class TourService implements ITourService {
         tourDTO.setHotelType(tour.getHotelType());
 
         return tourDTO;
-
     }
 
 
