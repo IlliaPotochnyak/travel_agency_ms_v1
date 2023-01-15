@@ -12,6 +12,7 @@ public interface ReceiptDao {
     List<Receipt> getAllUserReceiptsByUserId(int id, int offset, int noOfRecords) throws DatabaseException;
 
     List<Receipt> getAllReceipts(int offset, int noOfRecords) throws DatabaseException;
+    public Receipt getReceiptById(int id) throws DatabaseException;
 
     boolean updateReceiptStatus(int id, String status) throws DatabaseException;
 

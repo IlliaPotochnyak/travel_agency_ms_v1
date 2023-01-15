@@ -82,6 +82,24 @@ public class ReceiptService implements IReceiptService{
 
     @Override
     public boolean updateReceiptDiscount(ReceiptDTO receiptDTO) {
+        TourDTO tourDTO = new TourService().getById(receiptDTO.getTourId());
+        int amount = tourDTO.getPrice() - (tourDTO.getPrice() * receiptDTO.getDiscount() / 100);
+        ReceiptDao receiptDao = new ReceiptDAOImpl();
+        try {
+            receiptDTO.setOrderStatus( receiptDao.getReceiptById(receiptDTO.getId()).getOrderStatus() );
+        } catch (DatabaseException e) {
+            throw new RuntimeException(e);
+        }
+
+        if (receiptDTO.getDiscount() >= 0 && receiptDTO.getDiscount() <= tourDTO.getMaxDiscount()
+                && receiptDTO.getOrderStatus().equals("registered")) {
+
+                try {
+                    return receiptDao.updateReceiptDiscount(receiptDTO.getId(), receiptDTO.getDiscount(), amount);
+                } catch (DatabaseException e) {
+                    throw new RuntimeException(e);
+                }
+        }
         return false;
     }
 

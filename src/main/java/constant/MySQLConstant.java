@@ -14,12 +14,12 @@ public class MySQLConstant {
             "FROM receipt INNER JOIN tour ON receipt.tour_id=tour.id\n" +
             "    INNER JOIN receipt_status ON receipt.order_status_id=receipt_status.id\n" +
             "    INNER JOIN user ON receipt.user_id=user.id " +
-            "WHERE user.id=? ORDER BY order_status_id limit ";
+            "WHERE user.id=? ORDER BY order_status_id, datetime DESC limit ";
 
     public static final String GET_ALL_RECEIPTS = "SELECT SQL_CALC_FOUND_ROWS receipt.id, receipt.tour_id, tour.name, receipt.user_id, user.first_name, user.last_name, receipt.discount, receipt.amount, receipt_status.receipt_status, receipt.datetime \n" +
             "FROM receipt INNER JOIN tour ON receipt.tour_id=tour.id\n" +
             "    INNER JOIN receipt_status ON receipt.order_status_id=receipt_status.id\n" +
-            "    INNER JOIN user ON receipt.user_id=user.id  ORDER BY order_status_id limit ";
+            "    INNER JOIN user ON receipt.user_id=user.id  ORDER BY order_status_id, datetime DESC limit ";
 
     public static final String UPDATE_RECEIPT_STATUS = "UPDATE receipt SET order_status_id=" +
             "(SELECT receipt_status.id from receipt_status WHERE receipt_status=?) " +

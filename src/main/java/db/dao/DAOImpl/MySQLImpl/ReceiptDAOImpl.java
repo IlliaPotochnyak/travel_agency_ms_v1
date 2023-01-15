@@ -93,9 +93,46 @@ public class ReceiptDAOImpl implements ReceiptDao {
         return receiptList;
     }
 
+    public Receipt getReceiptById(int id) throws DatabaseException {
+
+        String query = "SELECT  receipt.id, receipt.tour_id, tour.name, receipt.user_id, user.first_name, user.last_name, receipt.discount, receipt.amount, receipt_status.receipt_status, receipt.datetime \n" +
+                "FROM receipt INNER JOIN tour ON receipt.tour_id=tour.id\n" +
+                "    INNER JOIN receipt_status ON receipt.order_status_id=receipt_status.id\n" +
+                "    INNER JOIN user ON receipt.user_id=user.id " +
+                "WHERE receipt.id=? ;";
+//        String query = GET_ALL_USER_RECEIPT;
+
+        try (Connection con = DataSource.getConnection();
+             PreparedStatement pstmnt = con.prepareStatement(query)){
+            pstmnt.setInt(1, id);
+            ResultSet rs = pstmnt.executeQuery();
+            Receipt receipt = null;
+            while (rs.next()) {
+                //id, tour_id, user_id, discount, amount, order_status_id, datetime
+                receipt = new Receipt(rs.getInt("id"),
+                        rs.getInt("tour_id"),
+                        rs.getInt("user_id"),
+                        rs.getInt("discount"),
+                        rs.getInt("amount"),
+                        rs.getString("receipt_status"),
+                        rs.getString("datetime"),
+                        rs.getString("name"),
+                        rs.getString("first_name"),
+                        rs.getString("last_name")
+                );
+
+            }
+            return receipt;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
     @Override
     public List<Receipt> getAllReceipts(int offset, int noOfRecords) throws DatabaseException {
-//        System.out.println("getAllReceipts");
+        System.out.println("getAllReceipts");
+
         List<Receipt> receiptList = new ArrayList<>();
 //        String query = "SELECT * FROM receipt;";
 //        String query = "SELECT SQL_CALC_FOUND_ROWS receipt.id, receipt.tour_id, tour.name, receipt.user_id, user.first_name, user.last_name, receipt.discount, receipt.amount, receipt_status.receipt_status, receipt.datetime \n" +
@@ -104,6 +141,7 @@ public class ReceiptDAOImpl implements ReceiptDao {
 //                "    INNER JOIN user ON receipt.user_id=user.id  ORDER BY order_status_id limit "
 //                + offset + ", " + noOfRecords;
         String query = GET_ALL_RECEIPTS + offset + ", " + noOfRecords;
+        System.out.println(query);
         try (Connection con = DataSource.getConnection();
              Statement stmnt = con.createStatement();
              ){
@@ -134,6 +172,7 @@ public class ReceiptDAOImpl implements ReceiptDao {
             rs = stmnt.executeQuery("SELECT FOUND_ROWS()");
             if(rs.next())
                 this.noOfRecords = rs.getInt(1);
+
 //            receiptList.forEach(System.out::println);
 
         } catch (SQLException e) {

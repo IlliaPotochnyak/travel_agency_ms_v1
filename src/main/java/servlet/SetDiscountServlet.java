@@ -1,5 +1,6 @@
 package servlet;
 
+import DTO.ReceiptDTO;
 import db.dao.DAOImpl.MySQLImpl.ReceiptDAOImpl;
 import db.dao.DAOImpl.MySQLImpl.TourDAOImpl;
 import db.dao.interfaces.ReceiptDao;
@@ -12,6 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import service.ReceiptService;
 
 import java.io.IOException;
 import java.util.List;
@@ -28,19 +30,27 @@ public class SetDiscountServlet extends HttpServlet {
         int tourId = Integer.parseInt(req.getParameter("tourId"));
         int discount = Integer.parseInt(req.getParameter("discount"));
 
-        try {
-            Tour tour = new TourDAOImpl().getTourById(tourId);
-            int amount = tour.getPrice() - (tour.getPrice() * discount / 100);
-//            System.out.println("calc amount  = " + amount);
+        ReceiptDTO receiptDTO = new ReceiptDTO();
+        receiptDTO.setId(receiptId);
+        receiptDTO.setTourId(tourId);
+        receiptDTO.setDiscount(discount);
 
-            if (discount >= 0 && discount <= tour.getMaxDiscount()) {
-                ReceiptDao receiptDao = new ReceiptDAOImpl();
-                receiptDao.updateReceiptDiscount(receiptId, discount, amount);
-            }
+        ReceiptService receiptService = new ReceiptService();
+        receiptService.updateReceiptDiscount(receiptDTO);
 
-        } catch (DatabaseException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            Tour tour = new TourDAOImpl().getTourById(tourId);
+//            int amount = tour.getPrice() - (tour.getPrice() * discount / 100);
+////            System.out.println("calc amount  = " + amount);
+//
+//            if (discount >= 0 && discount <= tour.getMaxDiscount()) {
+//                ReceiptDao receiptDao = new ReceiptDAOImpl();
+//                receiptDao.updateReceiptDiscount(receiptId, discount, amount);
+//            }
+//
+//        } catch (DatabaseException e) {
+//            throw new RuntimeException(e);
+//        }
         resp.sendRedirect("Cabinet.jsp");
 
     }
