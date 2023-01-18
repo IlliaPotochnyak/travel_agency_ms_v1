@@ -33,7 +33,7 @@
     <body>
      <hr>
         <div class="container">
-            <h2>List of tours!!!</h2>
+            <h2><fmt:message key="listTour.header" /></h2>
 
         </div>
 
@@ -48,12 +48,12 @@
 
                     <thead>
                         <td></td>
-                        <td>Tour</td>
-                        <td>Description</td>
-                        <td>Price</td>
-                        <td>Persons<br>Number</td>
-                        <td>Type</td>
-                        <td>Hotel<br>Star<br>Rate</td>
+                        <td><fmt:message key="listTour.tableTour" /></td>
+                        <td><fmt:message key="listTour.tableDescription" /></td>
+                        <td><fmt:message key="listTour.tablePrice" /></td>
+                        <td><fmt:message key="listTour.tablePersonsNumber" /></td>
+                        <td><fmt:message key="listTour.tableType" /></td>
+                        <td><fmt:message key="listTour.tableHotelStarRate" /></td>
                     </thead>
                     <c:forEach var="tour" items="${tourList}">
                         <tr>
