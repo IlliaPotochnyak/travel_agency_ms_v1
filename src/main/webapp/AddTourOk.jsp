@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
     isELIgnored = "false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="languages/messages"/>
+<html lang="${sessionScope.lang}">
 
 <html>
     <head>
@@ -14,7 +18,7 @@
             <jsp:include page="WEB-INF/view/Header.jsp" flush="true"/>
 
             <div class="container">
-                <h2>Tour is successfully added!</h2>
+                <h2><fmt:message key="addTour.addTourOK" /></h2>
 
             </div>
 
