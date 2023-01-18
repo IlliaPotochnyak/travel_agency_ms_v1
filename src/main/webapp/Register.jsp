@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
     isELIgnored = "false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="languages/messages"/>
+<html lang="${sessionScope.lang}">
 
 <html>
     <head>
@@ -76,28 +80,28 @@
 
             <form action="RegisterServlet" method="post">
 
-                <h1>Register</h1>
-                <p>Please fill in this form to create an account.</p>
+                <h1><fmt:message key="register.message" /></h1>
+                <p><fmt:message key="register.messageText" /></p>
                 <hr>
                 <div class="mb-2">
-                    <label for="firstName" class="form-label"><b>First Name</b></label>
+                    <label for="firstName" class="form-label"><b><fmt:message key="register.FirstName" />*</b></label>
                     <input type="text" class="form-control" placeholder="Enter First Name" name="firstName" id="firstName"
                             pattern="^[A-Za-z' А-Яа-яіІїЇ]{2,40}" required>
                 </div>
 
                 <div class="mb-2">
-                    <label for="lastName" class="form-label"><b>Last Name</b></label>
+                    <label for="lastName" class="form-label"><b><fmt:message key="register.LastName" />*</b></label>
                     <input type="text" class="form-control" placeholder="Enter Last Name" name="lastName" id="lastName"
                             pattern="^[A-Za-z' А-Яа-яіІїЇ]{2,40}" required>
                 </div>
 
                 <div class="mb-2">
-                    <label for="email" class="form-label"><b>Email</b></label>
+                    <label for="email" class="form-label"><b>Email*</b></label>
                     <input type="email" class="form-control" placeholder="Enter Email" name="email" id="email" required>
                 </div>
 
                 <div class="mb-2">
-                    <label for="password" class="form-label"><b>Password</b></label>
+                    <label for="password" class="form-label"><b><fmt:message key="register.password" />*</b></label>
                     <input type="password" class="form-control" placeholder="Enter Password" name="password" id="password"
                             pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$"
                             title="Must contain at least one number, one special character and one uppercase and lowercase letter, and at least 6 or more characters"
@@ -105,23 +109,23 @@
                 </div>
 
                 <div class="mb-2">
-                    <label for="confirm_password" class="form-label"><b>Repeat Password</b></label>
+                    <label for="confirm_password" class="form-label"><b><fmt:message key="register.passwordRep" />*</b></label>
                     <input type="password" class="form-control" placeholder="Repeat Password" name="confirm_password" id="confirm_password"
                             pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$" required>
                 </div>
 
                 <div class="mb-2">
-                    <label for="phone" class="form-label"><b>Phone number</b></label>
+                    <label for="phone" class="form-label"><b><fmt:message key="register.phone" />*</b></label>
                     <input type="tel" class="form-control" placeholder="Phone number" name="phone" id="phone"
                             pattern="^[+][0-9]{2}-[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br>
-                    <small>Format: +12-123-123-1234</small><br><br>
+                    <small><fmt:message key="register.format" />: +12-123-123-1234</small><br><br>
                 </div>
 
-                <button type="submit"  class="btn btn-primary" id="submit">Register</button>
+                <button type="submit"  class="btn btn-primary" id="submit"><fmt:message key="register.registerButton" /></button>
                 </div>
 
                 <div class="container signin">
-                <p>Already have an account? <a href="Login.jsp">Sign in</a>.</p>
+                <p><fmt:message key="register.haveAnAccount" />? <a href="Login.jsp"><fmt:message key="register.signIn" /></a>.</p>
                 </div>
             </form>
         </div>
