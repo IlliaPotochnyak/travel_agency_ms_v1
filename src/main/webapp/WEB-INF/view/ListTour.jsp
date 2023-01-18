@@ -60,7 +60,7 @@
                             <td>
                                 <c:if test="${tour.hot eq 1}">
                                     <span class="badge bg-danger">
-                                        HOT!!!
+                                        <fmt:message key="listTour.hot" />
                                     </span>
                                 </c:if>
                             </td>
