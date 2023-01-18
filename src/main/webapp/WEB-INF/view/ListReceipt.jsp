@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
     isELIgnored = "false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="languages/messages"/>
+<html lang="${sessionScope.lang}">
 
 <html>
     <head>
@@ -13,7 +17,7 @@
     </head>
     <body>
         <div class="container mt-3">
-            <h2>List of Receipts!!!</h2>
+            <h2><fmt:message key="listReceipt.message" /></h2>
         </div>
         <hr>
 
@@ -25,18 +29,18 @@
 
                     <thead>
                         <td>id</td>
-                        <td>User id</td>
-                        <td>User First Name</td>
-                        <td>User Last Name</td>
-                        <td>Tour</td>
-                        <td>Tour Name</td>
+                        <td><fmt:message key="listReceipt.tableUserId" /></td>
+                        <td><fmt:message key="listReceipt.tableUserFirstName" /></td>
+                        <td><fmt:message key="listReceipt.tableUserLastName" /></td>
+                        <td><fmt:message key="listReceipt.tableTourId" /></td>
+                        <td><fmt:message key="listReceipt.tableTourName" /></td>
                         <c:if test="${UserRole == 'admin' or UserRole == 'manager'}">
-                            <td>Discount</td>
-                            <td>Price</td>
+                            <td><fmt:message key="listReceipt.tableDiscount" /></td>
+                            <td><fmt:message key="listReceipt.tablePrice" /></td>
                         </c:if>
-                        <td>Amount</td>
-                        <td>Receipt Status</td>
-                        <td>Datetime</td>
+                        <td><fmt:message key="listReceipt.tableAmount" /></td>
+                        <td><fmt:message key="listReceipt.tableReceiptStatus" /></td>
+                        <td><fmt:message key="listReceipt.tableDatetime" /></td>
                     </thead>
                     <c:forEach var="receipt" items="${receiptList}">
                         <tr>
@@ -51,7 +55,7 @@
                                     <c:out value="${receipt.discount}"/>
                                     <div class="dropdown">
                                       <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-bs-toggle="dropdown">
-                                        Change
+                                        <fmt:message key="listReceipt.tableChange" />
                                       </button>
                                       <ul class="dropdown-menu">
                                         <li><form class="dropdown-item form-control form-control-sm"action="SetDiscountServlet" method="POST" >
@@ -59,7 +63,7 @@
                                                 <input type="hidden" name="tourId" value="${receipt.tourId}">
                                                 <input  type="number" class="form-control w-50 bg-light p-3" name="discount" required maxlength="2"
                                                     min="0" max="99" value=0>
-                                                <button  type="submit" class="btn btn-primary btn-sm">Set Discount</button>
+                                                <button  type="submit" class="btn btn-primary btn-sm"><fmt:message key="listReceipt.tableSetDiscount" /></button>
                                             </form>
                                         </li>
                                       </ul>
@@ -75,9 +79,9 @@
                                     <form action="ReceiptStatusServlet" method="POST" >
                                         <input type="hidden" name="receiptId" value="${receipt.id}">
                                         <select id="orderStatus" class="form-select form-select-sm" name="orderStatus" onchange="this.form.submit()">
-                                            <option value="registered" <c:if test="${receipt.orderStatus eq 'registered'}">class="fw-bolder" selected</c:if>>registered</option>
-                                            <option value="paid" <c:if test="${receipt.orderStatus eq 'paid'}">class="fw-bolder" selected</c:if>>paid</option>
-                                            <option value="canceled" <c:if test="${receipt.orderStatus eq 'canceled'}">class="fw-bolder" selected</c:if>>canceled</option>
+                                            <option value="registered" <c:if test="${receipt.orderStatus eq 'registered'}">class="fw-bolder" selected</c:if>><fmt:message key="listReceipt.tableStatRegistered" /></option>
+                                            <option value="paid" <c:if test="${receipt.orderStatus eq 'paid'}">class="fw-bolder" selected</c:if>><fmt:message key="listReceipt.tableStatPaid" /></option>
+                                            <option value="canceled" <c:if test="${receipt.orderStatus eq 'canceled'}">class="fw-bolder" selected</c:if>><fmt:message key="listReceipt.tableStatCanceled" /></option>
                                         </select>
                                     </form>
                                 </c:if>
@@ -87,30 +91,6 @@
                             </td>
                             <td><c:out value="${receipt.datetime}"/></td>
 
-                            <!-- The Modal -->
-                            <div class="modal" id="myModal">
-                              <div class="modal-dialog">
-                                <div class="modal-content">
-
-                                  <!-- Modal Header -->
-                                  <div class="modal-header">
-                                    <h4 class="modal-title">Modal Heading</h4>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                  </div>
-
-                                  <!-- Modal body -->
-                                  <div class="modal-body">
-
-                                  </div>
-
-                                  <!-- Modal footer -->
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                  </div>
-
-                                </div>
-                              </div>
-                            </div>
 
                         </tr>
                     </c:forEach>
