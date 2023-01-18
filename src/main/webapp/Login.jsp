@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
     isELIgnored = "false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="languages/messages"/>
+<html lang="${sessionScope.lang}">
 
 <html>
     <head>
@@ -14,7 +18,7 @@
             <jsp:include page="WEB-INF/view/Header.jsp" flush="true"/>
 
             <div class="container">
-                <h2>Login page</h2>
+                <h2><fmt:message key="login.message" /></h2>
             </div>
             <div class="container">
                 ${errorLogin}
@@ -23,13 +27,13 @@
             <div class="container mt-5">
                 <form action="LoginValidator" method="post">
                     <div class="mb-3">
-                        <label class="form-label">Email : </label>
+                        <label class="form-label"><fmt:message key="login.email" />* : </label>
                         <input type="email" class="form-control" placeholder="Enter Email" name="email" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Password : </label>
+                        <label class="form-label"><fmt:message key="login.password" />* : </label>
                         <input type="password" class="form-control" placeholder="Enter Password" name="password" required>
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="submit" class="btn btn-primary"><fmt:message key="login.button" /></button>
                     </div>
 
                 </form>

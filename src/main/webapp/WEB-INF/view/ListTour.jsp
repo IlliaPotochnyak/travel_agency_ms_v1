@@ -38,7 +38,7 @@
         </div>
 
 
-        <jsp:include page="SortTour.jspf" flush="true"/>
+        <jsp:include page="SortTour.jsp" flush="true"/>
 
 
 
