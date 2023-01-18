@@ -44,7 +44,7 @@
               </div>
               <div class="container-fluid">
                     <c:if test="${not empty UserId}">
-                        <span class="navbar-text">Hello,
+                        <span class="navbar-text"><fmt:message key="header.hello" />,
                             <span class="text-uppercase">${UserFirstName} ${UserLastName}</span>
                         </span>
                     </c:if>
