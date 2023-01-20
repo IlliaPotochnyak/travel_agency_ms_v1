@@ -44,6 +44,7 @@ public class FrontController extends HttpServlet {
 //            page = ConfigurationManager.getProperty("path.page.index");
 //            request.getSession().setAttribute("nullPage",
 //                    MessageManager.getProperty("message.nullpage"));
+            System.out.println(request.getContextPath() + page);
             response.sendRedirect(request.getContextPath() + page);
         }
     }

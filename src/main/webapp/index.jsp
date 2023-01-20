@@ -23,7 +23,7 @@
             <h2><fmt:message key="main.mainMessage" /></h2>
         </div>
 
-        <jsp:include page="TourList" flush="true"/>
+        <jsp:include page="/controller?command=list_tour" flush="true"/>
 
         <%--For displaying Previous link except for the 1st page --%>
             <c:if test="${currentPage != 1}">

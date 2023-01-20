@@ -25,7 +25,8 @@
             </div>
             <hr>
             <div class="container mt-5">
-                <form action="LoginValidator" method="post">
+                <form action="controller" method="post">
+                    <input type="hidden"  name="command" value="login">
                     <div class="mb-3">
                         <label class="form-label"><fmt:message key="login.email" />* : </label>
                         <input type="email" class="form-control" placeholder="Enter Email" name="email" required>
