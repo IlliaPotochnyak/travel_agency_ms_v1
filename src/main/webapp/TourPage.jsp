@@ -122,7 +122,8 @@
             <div class="text-center">
                 <p class="border border-primary"><h4><fmt:message key="tourPage.price" /> - ${tour.price}</h4></p>
                 <c:if test="${not empty UserFirstName}">
-                    <form action="ReceiptRegister" method="POST">
+                    <form action="controller" method="POST">
+                        <input type="hidden"  name="command" value="receipt_register">
                         <input type="hidden" name="tourId" value="${tour.id}">
                         <button type="submit" class="btn btn-warning"><fmt:message key="tourPage.bookTour" /></button>
                     </form>

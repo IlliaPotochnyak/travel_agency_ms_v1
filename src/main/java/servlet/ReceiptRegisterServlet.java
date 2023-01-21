@@ -25,31 +25,31 @@ public class ReceiptRegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        System.out.println("ReceiptRegister doPost method");
-//        System.out.println(req.getParameter("tourId"));
-//        System.out.println(req.getSession().getAttribute("UserId"));
-//        TourDAO tourDAO = new TourDAOImpl();
-
-//        if(req.getSession().getAttribute("UserActive").equals("1")) {
-            System.out.println("active user");
-            ReceiptService receiptService = new ReceiptService();
-//            TourDTO tourDTO = null;
-//            int userId = (int) req.getSession().getAttribute("UserId");
-            //        int discount = 0;
-            //        tourDTO = tourService.getById(Integer.parseInt(req.getParameter("tourId")));
-
-            //        int amount = tourDTO.getPrice() - (tourDTO.getPrice() * (discount / 100));
-            //        Receipt receipt = new Receipt(tour.getId(), userId,
-            //                                    discount, amount, "registered");
-            ReceiptDTO receiptDTO = new ReceiptDTO();
-            receiptDTO.setUserId((Integer) req.getSession().getAttribute("UserId"));
-            receiptDTO.setTourId(Integer.parseInt(req.getParameter("tourId")));
-        System.out.println(receiptDTO);
-
-            //        ReceiptDao receiptDao = new ReceiptDAOImpl();
-            if (receiptService.add(receiptDTO)) {
-                req.getRequestDispatcher("ReceiptOk.jsp").forward(req, resp);
-//            }
-        }
+//        System.out.println("ReceiptRegister doPost method");
+////        System.out.println(req.getParameter("tourId"));
+////        System.out.println(req.getSession().getAttribute("UserId"));
+////        TourDAO tourDAO = new TourDAOImpl();
+//
+////        if(req.getSession().getAttribute("UserActive").equals("1")) {
+//            System.out.println("active user");
+//            ReceiptService receiptService = new ReceiptService();
+////            TourDTO tourDTO = null;
+////            int userId = (int) req.getSession().getAttribute("UserId");
+//            //        int discount = 0;
+//            //        tourDTO = tourService.getById(Integer.parseInt(req.getParameter("tourId")));
+//
+//            //        int amount = tourDTO.getPrice() - (tourDTO.getPrice() * (discount / 100));
+//            //        Receipt receipt = new Receipt(tour.getId(), userId,
+//            //                                    discount, amount, "registered");
+//            ReceiptDTO receiptDTO = new ReceiptDTO();
+//            receiptDTO.setUserId((Integer) req.getSession().getAttribute("UserId"));
+//            receiptDTO.setTourId(Integer.parseInt(req.getParameter("tourId")));
+//        System.out.println(receiptDTO);
+//
+//            //        ReceiptDao receiptDao = new ReceiptDAOImpl();
+//            if (receiptService.add(receiptDTO)) {
+//                req.getRequestDispatcher("ReceiptOk.jsp").forward(req, resp);
+////            }
+//        }
     }
 }
