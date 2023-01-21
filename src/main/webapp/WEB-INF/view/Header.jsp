@@ -37,7 +37,7 @@
                           <a class="nav-link active" href="Cabinet.jsp"><fmt:message key="header.cabinet" /></a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link active" href="Logout"><fmt:message key="header.logout" /></a>
+                          <a class="nav-link active" href="controller?command=logout"><fmt:message key="header.logout" /></a>
                         </li>
                     </c:if>
                   </ul>

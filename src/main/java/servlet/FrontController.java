@@ -38,24 +38,24 @@ public class FrontController extends HttpServlet {
 // page = null; // поэксперементировать!
         if (page != null) {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-            System.out.println("page forward - " + request.getContextPath() + page);
-            System.out.println(request);
-
-            Enumeration<String> parameterNames = request.getParameterNames();
-
-            while (parameterNames.hasMoreElements()) {
-
-                String paramName = parameterNames.nextElement();
-                System.out.println("param name - " + paramName);
-                System.out.println("n");
-
-                String[] paramValues = request.getParameterValues(paramName);
-                for (int i = 0; i < paramValues.length; i++) {
-                    String paramValue = paramValues[i];
-                    System.out.println("t" + paramValue);
-                    System.out.println("n");
-                }
-            }
+//            System.out.println("page forward - " + request.getContextPath() + page);
+//            System.out.println(request);
+//
+//            Enumeration<String> parameterNames = request.getParameterNames();
+//
+//            while (parameterNames.hasMoreElements()) {
+//
+//                String paramName = parameterNames.nextElement();
+//                System.out.println("param name - " + paramName);
+//                System.out.println("n");
+//
+//                String[] paramValues = request.getParameterValues(paramName);
+//                for (int i = 0; i < paramValues.length; i++) {
+//                    String paramValue = paramValues[i];
+//                    System.out.println("t" + paramValue);
+//                    System.out.println("n");
+//                }
+//            }
 
 //            System.out.println(request.getParameter("list"));
 // вызов страницы ответа на запрос

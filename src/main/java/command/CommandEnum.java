@@ -13,7 +13,7 @@ public enum CommandEnum {
     },
     LOGOUT {
         {
-//            this.command = new LogoutCommand();
+            this.command = new LogoutCommand();
         }
     };
         ActionCommand command;
