@@ -12,46 +12,48 @@ import java.util.List;
 
 public class ListTourCommand implements ActionCommand{
     @Override
-    public String execute(HttpServletRequest req) {
+    public String execute(HttpServletRequest request) {
         System.out.println("ListTourCommand");
-        System.out.println("page - " + req.getParameter("page"));
+        System.out.println("page- " + request.getParameter("page"));
         String pagePath = null;
 
         List<TourDTO> listOfTourDTO = null;
         int page = 1;
         int recordsPerPage = 5;
-        if(req.getParameter("page") != null)
-            page = Integer.parseInt(req.getParameter("page"));
-//        System.out.println("Query - " + req.getQueryString());
+        if(request.getParameter("page") != null)
+            page = Integer.parseInt(request.getParameter("page"));
+//        System.out.println("Query - " + request.getQueryString());
 //        TourDAOImpl tourDAO = new TourDAOImpl();
         TourService tourService = new TourService();
-        if (StringUtils.isNullOrEmpty(req.getParameter("tour_type"))  &&
-                StringUtils.isNullOrEmpty(req.getParameter("price")) &&
-                StringUtils.isNullOrEmpty(req.getParameter("people_amount")) &&
-                StringUtils.isNullOrEmpty(req.getParameter("hotel_stars") ))
+        if (StringUtils.isNullOrEmpty(request.getParameter("tour_type"))  &&
+                StringUtils.isNullOrEmpty(request.getParameter("price")) &&
+                StringUtils.isNullOrEmpty(request.getParameter("people_amount")) &&
+                StringUtils.isNullOrEmpty(request.getParameter("hotel_stars") ))
         {
 //                System.out.println("");
             listOfTourDTO = tourService.getAll((page-1)*recordsPerPage, recordsPerPage);
 
         } else {
-            listOfTourDTO = tourService.getSorted(req.getParameter("tour_type"),
-                    req.getParameter("price"),
-                    req.getParameter("people_amount"),
-                    req.getParameter("hotel_stars"),
+            listOfTourDTO = tourService.getSorted(request.getParameter("tour_type"),
+                    request.getParameter("price"),
+                    request.getParameter("people_amount"),
+                    request.getParameter("hotel_stars"),
                     (page-1)*recordsPerPage, recordsPerPage
             );
         }
         int noOfRecords = tourService.getNoOfRecords();
         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
-//            req.setAttribute("employeeList", listOfTourDTO);
-        req.setAttribute("noOfPages", noOfPages);
-        req.setAttribute("currentPage", page);
+//            request.setAttribute("employeeList", listOfTourDTO);
+        request.setAttribute("noOfPages", noOfPages);
+        request.setAttribute("currentPage", page);
 //        listOfTourDTO.forEach(System.out::println);
 
-        req.setAttribute("tourList", listOfTourDTO);
+        request.setAttribute("command", "commandshifted");
+        request.setAttribute("tourList", listOfTourDTO);
+        request.setAttribute("list", "listattr");
         System.out.println("Success tourList");
-//        req.getRequestDispatcher("WEB-INF/view/ListTour.jsp").forward(req, resp);
-//        req.getRequestDispatcher("WEB-INF/view/ListTour.jsp").include(req, resp);
+//        request.getRequestDispatcher("WEB-INF/view/ListTour.jsp").forward(request, resp);
+//        request.getRequestDispatcher("WEB-INF/view/ListTour.jsp").include(request, resp);
         pagePath = "/WEB-INF/view/ListTour.jsp";
 
 

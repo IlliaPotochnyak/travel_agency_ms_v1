@@ -17,13 +17,20 @@
 
     </head>
     <body>
+
+        <jsp:forward page="/controller?command=list_tour" />
+
         <jsp:include page="WEB-INF/view/Header.jsp" flush="true"/>
 
         <div class="container">
             <h2><fmt:message key="main.mainMessage" /></h2>
         </div>
 
+        <jsp:include page="WEB-INF/view/ListTour.jsp" flush="true"/>
         <jsp:include page="/controller?command=list_tour" flush="true"/>
+
+
+
 
         <%--For displaying Previous link except for the 1st page --%>
             <c:if test="${currentPage != 1}">
