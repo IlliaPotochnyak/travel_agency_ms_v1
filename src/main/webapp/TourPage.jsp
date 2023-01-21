@@ -44,7 +44,8 @@
                       </div>
                       <!-- Modal footer -->
                       <div class="modal-footer">
-                        <form action="DeleteTourServlet" method="post">
+                        <form action="controller" method="post">
+                            <input type="hidden"  name="command" value="delete_tour">
                             <input type="hidden" name="tourId" value="${tour.id}" />
                             <button type="submit" class="btn btn-danger"><fmt:message key="tourPage.deleteTour" /></button>
                         </form>

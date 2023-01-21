@@ -18,8 +18,8 @@ public class DeleteTourServlet extends HttpServlet {
 //        System.out.println("tourId" + " - " + req.getParameter("tourId"));
 
 //        TourDAO tourDAO = new TourDAOImpl();
-        TourService tourService = new TourService();
-        tourService.delete(Integer.parseInt(req.getParameter("tourId")));
+//        TourService tourService = new TourService();
+//        tourService.delete(Integer.parseInt(req.getParameter("tourId")));
 
         resp.sendRedirect("index.jsp");
 
