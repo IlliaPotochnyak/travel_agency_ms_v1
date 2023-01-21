@@ -25,7 +25,8 @@
             </div>
             <hr>
             <div class="container bg-secondary  mt-5">
-                <form action="AddTourServlet" method="post">
+                <form action="controller" method="post">
+                    <input type="hidden"  name="command" value="add_tour">
                     <div class="mb-3">
                         <label class="form-label"><fmt:message key="addTour.tourName" /></label>
                         <input type="text" class="form-control" name="tourName" required maxlength="64">

@@ -6,14 +6,20 @@ public enum CommandEnum {
             this.command = new LoginCommand();
         }
     },
+
+    LOGOUT {
+        {
+            this.command = new LogoutCommand();
+        }
+    },
     LIST_TOUR {
         {
             this.command = new ListTourCommand();
         }
     },
-    LOGOUT {
+    ADD_TOUR {
         {
-            this.command = new LogoutCommand();
+            this.command = new AddTourCommand();
         }
     },
     REGISTER {
