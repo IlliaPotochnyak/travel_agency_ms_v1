@@ -62,7 +62,8 @@
 
         <div class="container mt-3">
             <c:if test="${UserRole == 'admin' or UserRole == 'manager'}">
-                    <form action="EditTourServlet" method="post">
+                    <form action="controller" method="post">
+                        <input type="hidden"  name="command" value="edit_tour">
                         <input type="hidden" name="tourId" value="${tour.id}">
                         <input type="hidden" name="tourName" value="${tour.name}">
                         <input type="hidden" name="tourDescription" value="${tour.description}">
