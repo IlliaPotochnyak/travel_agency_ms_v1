@@ -16,23 +16,9 @@
     </head>
         <body>
             <jsp:include page="WEB-INF/view/Header.jsp" flush="true"/>
+            <jsp:include page="WEB-INF/view/CabinetMenu.jsp" flush="true"/>
 
-            <div class="container">
-                <h2><fmt:message key="cabinet.message" /></h2>
-            </div>
 
-            <div class="container">
-                <c:if test="${UserRole == 'admin'}">
-                    <a href="AddTour.jsp"><fmt:message key="cabinet.addTour" /></a>
-                </c:if>
-                <c:if test="${UserRole == 'admin' or UserRole == 'manager'}">
-                    <a href="#receiptList"><fmt:message key="cabinet.receiptList" /></a>
-                </c:if>
-                <c:if test="${UserRole == 'admin'}">
-                    <a href="#userList"><fmt:message key="cabinet.userList" /></a>
-                </c:if>
-
-            </div>
 
             <%--User Info block --%>
             <div class="container">
@@ -65,37 +51,7 @@
 
             <%--List block --%>
 
-            <a id="receiptList">
-                <jsp:include page="ReceiptListServlet" flush="true"/>
 
-                <%--For displaying Previous link except for the 1st page --%>
-                    <c:if test="${currentPage != 1}">
-                        <td><a href="Cabinet.jsp?page=${currentPage - 1}#receiptList"><fmt:message key="main.mainPrevious" /></a></td>
-                    </c:if>
-
-                    <%--For displaying Page numbers.
-                    The when condition does not display a link for the current page--%>
-                    <table border="1" cellpadding="5" cellspacing="5">
-                        <tr>
-                            <c:forEach begin="1" end="${noOfPages}" var="i">
-                                <c:choose>
-                                    <c:when test="${currentPage eq i}">
-                                        <td>${i}</td>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <td><a href="Cabinet.jsp?page=${i}#receiptList">${i}</a></td>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:forEach>
-                        </tr>
-                    </table>
-
-                    <%--For displaying Next link --%>
-                    <c:if test="${currentPage lt noOfPages}">
-                        <td><a href="Cabinet.jsp?page=${currentPage + 1}#receiptList"><fmt:message key="main.mainNext" /></a></td>
-                    </c:if>
-
-            </a>
             <hr>
 
             <c:if test="${UserRole == 'admin'}">

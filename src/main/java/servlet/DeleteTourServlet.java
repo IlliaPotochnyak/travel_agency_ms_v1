@@ -21,7 +21,7 @@ public class DeleteTourServlet extends HttpServlet {
 //        TourService tourService = new TourService();
 //        tourService.delete(Integer.parseInt(req.getParameter("tourId")));
 
-        resp.sendRedirect("index.jsp");
+//        resp.sendRedirect("index.jsp");
 
 
     }

@@ -37,6 +37,11 @@ public enum CommandEnum {
             this.command = new TourPageCommand();
         }
     },
+    RECEIPT_LIST {
+        {
+            this.command = new ReceiptListCommand();
+        }
+    },
     REGISTER {
         {
             this.command = new RegisterCommand();

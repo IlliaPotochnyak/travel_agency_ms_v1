@@ -16,6 +16,10 @@
 
     </head>
     <body>
+
+        <jsp:include page="Header.jsp" flush="true"/>
+        <jsp:include page="CabinetMenu.jsp" flush="true"/>
+
         <div class="container mt-3">
             <h2><fmt:message key="listReceipt.message" /></h2>
         </div>
@@ -97,6 +101,34 @@
                 </tbody>
 
             </table>
+
+            <%--For displaying Previous link except for the 1st page --%>
+                                <c:if test="${currentPage != 1}">
+                                    <td><a href="controller?command=receipt_list&page=${currentPage - 1}#receiptList"><fmt:message key="main.mainPrevious" /></a></td>
+                                </c:if>
+
+                                <%--For displaying Page numbers.
+                                The when condition does not display a link for the current page--%>
+                                <table border="1" cellpadding="5" cellspacing="5">
+                                    <tr>
+                                        <c:forEach begin="1" end="${noOfPages}" var="i">
+                                            <c:choose>
+                                                <c:when test="${currentPage eq i}">
+                                                    <td>${i}</td>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <td><a href="controller?command=receipt_list&page=${i}#receiptList">${i}</a></td>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
+                                    </tr>
+                                </table>
+
+                                <%--For displaying Next link --%>
+                                <c:if test="${currentPage lt noOfPages}">
+                                    <td><a href="controller?command=receipt_list&page=${currentPage + 1}#receiptList"><fmt:message key="main.mainNext" /></a></td>
+                                </c:if>
+
 
         <div>
 
