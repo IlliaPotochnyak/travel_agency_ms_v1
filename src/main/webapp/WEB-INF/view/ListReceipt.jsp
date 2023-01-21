@@ -80,7 +80,8 @@
                             <td>
 
                                 <c:if test="${UserRole == 'admin' or UserRole == 'manager'}">
-                                    <form action="ReceiptStatusServlet" method="POST" >
+                                    <form action="controller" method="POST" >
+                                        <input type="hidden"  name="command" value="receipt_status_change">
                                         <input type="hidden" name="receiptId" value="${receipt.id}">
                                         <select id="orderStatus" class="form-select form-select-sm" name="orderStatus" onchange="this.form.submit()">
                                             <option value="registered" <c:if test="${receipt.orderStatus eq 'registered'}">class="fw-bolder" selected</c:if>><fmt:message key="listReceipt.tableStatRegistered" /></option>
