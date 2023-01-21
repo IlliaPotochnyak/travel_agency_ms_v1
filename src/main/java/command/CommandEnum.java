@@ -15,6 +15,11 @@ public enum CommandEnum {
         {
             this.command = new LogoutCommand();
         }
+    },
+    REGISTER {
+        {
+            this.command = new RegisterCommand();
+        }
     };
         ActionCommand command;
 

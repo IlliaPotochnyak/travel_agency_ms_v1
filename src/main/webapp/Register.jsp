@@ -78,7 +78,8 @@
         <div class="container mt-3">
 
 
-            <form action="RegisterServlet" method="post">
+            <form action="controller" method="post">
+                <input type="hidden"  name="command" value="register">
 
                 <h1><fmt:message key="register.message" /></h1>
                 <p><fmt:message key="register.messageText" /></p>
