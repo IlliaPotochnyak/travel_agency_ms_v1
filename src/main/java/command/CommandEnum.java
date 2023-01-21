@@ -2,7 +2,6 @@ package command;
 
 public enum CommandEnum {
     LOGIN { { this.command = new LoginCommand(); } },
-
     LOGOUT { { this.command = new LogoutCommand(); } },
     LIST_TOUR { { this.command = new ListTourCommand(); } },
     ADD_TOUR { { this.command = new AddTourCommand(); } },
@@ -14,6 +13,7 @@ public enum CommandEnum {
     RECEIPT_REGISTER { { this.command = new ReceiptRegisterCommand(); } },
     RECEIPT_STATUS_CHANGE { { this.command = new ReceiptStatusChangeCommand(); } },
     SET_DISCOUNT { { this.command = new SetDiscountCommand(); } },
+    USER_ACTIVE { { this.command = new UserActiveCommand(); } },
     REGISTER { { this.command = new RegisterCommand(); } };
         ActionCommand command;
 

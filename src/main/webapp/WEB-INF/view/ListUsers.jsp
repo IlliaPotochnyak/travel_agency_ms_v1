@@ -47,7 +47,8 @@
                             <td><c:out value="${user.phone}"/></td>
                             <td>
 
-                                <form action="UserActiveServlet" method="POST" >
+                                <form action="controller" method="POST" >
+                                    <input type="hidden"  name="command" value="user_active">
                                     <input type="hidden" name="userId" value="${user.id}">
                                     <select id="userActive" class="form-select form-select-sm" name="userActive" onchange="this.form.submit()">
 
@@ -55,7 +56,7 @@
                                             <span class="fw-bolder"><fmt:message key="listUsers.tableActiveStatus" /></span>
                                         </option>
                                         <option value="0" <c:if test="${user.active eq 0}"> class="fw-bolder" selected</c:if>>
-                                            <span class="fw-bolder"><fmt:message key="listUsers.tableBlockedStatus" /></span>
+                                            <span class="text-danger fw-bolder"><fmt:message key="listUsers.tableBlockedStatus" /></span>
                                         </option>
                                     </select>
                                 </form>
