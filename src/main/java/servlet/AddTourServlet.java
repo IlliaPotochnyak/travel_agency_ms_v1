@@ -15,7 +15,7 @@ import java.io.IOException;
 public class AddTourServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("AddTourServlet Post method");
+//        System.out.println("AddTourServlet Post method");
 
 //        int tourIsHot;
 //        if (req.getParameter("tourHot") == null) { tourIsHot = 0; }

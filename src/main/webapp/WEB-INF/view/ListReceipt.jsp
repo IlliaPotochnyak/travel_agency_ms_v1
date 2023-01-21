@@ -53,7 +53,7 @@
                             <td><c:out value="${receipt.userFirstName}"/></td>
                             <td><c:out value="${receipt.userLastName}"/></td>
                             <td><c:out value="${receipt.tourId}"/></td>
-                            <td><c:out value="${receipt.tourName}"/></td>
+                            <td><a href="controller?command=tour_page&tourId=${receipt.tourId}" ><c:out value="${receipt.tourName}"/></a></td>
                             <c:if test="${UserRole == 'admin' or UserRole == 'manager'}">
                                 <td>
                                     <c:out value="${receipt.discount}"/>
