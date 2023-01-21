@@ -23,7 +23,7 @@
             <%--User Info block --%>
             <div class="container">
                 <button data-bs-toggle="collapse" data-bs-target="#userInfo" class="btn btn-primary"><fmt:message key="cabinet.userInfo" /></button>
-                <div id="userInfo" class="collapse">
+                <div id="userInfo" class="collapse show">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-2 p-3 bg-primary text-white"><fmt:message key="cabinet.tableUserFirstName" /></div>
