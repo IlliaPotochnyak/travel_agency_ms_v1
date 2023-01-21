@@ -22,7 +22,8 @@
             <h2><fmt:message key="editTour.message" /></h2>
         </div>
         <div class="container bg-secondary  mt-5">
-            <form action="EditTourServlet" method="post">
+            <form action="controller" method="post">
+                <input type="hidden"  name="command" value="edit_tour">
 
                 <input type="hidden" name="tourId" value="${param.tourId}">
 

@@ -14,20 +14,20 @@ import java.io.IOException;
 public class TourPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("TourPageServlet servlet Get method");
-
-//        TourDAOImpl tourDAO = new TourDAOImpl();
-//        Tour tour = null;
-        TourDTO tourDTO;
-        TourService service = new TourService();
-
-        tourDTO = service.getById(Integer.parseInt(req.getParameter("tourId")));
-        System.out.println(tourDTO);
-        req.setAttribute("tour", tourDTO);
-
-//        req.getRequestDispatcher("WEB-INF/view/ListTour.jsp").forward(req, resp);
-//        req.getRequestDispatcher("TourPage.jsp").include(req, resp);
-        req.getRequestDispatcher("TourPage.jsp").forward(req, resp);
+//        System.out.println("TourPageServlet servlet Get method");
+//
+////        TourDAOImpl tourDAO = new TourDAOImpl();
+////        Tour tour = null;
+//        TourDTO tourDTO;
+//        TourService service = new TourService();
+//
+//        tourDTO = service.getById(Integer.parseInt(req.getParameter("tourId")));
+//        System.out.println(tourDTO);
+//        req.setAttribute("tour", tourDTO);
+//
+////        req.getRequestDispatcher("WEB-INF/view/ListTour.jsp").forward(req, resp);
+////        req.getRequestDispatcher("TourPage.jsp").include(req, resp);
+//        req.getRequestDispatcher("TourPage.jsp").forward(req, resp);
 
     }
 

@@ -68,7 +68,7 @@
                                 </c:if>
                             </td>
 
-                                <td id="table-name"><a href="TourPageServlet?tourId=${tour.id}" ><c:out value="${tour.name}"/></td>
+                                <td id="table-name"><a href="controller?command=tour_page&tourId=${tour.id}" ><c:out value="${tour.name}"/></td>
                                 <td id="table-desc"><c:out value="${tour.description}"/></a></td>
                                 <td><c:out value="${tour.price}"/></td>
                                 <td><c:out value="${tour.personsNumber}"/></td>

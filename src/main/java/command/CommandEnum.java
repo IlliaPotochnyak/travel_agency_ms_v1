@@ -27,6 +27,16 @@ public enum CommandEnum {
             this.command = new DeleteTourCommand();
         }
     },
+    EDIT_TOUR {
+        {
+            this.command = new EditTourCommand();
+        }
+    },
+    TOUR_PAGE {
+        {
+            this.command = new TourPageCommand();
+        }
+    },
     REGISTER {
         {
             this.command = new RegisterCommand();
