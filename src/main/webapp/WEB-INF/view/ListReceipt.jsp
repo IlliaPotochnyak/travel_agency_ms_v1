@@ -62,7 +62,8 @@
                                         <fmt:message key="listReceipt.tableChange" />
                                       </button>
                                       <ul class="dropdown-menu">
-                                        <li><form class="dropdown-item form-control form-control-sm"action="SetDiscountServlet" method="POST" >
+                                        <li><form class="dropdown-item form-control form-control-sm"action="controller" method="POST" >
+                                                <input type="hidden"  name="command" value="set_discount">
                                                 <input type="hidden" name="receiptId" value="${receipt.id}">
                                                 <input type="hidden" name="tourId" value="${receipt.tourId}">
                                                 <input  type="number" class="form-control w-50 bg-light p-3" name="discount" required maxlength="2"

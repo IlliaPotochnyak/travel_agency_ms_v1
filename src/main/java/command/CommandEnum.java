@@ -13,6 +13,7 @@ public enum CommandEnum {
     USER_LIST { { this.command = new UserListCommand(); } },
     RECEIPT_REGISTER { { this.command = new ReceiptRegisterCommand(); } },
     RECEIPT_STATUS_CHANGE { { this.command = new ReceiptStatusChangeCommand(); } },
+    SET_DISCOUNT { { this.command = new SetDiscountCommand(); } },
     REGISTER { { this.command = new RegisterCommand(); } };
         ActionCommand command;
 
