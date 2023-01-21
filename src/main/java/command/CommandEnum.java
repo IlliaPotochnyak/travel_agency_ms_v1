@@ -42,6 +42,11 @@ public enum CommandEnum {
             this.command = new ReceiptListCommand();
         }
     },
+    USER_LIST {
+        {
+            this.command = new UserListCommand();
+        }
+    },
     REGISTER {
         {
             this.command = new RegisterCommand();

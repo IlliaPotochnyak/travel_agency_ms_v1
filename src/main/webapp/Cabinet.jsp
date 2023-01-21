@@ -46,47 +46,7 @@
                 </div>
             </div>
 
-            <hr>
 
-
-            <%--List block --%>
-
-
-            <hr>
-
-            <c:if test="${UserRole == 'admin'}">
-                <a id="userList">
-                    <jsp:include page="UserListServlet" flush="true"/>
-
-                    <%--For displaying Previous link except for the 1st page --%>
-                    <c:if test="${currentPageUsers != 1}">
-                        <td><a href="Cabinet.jsp?pageUsers=${currentPageUsers - 1}#userList"><fmt:message key="main.mainPrevious" /></a></td>
-                    </c:if>
-
-                    <%--For displaying Page numbers.
-                    The when condition does not display a link for the current page--%>
-                    <table border="1" cellpadding="5" cellspacing="5">
-                        <tr>
-                            <c:forEach begin="1" end="${noOfPagesUsers}" var="i">
-                                <c:choose>
-                                    <c:when test="${currentPageUsers eq i}">
-                                        <td>${i}</td>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <td><a href="Cabinet.jsp?pageUsers=${i}#userList">${i}</a></td>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:forEach>
-                        </tr>
-                    </table>
-
-                    <%--For displaying Next link --%>
-                    <c:if test="${currentPageUsers lt noOfPagesUsers}">
-                        <td><a href="Cabinet.jsp?pageUsers=${currentPageUsers + 1}#userList"><fmt:message key="main.mainNext" /></a></td>
-                    </c:if>
-
-                </a>
-            </c:if>
             <hr>
         </body>
 </html>

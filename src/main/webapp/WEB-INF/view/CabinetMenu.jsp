@@ -28,11 +28,11 @@
                         <c:if test="${UserRole == 'admin'}">
                             <a href="AddTour.jsp"><fmt:message key="cabinet.addTour" /></a>
                         </c:if>
-                        <c:if test="${UserRole == 'admin' or UserRole == 'manager'}">
+
                             <a href="controller?command=receipt_list"><fmt:message key="cabinet.receiptList" /></a>
-                        </c:if>
+
                         <c:if test="${UserRole == 'admin'}">
-                            <a href="#userList"><fmt:message key="cabinet.userList" /></a>
+                            <a href="controller?command=user_list"><fmt:message key="cabinet.userList" /></a>
                         </c:if>
 
                     </div>

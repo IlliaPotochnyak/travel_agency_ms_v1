@@ -14,6 +14,10 @@
 
     </head>
     <body>
+
+        <jsp:include page="Header.jsp" flush="true"/>
+        <jsp:include page="CabinetMenu.jsp" flush="true"/>
+
         <div class="container mt-3">
             <h2><fmt:message key="listUsers.message" /></h2>
         </div>
@@ -65,6 +69,34 @@
                 </tbody>
 
             </table>
+
+            <%--For displaying Previous link except for the 1st page --%>
+                                <c:if test="${currentPageUsers != 1}">
+                                    <td><a href="controller?command=user_list&pageUsers=${currentPageUsers - 1}#userList"><fmt:message key="main.mainPrevious" /></a></td>
+                                </c:if>
+
+                                <%--For displaying Page numbers.
+                                The when condition does not display a link for the current page--%>
+                                <table border="1" cellpadding="5" cellspacing="5">
+                                    <tr>
+                                        <c:forEach begin="1" end="${noOfPagesUsers}" var="i">
+                                            <c:choose>
+                                                <c:when test="${currentPageUsers eq i}">
+                                                    <td>${i}</td>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <td><a href="controller?command=user_list&pageUsers=${i}#userList">${i}</a></td>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
+                                    </tr>
+                                </table>
+
+                                <%--For displaying Next link --%>
+                                <c:if test="${currentPageUsers lt noOfPagesUsers}">
+                                    <td><a href="controller?command=user_list&pageUsers=${currentPageUsers + 1}#userList"><fmt:message key="main.mainNext" /></a></td>
+                                </c:if>
+
 
         <div>
 

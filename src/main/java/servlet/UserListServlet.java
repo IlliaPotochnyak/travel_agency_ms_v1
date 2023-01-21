@@ -24,29 +24,29 @@ public class UserListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        System.out.println("UserListServlet doGet");
 
-        int page = 1;
-        int recordsPerPage = 5;
-        if(req.getParameter("pageUsers") != null)
-            page = Integer.parseInt(req.getParameter("pageUsers"));
-
-//        int userId = (int) req.getSession().getAttribute("UserId");
-
-//        UserDAO userDAO = new UserDAOImpl();
-        UserService userService = new UserService();
-        List<UserDTO> userList = null;
-        if (req.getSession().getAttribute("UserRole").equals("admin")) {
-
-            userList = userService.getAll((page-1)*recordsPerPage, recordsPerPage);
-        }
-
-        int noOfRecords = userService.getNoOfRecords();
-        int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
-        req.setAttribute("noOfPagesUsers", noOfPages);
-        req.setAttribute("currentPageUsers", page);
-
-
-        req.setAttribute("userList", userList);
-//        req.getRequestDispatcher("Cabinet.jsp").forward(req, resp);
-        req.getRequestDispatcher("WEB-INF/view/ListUsers.jsp").include(req, resp);
+//        int page = 1;
+//        int recordsPerPage = 5;
+//        if(req.getParameter("pageUsers") != null)
+//            page = Integer.parseInt(req.getParameter("pageUsers"));
+//
+////        int userId = (int) req.getSession().getAttribute("UserId");
+//
+////        UserDAO userDAO = new UserDAOImpl();
+//        UserService userService = new UserService();
+//        List<UserDTO> userList = null;
+//        if (req.getSession().getAttribute("UserRole").equals("admin")) {
+//
+//            userList = userService.getAll((page-1)*recordsPerPage, recordsPerPage);
+//        }
+//
+//        int noOfRecords = userService.getNoOfRecords();
+//        int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+//        req.setAttribute("noOfPagesUsers", noOfPages);
+//        req.setAttribute("currentPageUsers", page);
+//
+//
+//        req.setAttribute("userList", userList);
+////        req.getRequestDispatcher("Cabinet.jsp").forward(req, resp);
+//        req.getRequestDispatcher("WEB-INF/view/ListUsers.jsp").include(req, resp);
     }
 }
