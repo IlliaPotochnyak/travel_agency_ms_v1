@@ -37,8 +37,9 @@ public class ReceiptService implements IReceiptService{
         try {
             return receiptDao.addReceipt(receipt);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+        return false;
     }
 
     @Override
@@ -50,7 +51,7 @@ public class ReceiptService implements IReceiptService{
             receiptList = receiptDao.getAllUserReceiptsByUserId(id, offset, noOfRecords);
             receiptList.forEach(receipt -> receiptDTOList.add( getReceiptDTOFromReceipt(receipt) ));
         } catch (DatabaseException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         this.noOfRecords = receiptDao.getNoOfRecords();
         return receiptDTOList;
@@ -65,7 +66,7 @@ public class ReceiptService implements IReceiptService{
             receiptList = receiptDao.getAllReceipts(offset, noOfRecords);
             receiptList.forEach(receipt -> receiptDTOList.add( getReceiptDTOFromReceipt(receipt) ));
         } catch (DatabaseException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         this.noOfRecords = receiptDao.getNoOfRecords();
         return receiptDTOList;
@@ -77,8 +78,9 @@ public class ReceiptService implements IReceiptService{
         try {
             return receiptDao.updateReceiptStatus(receiptDTO.getId(), receiptDTO.getOrderStatus());
         } catch (DatabaseException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+        return false;
     }
 
     @Override
@@ -89,7 +91,7 @@ public class ReceiptService implements IReceiptService{
         try {
             receiptDTO.setOrderStatus( receiptDao.getReceiptById(receiptDTO.getId()).getOrderStatus() );
         } catch (DatabaseException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
         if (receiptDTO.getDiscount() >= 0 && receiptDTO.getDiscount() <= tourDTO.getMaxDiscount()
@@ -98,7 +100,7 @@ public class ReceiptService implements IReceiptService{
                 try {
                     return receiptDao.updateReceiptDiscount(receiptDTO.getId(), receiptDTO.getDiscount(), amount);
                 } catch (DatabaseException e) {
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
                 }
         }
         return false;
