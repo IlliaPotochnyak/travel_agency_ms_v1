@@ -15,11 +15,14 @@ public class TourPageCommand implements ActionCommand{
         TourService service = new TourService();
 
         tourDTO = service.getById(Integer.parseInt(req.getParameter("tourId")));
-        System.out.println(tourDTO);
-        req.setAttribute("tour", tourDTO);
-
-
-        page = "/TourPage.jsp";
+        if (tourDTO != null) {
+//        System.out.println(tourDTO);
+            req.setAttribute("tour", tourDTO);
+            page = "/TourPage.jsp";
+        } else {
+            req.getSession().setAttribute("errorMessage", "Wrong tour data");
+            page = "/error.jsp";
+        }
 
         return page;
     }

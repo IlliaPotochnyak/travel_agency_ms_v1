@@ -56,9 +56,6 @@ public class ListTourCommand implements ActionCommand{
 //        request.getRequestDispatcher("WEB-INF/view/ListTour.jsp").include(request, resp);
         pagePath = "/WEB-INF/view/ListTour.jsp";
 
-
-
-
         return pagePath;
     }
 }

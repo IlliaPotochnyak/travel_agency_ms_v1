@@ -43,7 +43,7 @@
                             <div class="mb-3">
                                 <label class="form-label "><fmt:message key="addTour.tourPersonsNumber" /></label>
                                 <input type="number" class="form-control w-25" name="PersonNumber" required maxlength="3"
-                                    min="1" max="999">
+                                    min="1" max="99">
                             </div>
                         </div>
                         <div class="col">

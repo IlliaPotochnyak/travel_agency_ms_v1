@@ -45,10 +45,11 @@ public class TourService implements ITourService {
 
         TourDAO tourDAO = new TourDAOImpl();
 //        TourDTO tourDTO = new TourDTO();
-        TourDTO tourDTO;
+        TourDTO tourDTO = null;
 
         try {
             Tour tour = tourDAO.getTourById(id);
+
             tourDTO = getTourDTOFromTour(tour);
 
 //            tourDTO.setId(tour.getId());
@@ -61,11 +62,10 @@ public class TourService implements ITourService {
 //            tourDTO.setTourType(tour.getTourType());
 //            tourDTO.setHotelType(tour.getHotelType());
 
-        } catch (DatabaseException e) {
-            throw new RuntimeException(e);
+        } catch (DatabaseException | NullPointerException e ) {
+            e.printStackTrace();
+
         }
-
-
         return tourDTO;
     }
 
@@ -87,7 +87,7 @@ public class TourService implements ITourService {
 
             this.noOfRecords = tourDAO.getNoOfRecords();
         } catch (DatabaseException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         return tourDTOList;
     }
@@ -114,7 +114,7 @@ public class TourService implements ITourService {
             );
             this.noOfRecords = tourDAO.getNoOfRecords();
         } catch (DatabaseException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         return tourDTOList;
     }
@@ -126,8 +126,9 @@ public class TourService implements ITourService {
         try {
             return tourDAO.updateTour(tourDTO);
         } catch (DatabaseException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+        return false;
     }
 
     @Override
@@ -136,11 +137,12 @@ public class TourService implements ITourService {
         try {
             return tourDAO.deleteTourById(id);
         } catch (DatabaseException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+        return false;
     }
 
-    private TourDTO getTourDTOFromTour(Tour tour) {
+    private TourDTO getTourDTOFromTour(Tour tour) throws NullPointerException{
         TourDTO tourDTO = new TourDTO();
         tourDTO.setId(tour.getId());
         tourDTO.setName(tour.getName());
@@ -154,6 +156,4 @@ public class TourService implements ITourService {
 
         return tourDTO;
     }
-
-
 }

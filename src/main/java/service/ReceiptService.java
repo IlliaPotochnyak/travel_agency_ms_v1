@@ -28,6 +28,7 @@ public class ReceiptService implements IReceiptService{
 
         TourService tourService = new TourService();
         TourDTO tour = tourService.getById(receiptDTO.getTourId());
+        if (tour == null) return false;
 
         Receipt receipt = new Receipt(receiptDTO.getTourId(),
                 receiptDTO.getUserId(), 0,

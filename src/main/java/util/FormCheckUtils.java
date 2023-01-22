@@ -15,7 +15,7 @@ public class FormCheckUtils {
         String regexHotelType = "[1-5]{1}";
         String regexTourHot = "[0-1]{1}";
         String[] tourTypes = {"rest", "excursion", "shopping"};
-        System.out.println(req.getParameter("tourType"));
+//        System.out.println(req.getParameter("tourType"));
 
         if ( !req.getParameter("tourName").matches(regexName) ) {
             System.out.println("Wrong tour name");
