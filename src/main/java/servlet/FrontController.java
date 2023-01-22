@@ -26,6 +26,7 @@ public class FrontController extends HttpServlet {
                                 HttpServletResponse response, String method)
             throws ServletException, IOException {
         String page = null;
+        request.getSession().removeAttribute("errorMessage");
 // определение команды, пришедшей из JSP
         ActionFactory client = new ActionFactory();
         ActionCommand command = client.defineCommand(request);
@@ -34,6 +35,7 @@ public class FrontController extends HttpServlet {
          * классу-обработчику конкретной команды
          */
         page = command.execute(request);
+
 // метод возвращает страницу ответа
 // page = null; // поэксперементировать!
         if (page != null) {
@@ -71,6 +73,8 @@ public class FrontController extends HttpServlet {
 //            request.getSession().setAttribute("nullPage",
 //                    MessageManager.getProperty("message.nullpage"));
 //            System.out.println("page forward - " + request.getContextPath() + page);
+            System.out.println(request.getParameter("errorMessage"));
+
             response.sendRedirect(request.getContextPath() + page);
         }
     }

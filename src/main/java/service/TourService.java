@@ -34,9 +34,10 @@ public class TourService implements ITourService {
         try {
             return tourDAO.addTour(newTour);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+//            throw new RuntimeException(e);
         }
-//        return false;
+        return false;
     }
 
     @Override

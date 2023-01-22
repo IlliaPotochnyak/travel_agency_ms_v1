@@ -41,9 +41,9 @@ public class TourDAOImpl implements TourDAO {
             pstmnt.executeUpdate();
 
             result = true;
-        } catch (SQLException e) {
+        } catch ( SQLException e) {
             result = false;
-            throw new RuntimeException(e);
+            throw new SQLException(e);
         }
 
         return result;

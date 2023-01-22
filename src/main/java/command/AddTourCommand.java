@@ -39,12 +39,12 @@ public class AddTourCommand implements ActionCommand {
 
                 page = "/AddTourOk.jsp";
 //                System.out.println("After redirect");
-            } else {
-                req.setAttribute("errorAddTour", "Wrong Tour data");
-
-                page = "/AddTour.jsp";
             }
+        }else {
+            System.out.println("errorAddTour, Wrong Tour data");
+            req.getSession().setAttribute("errorMessage", "Wrong Tour data");
 
+            page = "/AddTour.jsp";
         }
         return page;
     }

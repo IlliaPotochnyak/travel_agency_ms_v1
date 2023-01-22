@@ -17,11 +17,13 @@
         <body>
             <jsp:include page="WEB-INF/view/Header.jsp" flush="true"/>
 
+
             <div class="container">
                 <h2><fmt:message key="addTour.message" /></h2>
             </div>
             <div class="container">
-                ${errorAddTour}
+
+                ${errorMessage}
             </div>
             <hr>
             <div class="container bg-secondary  mt-5">

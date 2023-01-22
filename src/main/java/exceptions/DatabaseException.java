@@ -11,7 +11,7 @@ public class DatabaseException extends ApplicationException {
 
     public DatabaseException(String message, Throwable cause) {
         super(message, cause);
-        setForward("/index.jsp");
+//        setForward("/index.jsp");
     }
 
 }
