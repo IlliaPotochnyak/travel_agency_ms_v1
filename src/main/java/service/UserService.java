@@ -44,8 +44,9 @@ public class UserService implements IUserService{
         try {
             return userDAO.addUser(user);
         } catch (DatabaseException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+        return false;
     }
 
     @Override
@@ -55,8 +56,9 @@ public class UserService implements IUserService{
         try {
             return userDAO.getUserByEmail(email);
         } catch (DatabaseException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+        return null;
     }
 
     @Override
@@ -76,7 +78,7 @@ public class UserService implements IUserService{
 
             this.noOfRecords = userDAO.getNoOfRecords();
         } catch (DatabaseException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         return userDTOList;
 
@@ -93,7 +95,7 @@ public class UserService implements IUserService{
     }
 
     public UserDTO loginUser(String email, String password) {
-        System.out.println("loginUser method");
+//        System.out.println("loginUser method");
 
         User user = getByEmail(email);
         UserDTO userDTO = new UserDTO();
@@ -119,9 +121,9 @@ public class UserService implements IUserService{
         try {
             return userDAO.blockOrUnblockUserByIdAndParam(id, isBlock);
         } catch (DatabaseException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
-//        return false;
+        return false;
     }
 
     private UserDTO getUserDTOFromUser(User user) {
