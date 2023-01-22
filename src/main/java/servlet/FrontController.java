@@ -16,14 +16,14 @@ import java.util.Enumeration;
 public class FrontController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        processRequest(request, response, "get");
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        processRequest(request, response, "post");
     }
     private void processRequest(HttpServletRequest request,
-                                HttpServletResponse response)
+                                HttpServletResponse response, String method)
             throws ServletException, IOException {
         String page = null;
 // определение команды, пришедшей из JSP
@@ -37,7 +37,9 @@ public class FrontController extends HttpServlet {
 // метод возвращает страницу ответа
 // page = null; // поэксперементировать!
         if (page != null) {
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
+
+            if (method.equals("get")) {
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
 //            System.out.println("page forward - " + request.getContextPath() + page);
 //            System.out.println(request);
 //
@@ -59,13 +61,16 @@ public class FrontController extends HttpServlet {
 
 //            System.out.println(request.getParameter("list"));
 // вызов страницы ответа на запрос
-            dispatcher.forward(request, response);
+                dispatcher.forward(request, response);
+            } else {
+                response.sendRedirect(request.getContextPath() + page);
+            }
         } else {
 // установка страницы c cообщением об ошибке
 //            page = ConfigurationManager.getProperty("path.page.index");
 //            request.getSession().setAttribute("nullPage",
 //                    MessageManager.getProperty("message.nullpage"));
-            System.out.println("page forward - " + request.getContextPath() + page);
+//            System.out.println("page forward - " + request.getContextPath() + page);
             response.sendRedirect(request.getContextPath() + page);
         }
     }
