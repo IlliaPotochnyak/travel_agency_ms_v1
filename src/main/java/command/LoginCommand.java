@@ -27,7 +27,7 @@ public class LoginCommand implements ActionCommand{
             page = "/index.jsp";
         } else {
 
-            req.setAttribute("errorLogin", "Wrong email or password");
+            req.getSession().setAttribute("errorMessage", "Wrong email or password");
 
             page = "/Login.jsp";
         }

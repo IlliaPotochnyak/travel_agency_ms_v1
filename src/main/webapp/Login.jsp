@@ -21,7 +21,7 @@
                 <h2><fmt:message key="login.message" /></h2>
             </div>
             <div class="container">
-                ${errorLogin}
+                ${errorMessage}
             </div>
             <hr>
             <div class="container mt-5">
