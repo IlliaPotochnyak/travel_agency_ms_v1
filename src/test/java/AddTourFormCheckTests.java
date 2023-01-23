@@ -168,5 +168,34 @@ public class AddTourFormCheckTests {
         }
     }
 
+    @Test
+    public void AddTourFormPriceTest () {
+        HttpServletRequest request = mock(HttpServletRequest.class);
+
+        when(request.getParameter("tourName")).thenReturn("Name");
+        when(request.getParameter("tourDescription")).thenReturn("Desc");
+        when(request.getParameter("PersonNumber")).thenReturn("1");
+        when(request.getParameter("tourPrice")).thenReturn("1000");
+        when(request.getParameter("maxDiscount")).thenReturn("10");
+        when(request.getParameter("tourType")).thenReturn("rest");
+        when(request.getParameter("hotelType")).thenReturn("3");
+
+        assertTrue(FormCheckUtils.addTourFormCheck(request));
+
+        String[] priceTrue = {"10", "11234", "999999999"};
+
+        for (String name: priceTrue) {
+            when(request.getParameter("tourPrice")).thenReturn(name);
+            assertTrue(FormCheckUtils.addTourFormCheck(request));
+        }
+
+        String[] priceFalse = {"", "a", "A", "!", ".", " 1", "!1", "0", "01", "00", "1000000000"};
+
+        for (String name: priceFalse) {
+            when(request.getParameter("tourPrice")).thenReturn(name);
+            assertFalse(FormCheckUtils.addTourFormCheck(request));
+        }
+    }
+
 
 }
