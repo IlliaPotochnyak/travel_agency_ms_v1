@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 public class FormCheckUtils {
     public static boolean addTourFormCheck(HttpServletRequest req) {
+        if(req == null) return false;
 
         String regexName = ".{2,64}";
         String regexDesc = ".{2,65500}";
@@ -17,24 +18,23 @@ public class FormCheckUtils {
         String[] tourTypes = {"rest", "excursion", "shopping"};
 //        System.out.println(req.getParameter("tourType"));
 
-        if ( !req.getParameter("tourName").matches(regexName) ) {
+        if ( req.getParameter("tourName") == null || !req.getParameter("tourName").matches(regexName) ) {
             System.out.println("Wrong tour name");
             return false;
         }
-        if ( !req.getParameter("tourDescription").trim().matches(regexDesc) ) {
-            System.out.println(req.getParameter("tourDescription"));
+        if ( req.getParameter("tourDescription") == null || !req.getParameter("tourDescription").trim().matches(regexDesc)) {
             System.out.println("Wrong tour Desc");
             return false;
         }
-        if ( !req.getParameter("PersonNumber").matches(regexPersonNumber) ) {
+        if ( req.getParameter("PersonNumber") == null || !req.getParameter("PersonNumber").matches(regexPersonNumber)) {
             System.out.println("Wrong person number");
             return false;
         }
-        if ( !req.getParameter("tourPrice").matches(regexTourPrice) ) {
+        if ( req.getParameter("tourPrice") == null || !req.getParameter("tourPrice").matches(regexTourPrice)) {
             System.out.println("Wrong tour price");
             return false;
         }
-        if ( !req.getParameter("maxDiscount").matches(regexTourDiscount) ) {
+        if ( req.getParameter("maxDiscount") == null || !req.getParameter("maxDiscount").matches(regexTourDiscount)) {
             System.out.println("Wrong tour discount");
             return false;
         }
@@ -42,11 +42,12 @@ public class FormCheckUtils {
 //            System.out.println("Wrong tour Hot");
 //            return false;
 //        }
-        if ( !Arrays.stream(tourTypes).anyMatch (req.getParameter("tourType")::equals)) {
+        if ( req.getParameter("tourType") == null
+                || !Arrays.stream(tourTypes).anyMatch (req.getParameter("tourType")::equals)) {
             System.out.println("Wrong tour type");
             return false;
         }
-        if ( !req.getParameter("hotelType").matches(regexHotelType)) {
+        if ( req.getParameter("hotelType") == null || !req.getParameter("hotelType").matches(regexHotelType)) {
             System.out.println("Wrong hotel type");
             return false;
         }
