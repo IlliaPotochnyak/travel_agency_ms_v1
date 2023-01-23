@@ -169,7 +169,7 @@ public class AddTourFormCheckTests {
     }
 
     @Test
-    public void AddTourFormPriceTest () {
+    public void AddTourFormMaxDiscountTest () {
         HttpServletRequest request = mock(HttpServletRequest.class);
 
         when(request.getParameter("tourName")).thenReturn("Name");
@@ -198,7 +198,7 @@ public class AddTourFormCheckTests {
     }
 
     @Test
-    public void AddTourFormMaxDiscountTest () {
+    public void AddTourFormPriceTest () {
         HttpServletRequest request = mock(HttpServletRequest.class);
 
         when(request.getParameter("tourName")).thenReturn("Name");
@@ -225,6 +225,64 @@ public class AddTourFormCheckTests {
             assertFalse(FormCheckUtils.addTourFormCheck(request));
         }
     }
+    @Test
+    public void AddTourFormTourTypeTest () {
+        HttpServletRequest request = mock(HttpServletRequest.class);
+
+        when(request.getParameter("tourName")).thenReturn("Name");
+        when(request.getParameter("tourDescription")).thenReturn("Desc");
+        when(request.getParameter("PersonNumber")).thenReturn("1");
+        when(request.getParameter("tourPrice")).thenReturn("1000");
+        when(request.getParameter("maxDiscount")).thenReturn("10");
+        when(request.getParameter("tourType")).thenReturn("rest");
+        when(request.getParameter("hotelType")).thenReturn("3");
+
+        assertTrue(FormCheckUtils.addTourFormCheck(request));
+
+        String[] typeTrue = {"rest", "excursion", "shopping"};
+
+        for (String name: typeTrue) {
+            when(request.getParameter("tourType")).thenReturn(name);
+            assertTrue(FormCheckUtils.addTourFormCheck(request));
+        }
+
+        String[] typeFalse = {"", "a", "A", "!", ".", " 1", "!1", "0", "01", "00", "1000000000",
+                                " rest", "shopping!"};
+
+        for (String name: typeFalse) {
+            when(request.getParameter("tourType")).thenReturn(name);
+            assertFalse(FormCheckUtils.addTourFormCheck(request));
+        }
+    }
+    @Test
+    public void AddTourFormHotelTypeTest () {
+        HttpServletRequest request = mock(HttpServletRequest.class);
+
+        when(request.getParameter("tourName")).thenReturn("Name");
+        when(request.getParameter("tourDescription")).thenReturn("Desc");
+        when(request.getParameter("PersonNumber")).thenReturn("1");
+        when(request.getParameter("tourPrice")).thenReturn("1000");
+        when(request.getParameter("maxDiscount")).thenReturn("10");
+        when(request.getParameter("tourType")).thenReturn("rest");
+        when(request.getParameter("hotelType")).thenReturn("3");
+
+        assertTrue(FormCheckUtils.addTourFormCheck(request));
+
+        String[] hotelTrue = {"1", "3", "5"};
+
+        for (String name: hotelTrue) {
+            when(request.getParameter("hotelType")).thenReturn(name);
+            assertTrue(FormCheckUtils.addTourFormCheck(request));
+        }
+
+        String[] hotelFalse = {"", "a", "A", "!", ".", " 1", "!1", "0", "01", "00", "6", "9"};
+
+        for (String name: hotelFalse) {
+            when(request.getParameter("hotelType")).thenReturn(name);
+            assertFalse(FormCheckUtils.addTourFormCheck(request));
+        }
+    }
+
 
 
 }
