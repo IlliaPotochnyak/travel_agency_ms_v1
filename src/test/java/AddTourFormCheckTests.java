@@ -98,6 +98,14 @@ public class AddTourFormCheckTests {
             when(request.getParameter("tourName")).thenReturn(name);
             assertTrue(FormCheckUtils.addTourFormCheck(request));
         }
+
+        String[] namesFalse = {"", "a", "A", "1", "!", ".",
+                Stream.generate(() -> "a").limit(65).collect(Collectors.joining())};
+
+        for (String name: namesFalse) {
+            when(request.getParameter("tourName")).thenReturn(name);
+            assertFalse(FormCheckUtils.addTourFormCheck(request));
+        }
     }
 
 }
