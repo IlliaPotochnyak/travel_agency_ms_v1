@@ -10,7 +10,7 @@ public class FormCheckUtils {
 
         String regexName = ".{2,64}";
         String regexDesc = ".{2,65500}";
-        String regexPersonNumber = "^[0-9]{1,3}";
+        String regexPersonNumber = "^[1-9][0-9]?";
         String regexTourPrice = "^[1-9][0-9]{1,8}";
         String regexTourDiscount = "[0-9]{1,2}";
         String regexHotelType = "[1-5]{1}";
