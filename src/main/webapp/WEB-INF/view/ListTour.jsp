@@ -113,5 +113,9 @@
 
         <hr>
 
+        <div class="container">
+            <jsp:include page="Footer.jsp" flush="true"/>
+        </div>
+
     </body>
 </html>

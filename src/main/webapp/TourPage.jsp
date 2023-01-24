@@ -137,5 +137,9 @@
             </div>
         </div>
 
+        <div class="container">
+            <jsp:include page="WEB-INF/view/Footer.jsp" />
+        </div>
+
     </body>
 </html>

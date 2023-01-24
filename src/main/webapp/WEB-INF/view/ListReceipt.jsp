@@ -132,9 +132,13 @@
                                 </c:if>
 
 
-        <div>
+            <div>
 
         <hr>
+
+        <div class="container">
+            <jsp:include page="Footer.jsp" />
+        </div>
 
     </body>
 </html>
