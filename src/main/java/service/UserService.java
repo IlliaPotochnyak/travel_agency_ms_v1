@@ -57,9 +57,8 @@ public class UserService implements IUserService{
 
     @Override
     public User getByEmail(String email) {
-        System.out.println("getByEmail");
+//        System.out.println("getByEmail");
 //         UserDAO userDAO = new UserDAOImpl();
-
         try {
             return userDAO.getUserByEmail(email);
         } catch (DatabaseException e) {
