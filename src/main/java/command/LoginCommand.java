@@ -1,6 +1,8 @@
 package command;
 
 import DTO.UserDTO;
+import db.dao.DAOImpl.MySQLImpl.UserDAOImpl;
+import db.dao.interfaces.UserDAO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import service.UserService;
@@ -11,7 +13,8 @@ public class LoginCommand implements ActionCommand{
         System.out.println("LoginCommand");
         String page = null;
 
-        UserService userService = new UserService();
+        UserDAO userDAO = new UserDAOImpl();
+        UserService userService = new UserService(userDAO);
         UserDTO userDTO = userService.loginUser(req.getParameter("email"), req.getParameter("password"));
 
         if (userDTO != null) {

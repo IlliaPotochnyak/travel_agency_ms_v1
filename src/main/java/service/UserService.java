@@ -1,12 +1,9 @@
 package service;
 
-import DTO.TourDTO;
 import DTO.UserDTO;
 import com.mysql.cj.util.StringUtils;
-import db.dao.DAOImpl.MySQLImpl.TourDAOImpl;
 import db.dao.DAOImpl.MySQLImpl.UserDAOImpl;
 import db.dao.interfaces.UserDAO;
-import entities.Tour;
 import entities.User;
 import exceptions.DatabaseException;
 
@@ -15,6 +12,15 @@ import java.util.List;
 
 public class UserService implements IUserService{
     private int noOfRecords;
+    private UserDAO userDAO;
+
+    public UserService(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+
+    public UserDAO getUserDAO() {
+        return userDAO;
+    }
 
     public int getNoOfRecords() {
         return noOfRecords;
@@ -23,7 +29,7 @@ public class UserService implements IUserService{
     @Override
     public boolean add(UserDTO userDTO) {
 
-        UserDAO userDAO = new UserDAOImpl();
+//        UserDAO userDAO = new UserDAOImpl();
         if (userDTO.getActive() == 0) {
             userDTO.setActive(1);
         }
@@ -52,7 +58,8 @@ public class UserService implements IUserService{
     @Override
     public User getByEmail(String email) {
         System.out.println("getByEmail");
-         UserDAO userDAO = new UserDAOImpl();
+//         UserDAO userDAO = new UserDAOImpl();
+
         try {
             return userDAO.getUserByEmail(email);
         } catch (DatabaseException e) {
@@ -65,7 +72,7 @@ public class UserService implements IUserService{
     public List<UserDTO> getAll(int offset, int noOfRecords) {
         List<UserDTO> userDTOList = new ArrayList<>();
 
-        UserDAOImpl userDAO = new UserDAOImpl();
+//        UserDAOImpl userDAO = new UserDAOImpl();
 
         try {
             List<User> userList = userDAO.getAllUsers(offset, noOfRecords);
@@ -117,7 +124,7 @@ public class UserService implements IUserService{
     }
 
     public boolean blockOrUnblockUser (int id, int isBlock){
-        UserDAO userDAO = new UserDAOImpl();
+//        UserDAO userDAO = new UserDAOImpl();
         try {
             return userDAO.blockOrUnblockUserByIdAndParam(id, isBlock);
         } catch (DatabaseException e) {

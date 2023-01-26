@@ -2,6 +2,8 @@ package command;
 
 import DTO.ReceiptDTO;
 import DTO.UserDTO;
+import db.dao.DAOImpl.MySQLImpl.UserDAOImpl;
+import db.dao.interfaces.UserDAO;
 import jakarta.servlet.http.HttpServletRequest;
 import service.ReceiptService;
 import service.UserService;
@@ -21,8 +23,8 @@ public class UserListCommand implements ActionCommand{
 
 //        int userId = (int) req.getSession().getAttribute("UserId");
 
-//        UserDAO userDAO = new UserDAOImpl();
-        UserService userService = new UserService();
+        UserDAO userDAO = new UserDAOImpl();
+        UserService userService = new UserService(userDAO);
         List<UserDTO> userList = null;
         if (req.getSession().getAttribute("UserRole").equals("admin")) {
 
