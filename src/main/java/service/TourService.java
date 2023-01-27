@@ -41,7 +41,7 @@ public class TourService implements ITourService {
                 newTourDTO.getTourType(),
                 newTourDTO.getHotelType() );
 
-        TourDAO tourDAO = new TourDAOImpl();
+//        TourDAO tourDAO = new TourDAOImpl();
         try {
             return tourDAO.addTour(newTour);
         } catch (SQLException e) {
