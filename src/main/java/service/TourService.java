@@ -3,6 +3,7 @@ package service;
 import DTO.TourDTO;
 import db.dao.DAOImpl.MySQLImpl.TourDAOImpl;
 import db.dao.interfaces.TourDAO;
+import db.dao.interfaces.UserDAO;
 import entities.Tour;
 import exceptions.DatabaseException;
 
@@ -12,6 +13,16 @@ import java.util.List;
 
 public class TourService implements ITourService {
     private int noOfRecords;
+
+    private TourDAO tourDAO;
+
+    public TourService(TourDAO tourDAO) {
+        this.tourDAO = tourDAO;
+    }
+
+    public TourDAO getUserDAO() {
+        return tourDAO;
+    }
 
     public int getNoOfRecords() {
         return noOfRecords;

@@ -1,6 +1,8 @@
 package command;
 
 import DTO.TourDTO;
+import db.dao.DAOImpl.MySQLImpl.TourDAOImpl;
+import db.dao.interfaces.TourDAO;
 import jakarta.servlet.http.HttpServletRequest;
 import service.TourService;
 import util.FormCheckUtils;
@@ -12,7 +14,8 @@ public class TourPageCommand implements ActionCommand{
         String page = "/index.jsp";
 
         TourDTO tourDTO;
-        TourService service = new TourService();
+        TourDAO tourDAO = new TourDAOImpl();
+        TourService service = new TourService(tourDAO);
 
         tourDTO = service.getById(Integer.parseInt(req.getParameter("tourId")));
         if (tourDTO != null) {

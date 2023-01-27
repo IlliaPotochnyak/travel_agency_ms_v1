@@ -3,6 +3,8 @@ package command;
 import DTO.TourDTO;
 import DTO.UserDTO;
 import com.mysql.cj.util.StringUtils;
+import db.dao.DAOImpl.MySQLImpl.TourDAOImpl;
+import db.dao.interfaces.TourDAO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import service.TourService;
@@ -23,8 +25,8 @@ public class ListTourCommand implements ActionCommand{
         if(request.getParameter("page") != null)
             page = Integer.parseInt(request.getParameter("page"));
 //        System.out.println("Query - " + request.getQueryString());
-//        TourDAOImpl tourDAO = new TourDAOImpl();
-        TourService tourService = new TourService();
+        TourDAO tourDAO = new TourDAOImpl();
+        TourService tourService = new TourService(tourDAO);
         if (StringUtils.isNullOrEmpty(request.getParameter("tour_type"))  &&
                 StringUtils.isNullOrEmpty(request.getParameter("price")) &&
                 StringUtils.isNullOrEmpty(request.getParameter("people_amount")) &&

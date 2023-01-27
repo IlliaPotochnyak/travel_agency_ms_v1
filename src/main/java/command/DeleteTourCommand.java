@@ -1,6 +1,8 @@
 package command;
 
 import DTO.UserDTO;
+import db.dao.DAOImpl.MySQLImpl.TourDAOImpl;
+import db.dao.interfaces.TourDAO;
 import jakarta.servlet.http.HttpServletRequest;
 import service.TourService;
 import service.UserService;
@@ -12,7 +14,8 @@ public class DeleteTourCommand implements ActionCommand{
         System.out.println("DeleteTourCommand");
         String page = "/index.jsp";
 
-        TourService tourService = new TourService();
+        TourDAO tourDAO = new TourDAOImpl();
+        TourService tourService = new TourService(tourDAO);
         tourService.delete(Integer.parseInt(req.getParameter("tourId")));
 
         return page;

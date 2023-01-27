@@ -4,7 +4,9 @@ import DTO.ReceiptDTO;
 import DTO.TourDTO;
 import DTO.UserDTO;
 import db.dao.DAOImpl.MySQLImpl.ReceiptDAOImpl;
+import db.dao.DAOImpl.MySQLImpl.TourDAOImpl;
 import db.dao.interfaces.ReceiptDao;
+import db.dao.interfaces.TourDAO;
 import entities.Receipt;
 import entities.Tour;
 import entities.User;
@@ -26,7 +28,8 @@ public class ReceiptService implements IReceiptService{
 
         ReceiptDao receiptDao = new ReceiptDAOImpl();
 
-        TourService tourService = new TourService();
+        TourDAO tourDAO = new TourDAOImpl();
+        TourService tourService = new TourService(tourDAO);
         TourDTO tour = tourService.getById(receiptDTO.getTourId());
         if (tour == null) return false;
 
@@ -85,7 +88,8 @@ public class ReceiptService implements IReceiptService{
 
     @Override
     public boolean updateReceiptDiscount(ReceiptDTO receiptDTO) {
-        TourDTO tourDTO = new TourService().getById(receiptDTO.getTourId());
+        TourDAO tourDAO = new TourDAOImpl();
+        TourDTO tourDTO = new TourService(tourDAO).getById(receiptDTO.getTourId());
         int amount = tourDTO.getPrice() - (tourDTO.getPrice() * receiptDTO.getDiscount() / 100);
         ReceiptDao receiptDao = new ReceiptDAOImpl();
         try {

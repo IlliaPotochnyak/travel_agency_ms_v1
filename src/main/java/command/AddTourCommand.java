@@ -2,6 +2,8 @@ package command;
 
 import DTO.TourDTO;
 import DTO.UserDTO;
+import db.dao.DAOImpl.MySQLImpl.TourDAOImpl;
+import db.dao.interfaces.TourDAO;
 import jakarta.servlet.http.HttpServletRequest;
 import service.TourService;
 import service.UserService;
@@ -32,8 +34,8 @@ public class AddTourCommand implements ActionCommand {
             newTour.setTourType(req.getParameter("tourType"));
             newTour.setHotelType(Integer.parseInt(req.getParameter("hotelType")));
 
-//            TourDAO tourDAO = new TourDAOImpl();
-            TourService tourService = new TourService();
+            TourDAO tourDAO = new TourDAOImpl();
+            TourService tourService = new TourService(tourDAO);
 
             if (tourService.add(newTour)) {
 
