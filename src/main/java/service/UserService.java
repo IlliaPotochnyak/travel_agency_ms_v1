@@ -36,16 +36,21 @@ public class UserService implements IUserService{
         if (StringUtils.isNullOrEmpty(userDTO.getRole())) {
             userDTO.setRole("client");
         }
-
-        User user =new User(
-                userDTO.getFirstName(),
-                userDTO.getLastName(),
-                userDTO.getEmail(),
-                userDTO.getPassword(),
-                userDTO.getPhone(),
-                userDTO.getActive(),
-                userDTO.getRole()
-        );
+        User user;
+        try {
+            user = new User(
+                    userDTO.getFirstName(),
+                    userDTO.getLastName(),
+                    userDTO.getEmail(),
+                    userDTO.getPassword(),
+                    userDTO.getPhone(),
+                    userDTO.getActive(),
+                    userDTO.getRole()
+            );
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            return false;
+        }
 
         try {
             return userDAO.addUser(user);

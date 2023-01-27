@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -129,6 +130,25 @@ public class UserServiceTests {
 
             assertNull(userDTO);
         }
+    }
+    @Test
+    public void AddUserTest() throws DatabaseException {
+//        User user = mock(User.class);
+        UserDAOImpl userDAO = mock(UserDAOImpl.class);
+        when(userDAO.addUser(any(User.class))).thenReturn(true);
+
+        UserDTO userDTO = new UserDTO();
+        userDTO.setFirstName("firstName");
+        userDTO.setLastName("lastName");
+        userDTO.setEmail("mail@mail.com");
+        userDTO.setPassword("password");
+        userDTO.setPhone("+11111111");
+        userDTO.setActive(0);
+        userDTO.setRole(null);
+
+        UserService userService = new UserService(userDAO);
+//        System.out.println(userService.add(userDTO));
+        assertTrue(userService.add(userDTO));
 
     }
 }
