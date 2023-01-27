@@ -14,6 +14,10 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
     </head>
     <body>
 
@@ -24,6 +28,7 @@
             <h2><fmt:message key="listReceipt.message" /></h2>
         </div>
         <hr>
+
 
         <hr>
         <div class="container">
@@ -62,7 +67,8 @@
                                         <fmt:message key="listReceipt.tableChange" />
                                       </button>
                                       <ul class="dropdown-menu">
-                                        <li><form class="dropdown-item form-control form-control-sm"action="controller" method="POST" >
+                                        <li>
+                                            <form class="dropdown-item form-control form-control-sm"action="controller" method="POST" >
                                                 <input type="hidden"  name="command" value="set_discount">
                                                 <input type="hidden" name="receiptId" value="${receipt.id}">
                                                 <input type="hidden" name="tourId" value="${receipt.tourId}">
