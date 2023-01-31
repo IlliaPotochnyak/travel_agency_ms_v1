@@ -14,6 +14,7 @@ public enum CommandEnum {
     RECEIPT_STATUS_CHANGE { { this.command = new ReceiptStatusChangeCommand(); } },
     SET_DISCOUNT { { this.command = new SetDiscountCommand(); } },
     USER_ACTIVE { { this.command = new UserActiveCommand(); } },
+    LANG_CHANGE { { this.command = new LangChangeCommand(); } },
     REGISTER { { this.command = new RegisterCommand(); } };
         ActionCommand command;
 

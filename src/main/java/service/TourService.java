@@ -54,7 +54,7 @@ public class TourService implements ITourService {
     @Override
     public TourDTO getById(int id) {
 
-        TourDAO tourDAO = new TourDAOImpl();
+//        TourDAO tourDAO = new TourDAOImpl();
 //        TourDTO tourDTO = new TourDTO();
         TourDTO tourDTO = null;
 

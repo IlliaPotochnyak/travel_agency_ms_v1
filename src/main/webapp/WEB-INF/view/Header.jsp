@@ -51,11 +51,22 @@
               </div>
 
               <div class="container-fluid">
-                  <form action="#" >
+                  <form action="controller" method="POST">
+                      <c:set var="foo" scope="request" value="${pageContext.request.queryString}"/>
+                      <input type="hidden"  name="command" value="lang_change">
+                      <input type="hidden"  name="URI" value="${pageContext.request.requestURI}">
+                      <input type="hidden"  name="path" value="${pageContext.request.queryString}">
+
+
 
                       <select id="sessionLocale" class="form-select form-select-sm" name="sessionLocale" onchange="this.form.submit()">
-                          <option value="en" <c:if test="${sessionScope.lang eq 'en'}">class="fw-bolder" selected</c:if>>EN</option>
-                          <option value="ua" <c:if test="${sessionScope.lang eq 'ua'}">class="fw-bolder" selected</c:if>>UA</option>
+
+                          <option value="en" <c:if test="${sessionScope.lang eq 'en'}">class="fw-bolder" selected</c:if>>
+                            EN
+                          </option>
+                          <option value="ua" <c:if test="${sessionScope.lang eq 'ua'}">class="fw-bolder" selected</c:if>>
+                          UA
+                          </option>
 
                       </select>
                   </form>

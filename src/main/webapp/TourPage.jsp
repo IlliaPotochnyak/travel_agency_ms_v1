@@ -129,7 +129,7 @@
                         <button type="submit" class="btn btn-warning"><fmt:message key="tourPage.bookTour" /></button>
                     </form>
                 </c:if>
-                <c:if test="${empty UserFirstName}">
+                <c:if test="${empty UserFirstName }">
                     <form>
                         <fmt:message key="tourPage.bookTourText" /> <h3><a class="text-danger" href="Login.jsp"><fmt:message key="tourPage.login" />!</a></h3>
                     </form>
