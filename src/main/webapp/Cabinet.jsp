@@ -38,7 +38,7 @@
                             <div class="col-sm-6 p-3 bg-dark text-white">${UserEmail}</div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-2 p-3 bg-primary text-white"><fmt:message key="cabinet.tableUserLastName" /></div>
+                            <div class="col-sm-2 p-3 bg-primary text-white"><fmt:message key="cabinet.tablePhone" /></div>
                             <div class="col-sm-6 p-3 bg-dark text-white">${UserPhone}</div>
                         </div>
 
