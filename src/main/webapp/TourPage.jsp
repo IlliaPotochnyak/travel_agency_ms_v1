@@ -26,7 +26,7 @@
         </div>
         <div class="container">
             <c:if test="${UserRole == 'admin'}">
-                <a type="button" class="btn btn-primary" href="EditTour.jsp?tourId=${tour.id}&tourName=${tour.name}&tourDesc=${tour.description}&tourHot=${tour.hot}&tourType=${tour.tourType}&hotelType=${tour.hotelType}&personsNumber=${tour.personsNumber}&tourPrice=${tour.price}&maxDiscount=${tour.maxDiscount}"><fmt:message key="tourPage.editTour" /></a>
+                <a type="button" class="btn btn-primary" href="EditTour.jsp?tourId=${tour.id}&tourName=${tour.name}&tourHot=${tour.hot}&tourType=${tour.tourType}&hotelType=${tour.hotelType}&personsNumber=${tour.personsNumber}&tourPrice=${tour.price}&maxDiscount=${tour.maxDiscount}&tourDesc=${tour.description}"><fmt:message key="tourPage.editTour" /></a>
 
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
                     <fmt:message key="tourPage.deleteTour" />

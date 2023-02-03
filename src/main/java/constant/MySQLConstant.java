@@ -37,7 +37,7 @@ public class MySQLConstant {
             "tour_type.tour_type, hotel_type.star_rate \n" +
             "FROM ((tour\n" +
             "INNER JOIN tour_type ON tour.tour_type_id=tour_type.id)\n" +
-            "INNER JOIN hotel_type ON tour.hotel_type_id=hotel_type.id) ORDER BY hot DESC limit ";
+            "INNER JOIN hotel_type ON tour.hotel_type_id=hotel_type.id) ORDER BY hot  DESC, id DESC limit ";
     public static final String GET_SORTED_TOURS = "SELECT SQL_CALC_FOUND_ROWS tour.id, tour.name, tour.description, tour.persons_number, tour.price, tour.max_discount, tour.hot, \n" +
             "tour_type.tour_type, hotel_type.star_rate \n" +
             "FROM ((tour\n" +
