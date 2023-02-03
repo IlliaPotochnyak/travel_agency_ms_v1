@@ -58,9 +58,9 @@ CREATE TABLE IF NOT EXISTS `travel_agency_db1`.`user` (
     ON UPDATE NO ACTION);
 
 INSERT INTO user (first_name, last_name, email, password, phone, active, role_id)
-            VALUES ('admin', 'admin', 'admin@mail.com', 'adminPassword', '+380111111111', 1,
+            VALUES ('admin', 'admin', 'admin@mail.com', 'cdda19f5a36b729d', '+380111111111', 1,
             (SELECT id FROM role where role = 'admin'));
-
+-- admin password - adminPassword
 
 -- -----------------------------------------------------
 -- Table `travel_agency_db1`.`tour_type`

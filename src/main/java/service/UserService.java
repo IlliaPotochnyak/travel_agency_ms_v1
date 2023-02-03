@@ -6,6 +6,7 @@ import db.dao.DAOImpl.MySQLImpl.UserDAOImpl;
 import db.dao.interfaces.UserDAO;
 import entities.User;
 import exceptions.DatabaseException;
+import util.PWHash;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,7 @@ public class UserService implements IUserService{
                     userDTO.getFirstName(),
                     userDTO.getLastName(),
                     userDTO.getEmail(),
-                    userDTO.getPassword(),
+                    PWHash.hashPassword(userDTO.getPassword()),
                     userDTO.getPhone(),
                     userDTO.getActive(),
                     userDTO.getRole()
@@ -112,7 +113,7 @@ public class UserService implements IUserService{
         UserDTO userDTO = new UserDTO();
 
         if (user != null) {
-            if (user.getPassword().equals(password)) {
+            if (user.getPassword().equals(PWHash.hashPassword(password))) {
                 userDTO.setId(user.getId());
                 userDTO.setFirstName(user.getFirstName());
                 userDTO.setLastName(user.getLastName());

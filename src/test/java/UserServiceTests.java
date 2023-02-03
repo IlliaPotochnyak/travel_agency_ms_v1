@@ -5,6 +5,7 @@ import entities.User;
 import exceptions.DatabaseException;
 import org.junit.Test;
 import service.UserService;
+import util.PWHash;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,13 +21,13 @@ public class UserServiceTests {
     User mockedUser = mock(User.class);
 
     private static final List<User> userList = Arrays.asList(
-            new User(1, "User1", "User1LastName", "user1@mail.com", "password1", "+11-111-111-1111", "client"),
-            new User(2, "User2", "User2LastName", "user2@mail.com", "password2", "+11-111-111-1111", "client"),
-            new User(3, "User3", "User3LastName", "user3@mail.com", "password3", "+11-111-111-1111", "client"),
-            new User(4, "User4", "User4LastName", "user4@mail.com", "password4", "+11-111-111-1111", "client"),
-            new User(5, "User5", "User5LastName", "user5@mail.com", "password5", "+11-111-111-1111", "client"),
-            new User(6, "User6", "User6LastName", "user6@mail.com", "password6", "+11-111-111-1111", "client"),
-            new User(7, "User7", "User7LastName", "user7@mail.com", "password7", "+11-111-111-1111", "client")
+            new User(1, "User1", "User1LastName", "user1@mail.com", PWHash.hashPassword("password1"), "+11-111-111-1111", "client"),
+            new User(2, "User2", "User2LastName", "user2@mail.com", PWHash.hashPassword("password2"), "+11-111-111-1111", "client"),
+            new User(3, "User3", "User3LastName", "user3@mail.com", PWHash.hashPassword("password3"), "+11-111-111-1111", "client"),
+            new User(4, "User4", "User4LastName", "user4@mail.com", PWHash.hashPassword("password4"), "+11-111-111-1111", "client"),
+            new User(5, "User5", "User5LastName", "user5@mail.com", PWHash.hashPassword("password5"), "+11-111-111-1111", "client"),
+            new User(6, "User6", "User6LastName", "user6@mail.com", PWHash.hashPassword("password6"), "+11-111-111-1111", "client"),
+            new User(7, "User7", "User7LastName", "user7@mail.com", PWHash.hashPassword("password7"), "+11-111-111-1111", "client")
     );
 
 
