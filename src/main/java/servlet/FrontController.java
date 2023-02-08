@@ -8,12 +8,20 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.log4j.Logger;
+
 
 import java.io.IOException;
 import java.util.Enumeration;
 
+
 @WebServlet("/controller")
 public class FrontController extends HttpServlet {
+
+//    private static final Logger LOGGER = LogManager.getLogger(FrontController.class);
+    static final Logger LOGGER = Logger.getLogger(FrontController.class);
+
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response, "get");
@@ -25,6 +33,8 @@ public class FrontController extends HttpServlet {
     private void processRequest(HttpServletRequest request,
                                 HttpServletResponse response, String method)
             throws ServletException, IOException {
+//        LOGGER.debug("Controller start");
+        LOGGER.info("Controller start");
         String page = null;
         request.getSession().removeAttribute("errorMessage");
 // определение команды, пришедшей из JSP
