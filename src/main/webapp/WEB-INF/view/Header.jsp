@@ -5,6 +5,7 @@
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="languages/messages"/>
 <html lang="${sessionScope.lang}">
+<%@ taglib prefix="ctg" uri="customtags" %>
 
 <html>
     <head>
@@ -40,14 +41,16 @@
                           <a class="nav-link active" href="controller?command=logout"><fmt:message key="header.logout" /></a>
                         </li>
                     </c:if>
+
                   </ul>
               </div>
               <div class="container-fluid">
-                    <c:if test="${not empty UserId}">
+
                         <span class="navbar-text"><fmt:message key="header.hello" />,
-                            <span class="text-uppercase">${UserFirstName} ${UserLastName}</span>
+                            <span class="text-uppercase"><ctg:hello name="${UserFirstName} ${UserLastName}"/></span>
                         </span>
-                    </c:if>
+
+
               </div>
 
               <div class="container-fluid">
