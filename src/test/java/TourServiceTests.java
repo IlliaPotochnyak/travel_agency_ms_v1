@@ -10,6 +10,7 @@ import service.TourService;
 import service.UserService;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,7 +22,7 @@ import static org.mockito.Mockito.when;
 public class TourServiceTests {
 
     @Test
-    public void AddTourTest() throws DatabaseException, SQLException {
+    public void addTourTest() throws DatabaseException, SQLException {
 //        User user = mock(User.class);
         TourDAOImpl tourDAO = mock(TourDAOImpl.class);
         when(tourDAO.addTour(any(Tour.class))).thenReturn(true);
@@ -34,7 +35,7 @@ public class TourServiceTests {
 
     }
     @Test
-    public void GetByIdTourPositiveTest() throws DatabaseException, SQLException {
+    public void getByIdTourPositiveTest() throws DatabaseException, SQLException {
         int id = 2;
         Tour tour = mock(Tour.class);
         when(tour.getId()).thenReturn(id);
@@ -47,7 +48,7 @@ public class TourServiceTests {
         assertEquals(id, tourService.getById(id).getId());
     }
     @Test
-    public void GetByIdTourNegativeTest() throws DatabaseException, SQLException {
+    public void getByIdTourNegativeTest() throws DatabaseException, SQLException {
         int id = 2;
         Tour tour = mock(Tour.class);
         when(tour.getId()).thenReturn(id);
@@ -58,6 +59,30 @@ public class TourServiceTests {
 
         TourService tourService = new TourService(tourDAO);
         assertNull(tourService.getById(id));
+    }
+
+    @Test
+    public void getAllTourTest() throws DatabaseException, SQLException {
+        int offset = 0;
+        int noOfRecords = 5;
+        Tour tour = mock(Tour.class);
+        List<Tour> list = new ArrayList<>();
+
+        TourDAOImpl tourDAO = mock(TourDAOImpl.class);
+        when(tourDAO.getAllTours(offset, noOfRecords)).thenReturn(list);
+        TourService service = new TourService(tourDAO);
+
+        assertEquals(list.size(), service.getAll(offset, noOfRecords).size());
+
+        for (int i = 0; i < 5; i++) {
+            list.add(tour);
+            assertEquals(list.size(), service.getAll(offset, noOfRecords).size());
+            assertTrue(service.getAll(offset, noOfRecords).size() <= noOfRecords);
+        }
+
+        list.add(tour);
+        assertEquals(list.size(), service.getAll(offset, noOfRecords).size());
+        assertFalse(service.getAll(offset, noOfRecords).size() <= noOfRecords);
     }
 
 }

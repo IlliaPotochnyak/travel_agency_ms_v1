@@ -70,10 +70,8 @@ public class TourService implements ITourService {
 
     @Override
     public List<TourDTO> getAll(int offset, int noOfRecords) {
-        System.out.println("TourService getAll method");
         List<TourDTO> tourDTOList = new ArrayList<>();
-
-        TourDAOImpl tourDAO = new TourDAOImpl();
+//        TourDAOImpl tourDAO = new TourDAOImpl();
 
         try {
             List<Tour> tourList = tourDAO.getAllTours(offset, noOfRecords);
