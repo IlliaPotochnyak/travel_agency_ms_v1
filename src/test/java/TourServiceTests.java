@@ -33,4 +33,31 @@ public class TourServiceTests {
         assertTrue(tourService.add(newTourDTO));
 
     }
+    @Test
+    public void GetByIdTourPositiveTest() throws DatabaseException, SQLException {
+        int id = 2;
+        Tour tour = mock(Tour.class);
+        when(tour.getId()).thenReturn(id);
+        TourDAOImpl tourDAO = mock(TourDAOImpl.class);
+        when(tourDAO.getTourById(id)).thenReturn(tour);
+
+        TourDTO newTourDTO = new TourDTO();
+
+        TourService tourService = new TourService(tourDAO);
+        assertEquals(id, tourService.getById(id).getId());
+    }
+    @Test
+    public void GetByIdTourNegativeTest() throws DatabaseException, SQLException {
+        int id = 2;
+        Tour tour = mock(Tour.class);
+        when(tour.getId()).thenReturn(id);
+        TourDAOImpl tourDAO = mock(TourDAOImpl.class);
+        when(tourDAO.getTourById(id)).thenReturn(null);
+
+        TourDTO newTourDTO = new TourDTO();
+
+        TourService tourService = new TourService(tourDAO);
+        assertNull(tourService.getById(id));
+    }
+
 }

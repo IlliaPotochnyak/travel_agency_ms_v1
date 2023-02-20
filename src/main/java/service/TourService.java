@@ -44,7 +44,7 @@ public class TourService implements ITourService {
 //        TourDAO tourDAO = new TourDAOImpl();
         try {
             return tourDAO.addTour(newTour);
-        } catch (SQLException e) {
+        } catch (SQLException  | NullPointerException e) {
             e.printStackTrace();
 //            throw new RuntimeException(e);
         }
@@ -54,8 +54,6 @@ public class TourService implements ITourService {
     @Override
     public TourDTO getById(int id) {
 
-//        TourDAO tourDAO = new TourDAOImpl();
-//        TourDTO tourDTO = new TourDTO();
         TourDTO tourDTO = null;
 
         try {
@@ -63,19 +61,9 @@ public class TourService implements ITourService {
 
             tourDTO = getTourDTOFromTour(tour);
 
-//            tourDTO.setId(tour.getId());
-//            tourDTO.setName(tour.getName());
-//            tourDTO.setDescription(tour.getDescription());
-//            tourDTO.setPersonsNumber(tour.getPersonsNumber());
-//            tourDTO.setPrice(tour.getPrice());
-//            tourDTO.setMaxDiscount(tour.getMaxDiscount());
-//            tourDTO.setHot(tour.getHot());
-//            tourDTO.setTourType(tour.getTourType());
-//            tourDTO.setHotelType(tour.getHotelType());
 
         } catch (DatabaseException | NullPointerException e ) {
             e.printStackTrace();
-
         }
         return tourDTO;
     }

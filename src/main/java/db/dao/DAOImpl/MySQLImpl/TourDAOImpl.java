@@ -42,8 +42,11 @@ public class TourDAOImpl implements TourDAO {
 
             result = true;
         } catch ( SQLException e) {
-            result = false;
+//            result = false;
             throw new SQLException(e);
+        } catch (NullPointerException e) {
+//            result = false;
+            throw new NullPointerException(e.getMessage());
         }
 
         return result;
@@ -135,7 +138,7 @@ public class TourDAOImpl implements TourDAO {
                 tourList.add(tour);
             }
             rs.close();
-            try (Statement stmnt = con.createStatement();){
+            try (Statement stmnt = con.createStatement()){
 
                 rs = stmnt.executeQuery("SELECT FOUND_ROWS()");
                 if(rs.next())
@@ -198,7 +201,7 @@ public class TourDAOImpl implements TourDAO {
                 tourList.add(tour);
             }
             rs.close();
-            try (Statement stmnt = con.createStatement();){
+            try (Statement stmnt = con.createStatement()){
 
             rs = stmnt.executeQuery("SELECT FOUND_ROWS()");
             if(rs.next())
@@ -240,11 +243,7 @@ public class TourDAOImpl implements TourDAO {
     @Override
     public Tour getTourById(int id) throws DatabaseException {
         Tour tour = null;
-//        String query = "SELECT tour.id, tour.name, tour.description, tour.persons_number, tour.price, tour.max_discount, tour.hot, \n" +
-//                "tour_type.tour_type, hotel_type.star_rate \n" +
-//                "FROM ((tour\n" +
-//                "INNER JOIN tour_type ON tour.tour_type_id=tour_type.id)\n" +
-//                "INNER JOIN hotel_type ON tour.hotel_type_id=hotel_type.id) WHERE tour.id=?;";
+
         String query = GET_TOUR_BY_ID;
         try (Connection con = DataSource.getConnection();
              PreparedStatement pstmnt = con.prepareStatement(query)){
