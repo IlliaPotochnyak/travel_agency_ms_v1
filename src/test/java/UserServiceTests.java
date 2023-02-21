@@ -13,6 +13,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -151,5 +152,14 @@ public class UserServiceTests {
 //        System.out.println(userService.add(userDTO));
         assertTrue(userService.add(userDTO));
 
+    }
+
+    @Test
+    public void blockOrUnblockUserNegativeTest() throws DatabaseException {
+        UserDAO userDAO = mock(UserDAOImpl.class);
+        when(userDAO.blockOrUnblockUserByIdAndParam(anyInt(),anyInt())).thenThrow(new DatabaseException());
+
+        UserService userService = new UserService(userDAO);
+        assertFalse(userService.blockOrUnblockUser(0, 0));
     }
 }
