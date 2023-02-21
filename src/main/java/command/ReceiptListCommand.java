@@ -2,6 +2,8 @@ package command;
 
 import DTO.ReceiptDTO;
 import DTO.TourDTO;
+import db.dao.DAOImpl.MySQLImpl.ReceiptDAOImpl;
+import db.dao.interfaces.ReceiptDao;
 import jakarta.servlet.http.HttpServletRequest;
 import service.ReceiptService;
 import service.TourService;
@@ -22,7 +24,8 @@ public class ReceiptListCommand implements ActionCommand{
         int userId = (int) req.getSession().getAttribute("UserId");
 //        ReceiptDao receiptDao = new ReceiptDAOImpl();
         List<ReceiptDTO> receiptDTOList = null;
-        ReceiptService receiptService = new ReceiptService();
+        ReceiptDao receiptDao = new ReceiptDAOImpl();
+        ReceiptService receiptService = new ReceiptService(receiptDao);
         if (req.getSession().getAttribute("UserRole").equals("admin") ||
                 req.getSession().getAttribute("UserRole").equals("manager")) {
 

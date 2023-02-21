@@ -118,7 +118,7 @@ public class TourService implements ITourService {
 
     @Override
     public boolean update(TourDTO tourDTO) {
-        TourDAO tourDAO = new TourDAOImpl();
+//        TourDAO tourDAO = new TourDAOImpl();
 
         try {
             return tourDAO.updateTour(tourDTO);
@@ -130,7 +130,7 @@ public class TourService implements ITourService {
 
     @Override
     public boolean delete(int id) {
-        TourDAO tourDAO = new TourDAOImpl();
+//        TourDAO tourDAO = new TourDAOImpl();
         try {
             return tourDAO.deleteTourById(id);
         } catch (DatabaseException e) {

@@ -18,22 +18,24 @@ import java.util.List;
 
 public class ReceiptService implements IReceiptService{
     private int noOfRecords;
+    private ReceiptDao receiptDao;
+
+    public ReceiptService(ReceiptDao receiptDao) {
+        this.receiptDao = receiptDao;
+    }
 
     public int getNoOfRecords() {
         return noOfRecords;
     }
     @Override
     public boolean add(ReceiptDTO receiptDTO) {
-        System.out.println("add method");
-
-        ReceiptDao receiptDao = new ReceiptDAOImpl();
 
         TourDAO tourDAO = new TourDAOImpl();
         TourService tourService = new TourService(tourDAO);
         TourDTO tour = tourService.getById(receiptDTO.getTourId());
         if (tour == null) return false;
 
-        Receipt receipt = new Receipt(receiptDTO.getTourId(),
+        Receipt receipt = new Receipt(tour.getId(),
                 receiptDTO.getUserId(), 0,
                 tour.getPrice(),
                 "registered");
@@ -48,7 +50,7 @@ public class ReceiptService implements IReceiptService{
     @Override
     public List<ReceiptDTO> getAllByUserId(int id, int offset, int noOfRecords) {
         List<ReceiptDTO> receiptDTOList = new ArrayList<>();
-        ReceiptDao receiptDao = new ReceiptDAOImpl();
+//        ReceiptDao receiptDao = new ReceiptDAOImpl();
         List<Receipt> receiptList;
         try {
             receiptList = receiptDao.getAllUserReceiptsByUserId(id, offset, noOfRecords);

@@ -2,6 +2,8 @@ package command;
 
 import DTO.ReceiptDTO;
 import DTO.UserDTO;
+import db.dao.DAOImpl.MySQLImpl.ReceiptDAOImpl;
+import db.dao.interfaces.ReceiptDao;
 import jakarta.servlet.http.HttpServletRequest;
 import service.ReceiptService;
 import service.UserService;
@@ -23,7 +25,8 @@ public class SetDiscountCommand implements ActionCommand{
         receiptDTO.setTourId(tourId);
         receiptDTO.setDiscount(discount);
 
-        ReceiptService receiptService = new ReceiptService();
+        ReceiptDao receiptDao = new ReceiptDAOImpl();
+        ReceiptService receiptService = new ReceiptService(receiptDao);
         receiptService.updateReceiptDiscount(receiptDTO);
 
 
