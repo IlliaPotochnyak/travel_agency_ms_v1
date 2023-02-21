@@ -1,5 +1,5 @@
 import jakarta.servlet.http.HttpServletRequest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import util.FormCheckUtils;
 
 import java.util.stream.Collectors;

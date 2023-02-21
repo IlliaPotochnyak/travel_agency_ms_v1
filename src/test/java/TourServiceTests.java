@@ -5,7 +5,7 @@ import db.dao.DAOImpl.MySQLImpl.UserDAOImpl;
 import entities.Tour;
 import entities.User;
 import exceptions.DatabaseException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import service.TourService;
 import service.UserService;
 

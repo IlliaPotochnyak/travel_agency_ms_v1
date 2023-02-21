@@ -3,7 +3,7 @@ import db.dao.DAOImpl.MySQLImpl.UserDAOImpl;
 import db.dao.interfaces.UserDAO;
 import entities.User;
 import exceptions.DatabaseException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import service.UserService;
 import util.PWHash;
 
