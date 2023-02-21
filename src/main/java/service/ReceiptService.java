@@ -65,7 +65,7 @@ public class ReceiptService implements IReceiptService{
     @Override
     public List<ReceiptDTO> getAll(int offset, int noOfRecords) {
         List<ReceiptDTO> receiptDTOList = new ArrayList<>();
-        ReceiptDao receiptDao = new ReceiptDAOImpl();
+//        ReceiptDao receiptDao = new ReceiptDAOImpl();
         List<Receipt> receiptList;
         try {
             receiptList = receiptDao.getAllReceipts(offset, noOfRecords);

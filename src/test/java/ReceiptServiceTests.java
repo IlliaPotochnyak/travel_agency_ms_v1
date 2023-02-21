@@ -79,4 +79,26 @@ public class ReceiptServiceTests {
         Assertions.assertFalse(receiptService.getAllByUserId(id, offset, noOfRecords).size() <= noOfRecords);
     }
 
+    @Test
+    public void getAllreceiptsTest () throws DatabaseException {
+        int offset = 0;
+        int noOfRecords = 5;
+        Receipt receipt = mock(Receipt.class);
+        List<Receipt> receiptList = new ArrayList<>();
+        ReceiptDao receiptDao = mock(ReceiptDAOImpl.class);
+        when(receiptDao.getAllReceipts(offset, noOfRecords)).thenReturn(receiptList);
+
+        ReceiptService receiptService = new ReceiptService(receiptDao);
+        Assertions.assertEquals(receiptList.size(), receiptService.getAll(offset, noOfRecords).size());
+
+        for (int i = 0; i < noOfRecords; i++) {
+            receiptList.add(receipt);
+            Assertions.assertEquals(receiptList.size(), receiptService.getAll(offset, noOfRecords).size());
+            Assertions.assertTrue(receiptService.getAll(offset, noOfRecords).size() <= noOfRecords);
+        }
+        receiptList.add(receipt);
+        Assertions.assertEquals(receiptList.size(), receiptService.getAll(offset, noOfRecords).size());
+        Assertions.assertFalse(receiptService.getAll(offset, noOfRecords).size() <= noOfRecords);
+    }
+
 }
