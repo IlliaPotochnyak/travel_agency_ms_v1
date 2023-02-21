@@ -95,5 +95,14 @@ public class TourServiceTests {
         TourService tourService = new TourService(tourDAO);
         assertFalse(tourService.update(tourDTO));
     }
+    @Test
+    public void deleteTourNegativeTest () throws DatabaseException {
+        int id = 0;
+        TourDAO tourDAO = mock(TourDAOImpl.class);
+        when(tourDAO.deleteTourById(id)).thenThrow( new DatabaseException());
+
+        TourService tourService = new TourService(tourDAO);
+        assertFalse(tourService.delete(id));
+    }
 
 }
