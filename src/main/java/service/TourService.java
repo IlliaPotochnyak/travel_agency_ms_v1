@@ -91,16 +91,14 @@ public class TourService implements ITourService {
 
     public List<TourDTO> getSorted(String tourType, String price, String personNumber, String hotelType,
                                    int offset, int noOfRecords) {
-        System.out.println("TourService getSorted method");
+//        System.out.println("TourService getSorted method");
         List<TourDTO> tourDTOList = new ArrayList<>();
         TourDTO paramTourDTO = new TourDTO();
         paramTourDTO.setTourType(tourType);
         paramTourDTO.setPrice(Integer.parseInt(price));
         paramTourDTO.setPersonsNumber(Integer.parseInt(personNumber));
         paramTourDTO.setHotelType(Integer.parseInt(hotelType));
-
-        TourDAOImpl tourDAO = new TourDAOImpl();
-
+//        TourDAOImpl tourDAO = new TourDAOImpl();
         try {
             List<Tour> tourList = tourDAO.getSortedTours(paramTourDTO, offset, noOfRecords);
             tourList.forEach(

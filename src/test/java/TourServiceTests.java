@@ -17,6 +17,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -94,6 +95,14 @@ public class TourServiceTests {
 
         TourService tourService = new TourService(tourDAO);
         assertFalse(tourService.update(tourDTO));
+    }
+    @Test
+    public void getSortedNegativeTest() throws DatabaseException {
+        TourDAO tourDAO = mock(TourDAOImpl.class);
+        when(tourDAO.getSortedTours(any(TourDTO.class), anyInt(), anyInt())).thenThrow(new DatabaseException());
+        TourService tourService = new TourService(tourDAO);
+        assertEquals(0, tourService
+                .getSorted(null, "0", "0", "0", 0, 5).size());
     }
     @Test
     public void deleteTourNegativeTest () throws DatabaseException {
