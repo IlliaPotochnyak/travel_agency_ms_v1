@@ -2,6 +2,7 @@ import DTO.TourDTO;
 import DTO.UserDTO;
 import db.dao.DAOImpl.MySQLImpl.TourDAOImpl;
 import db.dao.DAOImpl.MySQLImpl.UserDAOImpl;
+import db.dao.interfaces.TourDAO;
 import entities.Tour;
 import entities.User;
 import exceptions.DatabaseException;
@@ -83,6 +84,16 @@ public class TourServiceTests {
         list.add(tour);
         assertEquals(list.size(), service.getAll(offset, noOfRecords).size());
         assertFalse(service.getAll(offset, noOfRecords).size() <= noOfRecords);
+    }
+
+    @Test
+    public void updateTourNegativeTest () throws DatabaseException {
+        TourDTO tourDTO = mock(TourDTO.class);
+        TourDAO tourDAO = mock(TourDAOImpl.class);
+        when(tourDAO.updateTour(any(TourDTO.class))).thenThrow( new DatabaseException());
+
+        TourService tourService = new TourService(tourDAO);
+        assertFalse(tourService.update(tourDTO));
     }
 
 }

@@ -93,7 +93,7 @@ public class ReceiptService implements IReceiptService{
         TourDAO tourDAO = new TourDAOImpl();
         TourDTO tourDTO = new TourService(tourDAO).getById(receiptDTO.getTourId());
         int amount = tourDTO.getPrice() - (tourDTO.getPrice() * receiptDTO.getDiscount() / 100);
-        ReceiptDao receiptDao = new ReceiptDAOImpl();
+//        ReceiptDao receiptDao = new ReceiptDAOImpl();
         try {
             receiptDTO.setOrderStatus( receiptDao.getReceiptById(receiptDTO.getId()).getOrderStatus() );
         } catch (DatabaseException e) {
