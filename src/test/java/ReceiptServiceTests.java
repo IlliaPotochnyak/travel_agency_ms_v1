@@ -101,4 +101,17 @@ public class ReceiptServiceTests {
         Assertions.assertFalse(receiptService.getAll(offset, noOfRecords).size() <= noOfRecords);
     }
 
+    @Test
+    public void updateReceiptStatusNegativeTest() throws DatabaseException {
+        ReceiptDao receiptDao = mock(ReceiptDAOImpl.class);
+        int id = 1;
+        String status = "registered";
+        when(receiptDao.updateReceiptStatus(id, status)).thenThrow(new DatabaseException());
+        ReceiptDTO receiptDTO = mock(ReceiptDTO.class);
+        when(receiptDTO.getId()).thenReturn(id);
+        when(receiptDTO.getOrderStatus()).thenReturn(status);
+        ReceiptService receiptService = new ReceiptService(receiptDao);
+        Assertions.assertFalse(receiptService.updateReceiptStatus(receiptDTO));
+    }
+
 }
