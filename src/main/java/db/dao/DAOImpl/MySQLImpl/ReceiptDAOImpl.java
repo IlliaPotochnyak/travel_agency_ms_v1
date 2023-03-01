@@ -74,7 +74,7 @@ public class ReceiptDAOImpl implements ReceiptDao {
 //            tourList.forEach(System.out::println);
             }catch (SQLException e) {
 
-                throw new RuntimeException(e);
+                throw new DatabaseException();
             }
 //            receiptList.forEach(System.out::println);
 
@@ -115,7 +115,7 @@ public class ReceiptDAOImpl implements ReceiptDao {
             }
             return receipt;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new DatabaseException();
         }
 
     }

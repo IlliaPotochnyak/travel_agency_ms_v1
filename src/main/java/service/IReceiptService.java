@@ -2,6 +2,7 @@ package service;
 
 
 import DTO.ReceiptDTO;
+import DTO.TourDTO;
 import DTO.UserDTO;
 import entities.User;
 
@@ -12,6 +13,6 @@ public interface IReceiptService {
     List<ReceiptDTO> getAllByUserId(int id, int offset, int noOfRecords);
     List<ReceiptDTO> getAll(int offset, int noOfRecords);
     boolean updateReceiptStatus(ReceiptDTO receiptDTO);
-    boolean updateReceiptDiscount(ReceiptDTO receiptDTO);
+    boolean updateReceiptDiscount(ReceiptDTO receiptDTO, TourDTO tourDTO);
 //    boolean delete(int id);
 }
