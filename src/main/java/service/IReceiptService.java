@@ -13,5 +13,5 @@ public interface IReceiptService {
     List<ReceiptDTO> getAll(int offset, int noOfRecords);
     boolean updateReceiptStatus(ReceiptDTO receiptDTO);
     boolean updateReceiptDiscount(ReceiptDTO receiptDTO);
-    boolean delete(int id);
+//    boolean delete(int id);
 }

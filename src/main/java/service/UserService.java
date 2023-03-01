@@ -29,7 +29,6 @@ public class UserService implements IUserService{
 
     @Override
     public boolean add(UserDTO userDTO) {
-
 //        UserDAO userDAO = new UserDAOImpl();
         if (userDTO.getActive() == 0) {
             userDTO.setActive(1);
@@ -63,8 +62,6 @@ public class UserService implements IUserService{
 
     @Override
     public User getByEmail(String email) {
-//        System.out.println("getByEmail");
-//         UserDAO userDAO = new UserDAOImpl();
         try {
             return userDAO.getUserByEmail(email);
         } catch (DatabaseException e) {
@@ -76,9 +73,7 @@ public class UserService implements IUserService{
     @Override
     public List<UserDTO> getAll(int offset, int noOfRecords) {
         List<UserDTO> userDTOList = new ArrayList<>();
-
 //        UserDAOImpl userDAO = new UserDAOImpl();
-
         try {
             List<User> userList = userDAO.getAllUsers(offset, noOfRecords);
             userList.forEach(
@@ -93,25 +88,22 @@ public class UserService implements IUserService{
             e.printStackTrace();
         }
         return userDTOList;
-
     }
 
-    @Override
-    public boolean update(UserDTO userDTO) {
-        return false;
-    }
+//    @Override
+//    public boolean update(UserDTO userDTO) {
+//        return false;
+//    }
 
-    @Override
-    public boolean delete(int id) {
-        return false;
-    }
+//    @Override
+//    public boolean delete(int id) {
+//        return false;
+//    }
 
     public UserDTO loginUser(String email, String password) {
 //        System.out.println("loginUser method");
-
         User user = getByEmail(email);
         UserDTO userDTO = new UserDTO();
-
         if (user != null) {
             if (user.getPassword().equals(PWHash.hashPassword(password))) {
                 userDTO.setId(user.getId());
@@ -121,7 +113,6 @@ public class UserService implements IUserService{
                 userDTO.setPhone(user.getPhone());
                 userDTO.setRole(user.getRole());
                 userDTO.setActive(user.getActive());
-
                 return userDTO;
             }
         }

@@ -112,10 +112,10 @@ public class ReceiptService implements IReceiptService{
         return false;
     }
 
-    @Override
-    public boolean delete(int id) {
-        return false;
-    }
+//    @Override
+//    public boolean delete(int id) {
+//        return false;
+//    }
 
     private ReceiptDTO getReceiptDTOFromReceipt(Receipt receipt) {
         ReceiptDTO receiptDTO = new ReceiptDTO();

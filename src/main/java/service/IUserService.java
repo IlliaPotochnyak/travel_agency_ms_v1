@@ -14,6 +14,6 @@ public interface IUserService {
     User getByEmail(String email);
 
     List<UserDTO> getAll(int offset, int noOfRecords);
-    boolean update(UserDTO userDTO);
-    boolean delete(int id);
+//    boolean update(UserDTO userDTO);
+//    boolean delete(int id);
 }
