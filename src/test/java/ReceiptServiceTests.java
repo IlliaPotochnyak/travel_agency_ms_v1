@@ -114,4 +114,19 @@ public class ReceiptServiceTests {
         Assertions.assertFalse(receiptService.updateReceiptStatus(receiptDTO));
     }
 
+    @Test
+    public void updateReceiptDiscountDBExceptionTest() throws DatabaseException {
+        ReceiptDTO receiptDTO = mock(ReceiptDTO.class);
+        ReceiptDao receiptDAO = mock(ReceiptDAOImpl.class);
+        TourDTO tourDTO = mock(TourDTO.class);
+
+        when(receiptDTO.getId()).thenReturn(0);
+        when(receiptDAO.getReceiptById(0)).thenThrow(new DatabaseException());
+
+        ReceiptService receiptService = new ReceiptService(receiptDAO);
+        //fail to get receipt from DB
+        Assertions.assertFalse(receiptService.updateReceiptDiscount(receiptDTO, tourDTO));
+
+    }
+
 }
