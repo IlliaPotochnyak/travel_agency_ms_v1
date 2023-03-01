@@ -128,5 +128,71 @@ public class ReceiptServiceTests {
         Assertions.assertFalse(receiptService.updateReceiptDiscount(receiptDTO, tourDTO));
 
     }
+    @Test
+    public void updateReceiptDiscountOverDiscountTest() throws DatabaseException {
+        ReceiptDTO receiptDTO = mock(ReceiptDTO.class);
+        ReceiptDao receiptDAO = mock(ReceiptDAOImpl.class);
+        TourDTO tourDTO = mock(TourDTO.class);
+        Receipt receipt = mock(Receipt.class);
+        when(receiptDAO.updateReceiptDiscount(any(Integer.class), any(Integer.class), any(Integer.class))).thenReturn(true);
+
+        when(receiptDTO.getId()).thenReturn(0);
+        when(receiptDAO.getReceiptById(0)).thenReturn(receipt);
+        when(receiptDTO.getOrderStatus()).thenReturn("registered");
+        when(tourDTO.getMaxDiscount()).thenReturn(10);
+
+        ReceiptService receiptService = new ReceiptService(receiptDAO);
+        //discount equal to maxDiscount
+        when(receiptDTO.getDiscount()).thenReturn(10);
+        Assertions.assertTrue(receiptService.updateReceiptDiscount(receiptDTO, tourDTO));
+        //discount smaller then maxDiscount
+        when(receiptDTO.getDiscount()).thenReturn(9);
+        Assertions.assertTrue(receiptService.updateReceiptDiscount(receiptDTO, tourDTO));
+        //discount greater then maxDiscount
+        when(receiptDTO.getDiscount()).thenReturn(11);
+        Assertions.assertFalse(receiptService.updateReceiptDiscount(receiptDTO, tourDTO));
+        //тупфешму discount
+        when(receiptDTO.getDiscount()).thenReturn(-1);
+        Assertions.assertFalse(receiptService.updateReceiptDiscount(receiptDTO, tourDTO));
+    }
+    @Test
+    public void updateReceiptDiscountWrongOrderStatusTest() throws DatabaseException {
+        ReceiptDTO receiptDTO = mock(ReceiptDTO.class);
+        ReceiptDao receiptDAO = mock(ReceiptDAOImpl.class);
+        TourDTO tourDTO = mock(TourDTO.class);
+        Receipt receipt = mock(Receipt.class);
+        when(receiptDAO.updateReceiptDiscount(any(Integer.class), any(Integer.class), any(Integer.class))).thenReturn(true);
+        when(receiptDTO.getId()).thenReturn(0);
+        when(receiptDAO.getReceiptById(0)).thenReturn(receipt);
+        when(receiptDTO.getDiscount()).thenReturn(10);
+        when(tourDTO.getMaxDiscount()).thenReturn(10);
+
+        ReceiptService receiptService = new ReceiptService(receiptDAO);
+        when(receiptDTO.getOrderStatus()).thenReturn("registered");
+        Assertions.assertTrue(receiptService.updateReceiptDiscount(receiptDTO, tourDTO));
+
+        when(receiptDTO.getOrderStatus()).thenReturn("paid");
+        Assertions.assertFalse(receiptService.updateReceiptDiscount(receiptDTO, tourDTO));
+        when(receiptDTO.getOrderStatus()).thenReturn("canceled");
+        Assertions.assertFalse(receiptService.updateReceiptDiscount(receiptDTO, tourDTO));
+    }
+    @Test
+    public void updateReceiptDiscountUpdateExceptionTest() throws DatabaseException {
+        ReceiptDTO receiptDTO = mock(ReceiptDTO.class);
+        ReceiptDao receiptDAO = mock(ReceiptDAOImpl.class);
+        TourDTO tourDTO = mock(TourDTO.class);
+        Receipt receipt = mock(Receipt.class);
+
+        when(receiptDTO.getId()).thenReturn(0);
+        when(receiptDAO.getReceiptById(0)).thenReturn(receipt);
+        when(receiptDTO.getDiscount()).thenReturn(10);
+        when(tourDTO.getMaxDiscount()).thenReturn(10);
+        when(receiptDTO.getOrderStatus()).thenReturn("registered");
+
+        ReceiptService receiptService = new ReceiptService(receiptDAO);
+        when(receiptDAO.updateReceiptDiscount(any(Integer.class), any(Integer.class), any(Integer.class)))
+                .thenThrow(new DatabaseException());
+        Assertions.assertFalse(receiptService.updateReceiptDiscount(receiptDTO, tourDTO));
+    }
 
 }
